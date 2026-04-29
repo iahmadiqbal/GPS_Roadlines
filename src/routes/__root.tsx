@@ -93,8 +93,9 @@ function ScrollToTop() {
   useEffect(() => {
     const scroll = () => {
       if (location.hash) {
+        const targetId = location.hash.replace(/^#/, "");
         document
-          .getElementById(location.hash)
+          .getElementById(targetId)
           ?.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
