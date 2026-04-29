@@ -19,6 +19,7 @@ const buttonVariants = cva(
         hero: "bg-primary text-primary-foreground shadow-glow hover:-translate-y-0.5 hover:bg-primary/90",
         emergency: "bg-destructive text-destructive-foreground shadow-emergency hover:-translate-y-0.5 hover:bg-destructive/90",
         dark: "bg-brand-dark text-brand-dark-foreground shadow-road hover:-translate-y-0.5 hover:bg-brand-dark/90",
+        light: "bg-brand-dark-foreground text-brand-dark shadow-road hover:-translate-y-0.5 hover:bg-brand-dark-foreground/90",
       },
       size: {
         default: "h-9 px-4 py-2",
