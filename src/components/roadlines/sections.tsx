@@ -6,11 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import containerLogisticsImage from "@/assets/gps-roadlines-container-logistics.jpg";
-import dispatchControlImage from "@/assets/gps-roadlines-dispatch-control.jpg";
-import emergencyTowImage from "@/assets/gps-roadlines-emergency-tow.jpg";
-import mobileMechanicImage from "@/assets/gps-roadlines-mobile-mechanic.jpg";
-import transportImage from "@/assets/gps-roadlines-transport.jpg";
+import {
+  containerLogisticsImage,
+  dispatchControlImage,
+  emergencyTowImage,
+  mobileMechanicImage,
+  transportImage,
+} from "./assets";
 import { company, coreServices, steps, transportServices, type Service } from "./data";
 
 const heroSlides = [
@@ -446,10 +448,3 @@ export function DispatchWorkflow() {
   );
 }
 
-export {
-  containerLogisticsImage,
-  dispatchControlImage,
-  emergencyTowImage,
-  mobileMechanicImage,
-  transportImage,
-};
