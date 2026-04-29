@@ -42,15 +42,15 @@ const navLinks = [
   { label: "Get in Touch", to: "/get-in-touch" },
 ] as const;
 
-export function Logo() {
+export function Logo({ inverse = false }: { inverse?: boolean }) {
   return (
     <Link to="/" className="group flex items-center gap-3" aria-label="GPS Roadlines home">
       <span className="flex size-11 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-glow transition-transform duration-300 group-hover:scale-105">
         <Truck className="size-5" />
       </span>
       <span className="leading-tight">
-        <span className="block text-lg font-black text-foreground">GPS Roadlines</span>
-        <span className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground">Roadside + Logistics</span>
+        <span className={inverse ? "block text-lg font-black text-brand-dark-foreground" : "block text-lg font-black text-foreground"}>GPS Roadlines</span>
+        <span className={inverse ? "block text-xs font-semibold uppercase tracking-wide text-brand-dark-foreground/70" : "block text-xs font-semibold uppercase tracking-wide text-muted-foreground"}>Roadside + Logistics</span>
       </span>
     </Link>
   );
@@ -113,7 +113,7 @@ export function Header() {
               {navLinks.slice(1).map((link) => <DropdownMenuItem key={link.to} asChild><Link to={link.to}>{link.label}</Link></DropdownMenuItem>)}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Logo />
+          <Logo inverse />
         </div>
         <nav className="hidden items-center gap-6 lg:flex">
           <Link to="/emergency-services" className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary">Emergency</Link>
