@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BriefcaseBusiness, CheckCircle2, PhoneCall, ShieldCheck, Zap } from "lucide-react";
 
+import { emergencyTowImage } from "@/components/roadlines/assets";
 import { company } from "@/components/roadlines/data";
 import { ServiceContactForm } from "@/components/roadlines/forms";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   CTASection,
-  emergencyTowImage,
   InfoBand,
   PageHero,
   WhyChooseSection,

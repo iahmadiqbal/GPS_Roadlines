@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { emergencyTowImage } from "@/components/roadlines/assets";
 import { emergencyServices } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   CTASection,
   DispatchWorkflow,
-  emergencyTowImage,
   PageHero,
   ServicesGrid,
 } from "@/components/roadlines/sections";
