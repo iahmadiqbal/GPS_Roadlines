@@ -38,10 +38,16 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "GPS Roadlines" },
-      { name: "description", content: "Roadside assistance, towing, recovery, transport, and logistics in St. John’s." },
+      {
+        name: "description",
+        content: "Roadside assistance, towing, recovery, transport, and logistics in St. John’s.",
+      },
       { name: "author", content: "GPS Roadlines" },
       { property: "og:title", content: "GPS Roadlines" },
-      { property: "og:description", content: "Roadside assistance, towing, recovery, transport, and logistics in St. John’s." },
+      {
+        property: "og:description",
+        content: "Roadside assistance, towing, recovery, transport, and logistics in St. John’s.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -87,7 +93,9 @@ function ScrollToTop() {
   useEffect(() => {
     const scroll = () => {
       if (location.hash) {
-        document.getElementById(location.hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document
+          .getElementById(location.hash)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
 

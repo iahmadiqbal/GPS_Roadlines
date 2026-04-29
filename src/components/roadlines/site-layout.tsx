@@ -150,10 +150,7 @@ export function Header() {
                     </DropdownMenuItem>
                     {emergencyServices.slice(0, 6).map((service) => (
                       <DropdownMenuItem key={service.title} asChild>
-                        <Link
-                          to={servicePath("emergency")}
-                          hash={serviceSlug(service.title)}
-                        >
+                        <Link to={servicePath("emergency")} hash={serviceSlug(service.title)}>
                           {service.title}
                         </Link>
                       </DropdownMenuItem>
@@ -168,10 +165,7 @@ export function Header() {
                     </DropdownMenuItem>
                     {transportServices.slice(0, 6).map((service) => (
                       <DropdownMenuItem key={service.title} asChild>
-                        <Link
-                          to={servicePath("transport")}
-                          hash={serviceSlug(service.title)}
-                        >
+                        <Link to={servicePath("transport")} hash={serviceSlug(service.title)}>
                           {service.title}
                         </Link>
                       </DropdownMenuItem>
