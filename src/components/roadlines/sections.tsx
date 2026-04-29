@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, PhoneCall, RadioTower, Route, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, PhoneCall, RadioTower, Route } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { Badge } from "@/components/ui/badge";

@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2 } from "lucide-react";
-
 import { coreServices } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import { CTASection, InfoBand, IntegratedModelSection, PageHero, ServicesGrid, TimelineSection, WhyChooseSection } from "@/components/roadlines/sections";
