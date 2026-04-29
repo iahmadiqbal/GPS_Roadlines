@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 
-import gpsRoadlinesLogo from "@/assets/gps-roadlines-logo.jpeg";
+import gpsRoadlinesLogo from "@/assets/gps-roadlines-logo-transparent.png";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -45,16 +45,16 @@ const navLinks = [
 export function Logo({ inverse = false }: { inverse?: boolean }) {
   return (
     <Link to="/" className="group flex min-w-0 items-center gap-3" aria-label="GPS Roadlines home">
-      <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-card p-1 shadow-road transition-transform duration-300 group-hover:scale-105 sm:h-16 sm:w-16">
+      <span className="flex h-16 w-20 shrink-0 items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:w-24 lg:h-20 lg:w-28">
         <img
           src={gpsRoadlinesLogo}
           alt="GPS Roadlines logo"
-          width={96}
-          height={96}
-          className="h-full w-full object-contain"
+          width={220}
+          height={180}
+          className="h-full w-full object-contain drop-shadow-sm"
         />
       </span>
-      <span className="hidden min-w-0 leading-tight sm:block">
+      <span className="hidden min-w-0 leading-tight xl:block">
         <span
           className={
             inverse
@@ -125,6 +125,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/88 backdrop-blur-xl supports-[backdrop-filter]:bg-background/78">
       <div className="mx-auto flex h-24 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:h-24 lg:px-8 xl:gap-6">
         <div className="flex min-w-0 items-center gap-3">
+          <div className="lg:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon" aria-label="Open navigation">
@@ -166,41 +167,62 @@ export function Header() {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+          </div>
           <Logo />
         </div>
-        <nav className="hidden items-center gap-4 lg:flex xl:gap-6">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-3 lg:flex xl:gap-5">
+          <Link
+            to="/"
+            className="whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            activeProps={{ className: "text-primary" }}
+            activeOptions={{ exact: true }}
+          >
+            Home
+          </Link>
           <Link
             to="/emergency-services"
-            className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            activeProps={{ className: "text-primary" }}
           >
             Emergency
           </Link>
           <Link
             to="/transport-moving"
-            className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            activeProps={{ className: "text-primary" }}
           >
             Transport
           </Link>
           <Link
             to="/how-it-works"
-            className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            activeProps={{ className: "text-primary" }}
           >
             How It Works
           </Link>
           <Link
             to="/about"
-            className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            activeProps={{ className: "text-primary" }}
           >
             About
           </Link>
           <Link
             to="/contact"
-            className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            className="whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            activeProps={{ className: "text-primary" }}
           >
             Contact
           </Link>
+          <Link
+            to="/get-in-touch"
+            className="whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            activeProps={{ className: "text-primary" }}
+          >
+            Get in Touch
+          </Link>
         </nav>
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden shrink-0 items-center gap-2 xl:flex">
           <UrgentDialog />
           <AppDialog />
         </div>
