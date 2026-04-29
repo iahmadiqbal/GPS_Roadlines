@@ -33,6 +33,13 @@ export type Service = {
   icon: LucideIcon;
 };
 
+export const serviceSlug = (title: string) =>
+  title
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
 export const coreServices: Service[] = [
   {
     title: "Towing Services",
