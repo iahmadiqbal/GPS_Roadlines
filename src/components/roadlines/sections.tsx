@@ -190,7 +190,9 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
   const image = serviceImages[service.title] ?? transportImage;
   const animation = ["animate-from-left", "animate-rise-up", "animate-from-right"][index % 3];
   return (
-    <Card className={`group overflow-hidden rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow ${animation}`}>
+    <Card
+      className={`group overflow-hidden rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow ${animation}`}
+    >
       <img
         src={image}
         alt={`${service.title} by GPS Roadlines`}
