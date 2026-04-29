@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { dispatchControlImage } from "@/components/roadlines/assets";
+import { sectionAboutOverviewImage } from "@/components/roadlines/assets";
 import { coreServices } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
@@ -39,7 +39,7 @@ function AboutPage() {
         <PageHero
           title="Your Trusted Road Support & Transport Partner"
           text="GPS Roadlines brings emergency roadside response and logistics coordination together for drivers, fleets, and businesses in St. John’s."
-          image={dispatchControlImage}
+          image={sectionAboutOverviewImage}
         />
         <InfoBand>
           <div className="grid gap-6 lg:grid-cols-3">

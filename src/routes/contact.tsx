@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Building2, Mail, MapPinned, PhoneCall, RadioTower } from "lucide-react";
 
-import { dispatchControlImage } from "@/components/roadlines/assets";
+import { sectionContactOfficeImage } from "@/components/roadlines/assets";
 import { company } from "@/components/roadlines/data";
 import { ServiceContactForm } from "@/components/roadlines/forms";
 import { PageShell } from "@/components/roadlines/site-layout";
@@ -46,7 +46,7 @@ function ContactPage() {
         <PageHero
           title="Contact GPS Roadlines"
           text="Reach our St. John’s team for immediate roadside help, planned transport, commercial logistics, or fleet support."
-          image={dispatchControlImage}
+          image={sectionContactOfficeImage}
         />
         <section className="px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-4">
