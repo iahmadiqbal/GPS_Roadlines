@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { RadioTower, ShieldCheck, Timer, Workflow } from "lucide-react";
 
+import { dispatchControlImage } from "@/components/roadlines/assets";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   CTASection,
   DispatchWorkflow,
-  dispatchControlImage,
   InfoBand,
   PageHero,
   TimelineSection,
