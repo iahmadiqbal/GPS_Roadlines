@@ -11,6 +11,20 @@ import {
   dispatchControlImage,
   emergencyTowImage,
   mobileMechanicImage,
+  sectionAboutOverviewImage,
+  serviceBatteryBoostImage,
+  serviceCommercialLogisticsImage,
+  serviceContainerTransportImage,
+  serviceEquipmentTransportImage,
+  serviceFleetTransportImage,
+  serviceFuelDeliveryImage,
+  serviceLockoutImage,
+  serviceMobileMechanicImage,
+  serviceOversizedTransportImage,
+  serviceRoadsideAssistanceImage,
+  serviceTowingImage,
+  serviceVehicleRecoveryImage,
+  serviceVehicleTransportImage,
   transportImage,
 } from "./assets";
 import { company, coreServices, serviceSlug, steps, transportServices, type Service } from "./data";
@@ -37,21 +51,21 @@ const heroSlides = [
 ];
 
 const serviceImages: Record<string, string> = {
-  "Towing Services": emergencyTowImage,
-  Towing: emergencyTowImage,
-  "Roadside Assistance": mobileMechanicImage,
-  "Vehicle Recovery": emergencyTowImage,
-  "Mobile Mechanic": mobileMechanicImage,
-  "Battery Boost": mobileMechanicImage,
-  "Fuel Delivery": mobileMechanicImage,
-  Lockout: mobileMechanicImage,
-  "Container Transport": containerLogisticsImage,
-  "Commercial Logistics": dispatchControlImage,
-  Logistics: dispatchControlImage,
-  "Fleet Transport": containerLogisticsImage,
-  "Vehicle Transport": transportImage,
-  "Equipment Transport": containerLogisticsImage,
-  "Oversized Transport": containerLogisticsImage,
+  "Towing Services": serviceTowingImage,
+  Towing: serviceTowingImage,
+  "Roadside Assistance": serviceRoadsideAssistanceImage,
+  "Vehicle Recovery": serviceVehicleRecoveryImage,
+  "Mobile Mechanic": serviceMobileMechanicImage,
+  "Battery Boost": serviceBatteryBoostImage,
+  "Fuel Delivery": serviceFuelDeliveryImage,
+  Lockout: serviceLockoutImage,
+  "Container Transport": serviceContainerTransportImage,
+  "Commercial Logistics": serviceCommercialLogisticsImage,
+  Logistics: serviceCommercialLogisticsImage,
+  "Fleet Transport": serviceFleetTransportImage,
+  "Vehicle Transport": serviceVehicleTransportImage,
+  "Equipment Transport": serviceEquipmentTransportImage,
+  "Oversized Transport": serviceOversizedTransportImage,
 };
 
 export function SectionHeader({
@@ -389,7 +403,7 @@ export function AboutPreview() {
           </Button>
         </div>
         <img
-          src={transportImage}
+          src={sectionAboutOverviewImage}
           alt="GPS Roadlines container transport truck"
           loading="lazy"
           width={1400}
