@@ -32,7 +32,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { company, emergencyServices, transportServices } from "./data";
+import { company, emergencyServices, serviceSlug, transportServices } from "./data";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -144,7 +144,11 @@ export function Header() {
                       <Link to="/emergency-services">Overview</Link>
                     </DropdownMenuItem>
                     {emergencyServices.slice(0, 6).map((service) => (
-                      <DropdownMenuItem key={service.title}>{service.title}</DropdownMenuItem>
+                      <DropdownMenuItem key={service.title} asChild>
+                        <Link to="/emergency-services" hash={serviceSlug(service.title)}>
+                          {service.title}
+                        </Link>
+                      </DropdownMenuItem>
                     ))}
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -155,7 +159,11 @@ export function Header() {
                       <Link to="/transport-moving">Overview</Link>
                     </DropdownMenuItem>
                     {transportServices.slice(0, 6).map((service) => (
-                      <DropdownMenuItem key={service.title}>{service.title}</DropdownMenuItem>
+                      <DropdownMenuItem key={service.title} asChild>
+                        <Link to="/transport-moving" hash={serviceSlug(service.title)}>
+                          {service.title}
+                        </Link>
+                      </DropdownMenuItem>
                     ))}
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -255,6 +263,7 @@ export function Footer() {
             <Link to="/transport-moving">Transport & Moving</Link>
             <Link to="/how-it-works">How It Works</Link>
             <Link to="/get-in-touch">Get in Touch</Link>
+            <Link to="/contact">Contact</Link>
           </div>
         </div>
         <div>

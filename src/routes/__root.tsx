@@ -1,4 +1,12 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { useEffect } from "react";
+import {
+  Outlet,
+  Link,
+  createRootRoute,
+  HeadContent,
+  Scripts,
+  useLocation,
+} from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 
@@ -30,10 +38,16 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "GPS Roadlines" },
-      { name: "description", content: "Roadside assistance, towing, recovery, transport, and logistics in St. John’s." },
+      {
+        name: "description",
+        content: "Roadside assistance, towing, recovery, transport, and logistics in St. John’s.",
+      },
       { name: "author", content: "GPS Roadlines" },
       { property: "og:title", content: "GPS Roadlines" },
-      { property: "og:description", content: "Roadside assistance, towing, recovery, transport, and logistics in St. John’s." },
+      {
+        property: "og:description",
+        content: "Roadside assistance, towing, recovery, transport, and logistics in St. John’s.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -65,5 +79,30 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
+}
+
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const scroll = () => {
+      if (location.hash) {
+        const targetId = location.hash.replace(/^#/, "");
+        document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
+
+    window.requestAnimationFrame(scroll);
+  }, [location.pathname, location.hash]);
+
+  return null;
 }

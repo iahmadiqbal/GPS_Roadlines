@@ -13,7 +13,7 @@ import {
   mobileMechanicImage,
   transportImage,
 } from "./assets";
-import { company, coreServices, steps, transportServices, type Service } from "./data";
+import { company, coreServices, serviceSlug, steps, transportServices, type Service } from "./data";
 
 const heroSlides = [
   {
@@ -168,13 +168,15 @@ export function ServicesGrid({
   services = coreServices,
   title = "Services Built Around Road Reality",
   text = "One coordinated team for emergency support, recovery, mobile mechanic needs, container transport, and commercial logistics.",
+  id = "services",
 }: {
   services?: Service[];
   title?: string;
   text?: string;
+  id?: string;
 }) {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8">
+    <section id={id} className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <SectionHeader eyebrow="Services" title={title} text={text} />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -193,6 +195,7 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
   const animation = ["animate-from-left", "animate-rise-up", "animate-from-right"][index % 3];
   return (
     <Card
+      id={serviceSlug(service.title)}
       className={`group overflow-hidden rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow ${animation}`}
     >
       <img
