@@ -81,33 +81,44 @@ export const coreServices: Service[] = [
 export const emergencyServices: Service[] = [
   {
     title: "Towing",
-    description: "Responsive towing dispatch for breakdowns, collisions, and vehicle relocations.",
+    description:
+      "24/7 emergency towing across St. John's & Avalon Peninsula. Handles breakdowns, accidents, non-start vehicles with flatbed towing for safe vehicle transport.",
     icon: Truck,
   },
   {
     title: "Roadside Assistance",
-    description: "Immediate support for common roadside interruptions and trip delays.",
+    description:
+      "Battery boost, flat tire replacement, fuel delivery, vehicle lockout, and minor roadside repairs. On-site diagnostics before towing decision.",
     icon: Siren,
   },
   {
     title: "Vehicle Recovery",
-    description: "Recovery coordination for stuck, disabled, or hard-to-access vehicles.",
+    description:
+      "Off-road vehicle recovery from ditch, snow, and mud. Accident recovery and winching service with safe extraction using professional equipment.",
     icon: ShieldCheck,
   },
   {
+    title: "Mobile Mechanic",
+    description:
+      "On-site diagnostics and minor repair coordination. Reduces unnecessary towing by resolving issues roadside with a dispatched mobile technician.",
+    icon: Wrench,
+  },
+  {
     title: "Battery Boost",
-    description: "Jump-start service designed to get drivers moving quickly and safely.",
+    description:
+      "Dead battery jump-start service with portable boosting equipment. Battery health check included. Usually resolved within minutes. 24/7 availability.",
     icon: BatteryCharging,
   },
   {
     title: "Fuel Delivery",
-    description: "Emergency fuel delivery when drivers run out before reaching a station.",
+    description:
+      "Emergency fuel delivery for empty vehicles. Gasoline and diesel support. Highway and remote area coverage. Prevents towing due to fuel shortage.",
     icon: Fuel,
   },
   {
     title: "Lockout",
     description:
-      "Professional lockout assistance with driver-focused care and clear communication.",
+      "Non-destructive vehicle entry for keys locked inside. Professional unlocking tools with no damage to doors or windows. 24/7 emergency availability.",
     icon: KeyRound,
   },
 ];
@@ -116,35 +127,37 @@ export const transportServices: Service[] = [
   {
     title: "Container Transport",
     description:
-      "Reliable container moves for yards, worksites, warehouses, and commercial facilities.",
+      "Professional shipping container pickup and delivery across St. John's. Supports 20ft and 40ft containers. Coordination with ports, depots, construction sites and storage yards.",
     icon: Container,
   },
   {
     title: "Logistics",
     description:
-      "Dispatch planning, routing, and transport coordination for time-sensitive business needs.",
+      "Planned transport solutions for businesses and individuals. Flexible daily, weekly or contract-based logistics scheduling with efficient route planning.",
     icon: MapPinned,
   },
   {
     title: "Fleet Transport",
-    description: "Organized vehicle movement for dealerships, fleet managers, and operators.",
+    description:
+      "Dedicated transport support for business fleets and commercial operators. Emergency and scheduled relocation of company vehicles with priority response.",
     icon: BriefcaseBusiness,
   },
   {
     title: "Vehicle Transport",
     description:
-      "Point-to-point vehicle transport with careful loading, scheduling, and delivery updates.",
+      "Safe transport of vehicles between dealerships, auctions and buyers. Flatbed transport available for non-running or damaged vehicles. GPS-tracked routes.",
     icon: Car,
   },
   {
     title: "Equipment Transport",
-    description: "Support for moving equipment and operational assets between sites.",
+    description:
+      "Transport of construction machinery and heavy equipment. Supports contractors, builders and infrastructure projects. Equipment loading with safety-first procedures.",
     icon: Wrench,
   },
   {
     title: "Oversized Transport",
     description:
-      "Coordinated planning for larger moves that require extra care and route awareness.",
+      "Transport of oversized or non-standard items requiring special handling. Customized loading solutions based on item dimensions and weight with route assessment.",
     icon: Gauge,
   },
 ];
@@ -152,29 +165,27 @@ export const transportServices: Service[] = [
 export const whyChoose = [
   {
     title: "Safety First",
-    description:
-      "Every dispatch prioritizes driver safety, secure handling, and controlled roadside procedures.",
+    description: "Safety of people, vehicles & cargo always prioritized.",
     icon: ShieldCheck,
   },
   {
     title: "Fast Response",
-    description: "A streamlined intake process helps match the right operator to the job faster.",
+    description: "Quick dispatch system for emergencies.",
     icon: Zap,
   },
   {
     title: "Easy Booking",
-    description:
-      "Clear service requests, direct contact options, and modern intake forms simplify support.",
+    description: "Simple online + phone booking system.",
     icon: MapPinned,
   },
   {
     title: "Professional Team",
-    description: "Courteous operators and coordinators focused on reliable communication.",
+    description: "Skilled operators & mechanics.",
     icon: BriefcaseBusiness,
   },
   {
     title: "Transparency",
-    description: "Straightforward service details, clear next steps, and no confusing process.",
+    description: "Clear pricing and documentation.",
     icon: Gauge,
   },
 ];

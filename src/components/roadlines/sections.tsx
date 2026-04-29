@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+﻿import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, PhoneCall, RadioTower, Route } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -27,7 +27,7 @@ import {
   serviceVehicleTransportImage,
   transportImage,
 } from "./assets";
-import { company, coreServices, serviceSlug, steps, transportServices, type Service } from "./data";
+import { company, coreServices, serviceSlug, steps, transportServices, whyChoose, type Service } from "./data";
 
 const heroSlides = [
   {
@@ -78,12 +78,7 @@ export function SectionHeader({
   text?: string;
 }) {
   return (
-    <div className="mx-auto mb-10 max-w-3xl animate-rise-up text-center">
-      {eyebrow && (
-        <Badge variant="secondary" className="mb-4">
-          {eyebrow}
-        </Badge>
-      )}
+    <div className="mx-auto mb-10 max-w-4xl animate-rise-up text-center">
       <h2 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         {title}
       </h2>
@@ -109,17 +104,14 @@ export function HeroSlideshow({ compact = false }: { compact?: boolean }) {
       ))}
       <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/78 to-brand-dark/20" />
       <div className="absolute inset-0 road-grid opacity-25" />
-      <div className="relative z-10 mx-auto flex min-h-[inherit] max-w-7xl items-center px-4 py-24 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto flex min-h-[inherit] max-w-screen-2xl items-center px-4 py-24 sm:px-6 lg:px-8 2xl:px-16">
         <div className="max-w-4xl animate-from-left text-brand-dark-foreground">
-          <Badge className="mb-5 bg-primary text-primary-foreground">
-            24/7 St. John’s Dispatch
-          </Badge>
           <h1 className="max-w-5xl text-4xl font-black leading-tight sm:text-6xl lg:text-7xl">
             Reliable Roadside Assistance & Transport Services in St. John’s
           </h1>
           <p className="mt-6 max-w-2xl text-xl leading-9 text-brand-dark-foreground/82">
-            Fast towing, roadside support, recovery, mobile mechanic & logistics from one integrated
-            local team.
+            Fast towing, roadside support, vehicle recovery, mobile mechanic &amp; logistics
+            solutions.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button size="xl" variant="hero" asChild>
@@ -133,17 +125,6 @@ export function HeroSlideshow({ compact = false }: { compact?: boolean }) {
               </a>
             </Button>
           </div>
-          <div className="mt-10 grid max-w-3xl grid-cols-3 gap-3 text-sm font-semibold text-brand-dark-foreground/78">
-            <span className="rounded-lg border border-brand-dark-foreground/15 bg-brand-dark-foreground/10 p-3 backdrop-blur">
-              Towing
-            </span>
-            <span className="rounded-lg border border-brand-dark-foreground/15 bg-brand-dark-foreground/10 p-3 backdrop-blur">
-              Recovery
-            </span>
-            <span className="rounded-lg border border-brand-dark-foreground/15 bg-brand-dark-foreground/10 p-3 backdrop-blur">
-              Logistics
-            </span>
-          </div>
         </div>
       </div>
     </section>
@@ -154,10 +135,14 @@ export function PageHero({
   title,
   text,
   image = transportImage,
+  ctaLabel,
+  ctaHref,
 }: {
   title: string;
   text: string;
   image?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-brand-dark py-28 text-brand-dark-foreground sm:py-36">
@@ -169,10 +154,31 @@ export function PageHero({
         className="absolute inset-0 h-full w-full object-cover opacity-35"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/84 to-brand-dark/35" />
-      <div className="relative mx-auto max-w-7xl animate-from-top px-4 sm:px-6 lg:px-8">
-        <Badge className="mb-5 bg-primary text-primary-foreground">GPS Roadlines</Badge>
-        <h1 className="max-w-4xl text-4xl font-black leading-tight sm:text-6xl">{title}</h1>
+      <div className="relative mx-auto max-w-screen-2xl animate-from-top px-4 sm:px-6 lg:px-8">
+        <h1 className="max-w-5xl text-4xl font-black leading-tight sm:text-6xl">{title}</h1>
         <p className="mt-6 max-w-2xl text-xl leading-9 text-brand-dark-foreground/80">{text}</p>
+        {ctaLabel && (
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            {ctaHref ? (
+              <Button size="xl" variant="hero" asChild>
+                <Link to={ctaHref as "/"}>
+                  {ctaLabel} <ArrowRight />
+                </Link>
+              </Button>
+            ) : (
+              <Button size="xl" variant="hero" asChild>
+                <a href={company.phoneHref}>
+                  <PhoneCall /> {ctaLabel}
+                </a>
+              </Button>
+            )}
+            <Button size="xl" variant="light" asChild>
+              <a href={company.phoneHref}>
+                <PhoneCall /> Call Now
+              </a>
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -190,8 +196,8 @@ export function ServicesGrid({
   id?: string;
 }) {
   return (
-    <section id={id} className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <section id={id} className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+      <div className="mx-auto max-w-screen-2xl">
         <SectionHeader eyebrow="Services" title={title} text={text} />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
@@ -210,7 +216,7 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
   return (
     <Card
       id={serviceSlug(service.title)}
-      className={`group overflow-hidden rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow ${animation}`}
+      className={`group scroll-mt-28 overflow-hidden rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow ${animation}`}
     >
       <img
         src={image}
@@ -240,32 +246,16 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
 
 export function WhyChooseSection() {
   return (
-    <section className="bg-secondary/55 px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <section className="bg-secondary/55 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+      <div className="mx-auto max-w-screen-2xl">
         <SectionHeader eyebrow="Why choose us" title="Roadside urgency with logistics discipline" />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-          {[
-            "Safety First",
-            "Fast Response",
-            "Easy Booking",
-            "Professional Team",
-            "Transparency",
-          ].map((item, index) => (
-            <Card key={item} className="animate-rise-up rounded-lg shadow-road">
+          {whyChoose.map((item) => (
+            <Card key={item.title} className="animate-rise-up rounded-lg shadow-road">
               <CardContent className="p-6">
                 <CheckCircle2 className="mb-4 size-7 text-primary" />
-                <h3 className="font-bold">{item}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                  {
-                    [
-                      "Secure handling and controlled roadside support.",
-                      "Streamlined dispatch for quicker assignments.",
-                      "Simple request paths for urgent and planned work.",
-                      "Reliable operators with clear communication.",
-                      "Clear next steps from request to completion.",
-                    ][index]
-                  }
-                </p>
+                <h3 className="font-bold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -277,8 +267,8 @@ export function WhyChooseSection() {
 
 export function TimelineSection({ detailed = false }: { detailed?: boolean }) {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+      <div className="mx-auto max-w-screen-2xl">
         <SectionHeader
           eyebrow="How it works"
           title="A dispatch flow designed for speed and clarity"
@@ -304,10 +294,9 @@ export function TimelineSection({ detailed = false }: { detailed?: boolean }) {
 
 export function IntegratedModelSection() {
   return (
-    <section className="bg-brand-dark px-4 py-20 text-brand-dark-foreground sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+    <section className="bg-brand-dark px-4 py-20 text-brand-dark-foreground sm:px-6 lg:px-8 2xl:px-16">
+      <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
         <div className="animate-from-left">
-          <Badge className="mb-5 bg-primary text-primary-foreground">Integrated model</Badge>
           <h2 className="text-3xl font-black sm:text-5xl">One Call Solves Everything</h2>
           <p className="mt-5 text-lg leading-8 text-brand-dark-foreground/76">
             GPS Roadlines combines towing, roadside assistance, vehicle recovery, mobile mechanic
@@ -354,14 +343,14 @@ export function IntegratedModelSection() {
 
 export function CTASection({
   title = "NEED IMMEDIATE ROAD HELP?",
-  text = "Talk to GPS Roadlines dispatch or submit a service request now.",
+  text = "Fast response available 24/7 across St. John's and surrounding areas.",
 }: {
   title?: string;
   text?: string;
 }) {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl animate-rise-up rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between">
+    <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+      <div className="mx-auto max-w-screen-xl animate-rise-up rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between">
         <div className="animate-from-left">
           <h2 className="text-3xl font-black sm:text-4xl">{title}</h2>
           <p className="mt-3 text-primary-foreground/82">{text}</p>
@@ -383,12 +372,9 @@ export function CTASection({
 
 export function AboutPreview() {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
+    <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+      <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-2 lg:items-center">
         <div>
-          <Badge variant="secondary" className="mb-5">
-            About GPS Roadlines
-          </Badge>
           <h2 className="text-3xl font-black sm:text-5xl">
             Your Trusted Road Support & Transport Partner
           </h2>
@@ -417,8 +403,8 @@ export function AboutPreview() {
 
 export function InfoBand({ children }: { children: ReactNode }) {
   return (
-    <section className="bg-secondary/60 px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl animate-rise-up">{children}</div>
+    <section className="bg-secondary/60 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+      <div className="mx-auto max-w-screen-2xl animate-rise-up">{children}</div>
     </section>
   );
 }

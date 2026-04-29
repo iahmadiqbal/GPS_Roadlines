@@ -7,9 +7,12 @@ import {
   CTASection,
   DispatchWorkflow,
   InfoBand,
+  IntegratedModelSection,
   PageHero,
+  ServicesGrid,
   TimelineSection,
 } from "@/components/roadlines/sections";
+import { coreServices } from "@/components/roadlines/data";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const Route = createFileRoute("/how-it-works")({
@@ -32,26 +35,48 @@ export const Route = createFileRoute("/how-it-works")({
 });
 
 function HowItWorksPage() {
+  // Document: "Why This Process Works" — 4 benefit cards
   const benefits = [
     { title: "Less downtime", icon: Timer },
     { title: "One coordinated request", icon: Workflow },
     { title: "Safety-led response", icon: ShieldCheck },
     { title: "Clear communication", icon: RadioTower },
   ];
+
   return (
     <PageShell>
       <main>
+        {/* Hero — document: "How GPS Roadlines Works – Fast, Simple & Reliable Road Support" */}
         <PageHero
-          title="How GPS Roadlines Works"
-          text="A clear service path for emergency roadside calls, planned transport, business logistics, and recovery needs."
+          title="How GPS Roadlines Works – Fast, Simple & Reliable Road Support"
+          text="From request to resolution – towing, roadside assistance & transport made easy"
           image={dispatchControlImage}
+          ctaLabel="Request Service / Get a Quote"
+          ctaHref="/get-in-touch"
         />
+
+        {/* Step-by-step process — detailed */}
         <TimelineSection detailed />
+
+        {/* Integrated Service Flow */}
+        <IntegratedModelSection />
+
+        {/* Service types covered */}
+        <ServicesGrid
+          services={coreServices}
+          title="Service Types Covered in Process"
+          text="Every request follows the same structured dispatch workflow — towing, roadside assistance, vehicle recovery, mobile mechanic, and transport & logistics."
+        />
+
         <DispatchWorkflow />
+
+        {/* Why This Process Works */}
         <InfoBand>
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1fr]">
             <div>
-              <h2 className="text-3xl font-black sm:text-4xl">Integrated service flow</h2>
+              <h2 className="text-3xl font-black sm:text-4xl">
+                Built for Speed, Safety &amp; Reliability
+              </h2>
               <p className="mt-4 text-lg leading-8 text-muted-foreground">
                 Whether the request is a tow, boost, recovery, container move, or fleet transport,
                 GPS Roadlines uses one intake model to understand the problem, locate the asset,
@@ -73,7 +98,12 @@ function HowItWorksPage() {
             </div>
           </div>
         </InfoBand>
-        <CTASection title="START A SERVICE REQUEST" />
+
+        {/* CTA — document: "NEED HELP RIGHT NOW OR WANT TO BOOK A SERVICE?" */}
+        <CTASection
+          title="NEED HELP RIGHT NOW OR WANT TO BOOK A SERVICE?"
+          text="Fast towing, roadside assistance & transport across St. John's."
+        />
       </main>
     </PageShell>
   );

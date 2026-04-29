@@ -11,7 +11,9 @@ import {
   TimelineSection,
   WhyChooseSection,
 } from "@/components/roadlines/sections";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -20,12 +22,12 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Learn about GPS Roadlines, a St. John’s roadside assistance and transport company serving drivers and businesses.",
+          "Learn about GPS Roadlines, a St. John's roadside assistance and transport company serving drivers and businesses.",
       },
       { property: "og:title", content: "About GPS Roadlines" },
       {
         property: "og:description",
-        content: "A modern St. John’s road support and logistics partner.",
+        content: "A modern St. John's road support and logistics partner.",
       },
     ],
   }),
@@ -36,53 +38,86 @@ function AboutPage() {
   return (
     <PageShell>
       <main>
+        {/* Hero — document: "About GPS Roadlines – Built for Reliable Road Support in St. John's" */}
         <PageHero
-          title="Your Trusted Road Support & Transport Partner"
-          text="GPS Roadlines brings emergency roadside response and logistics coordination together for drivers, fleets, and businesses in St. John’s."
+          title="About GPS Roadlines – Built for Reliable Road Support in St. John's"
+          text="Towing, roadside assistance, mobile mechanics & transport solutions across Newfoundland & Labrador"
           image={sectionAboutOverviewImage}
+          ctaLabel="Get a Quote"
+          ctaHref="/get-in-touch"
         />
+
+        {/* Company Overview + Mission + Vision — document requirement */}
         <InfoBand>
           <div className="grid gap-6 lg:grid-cols-3">
             <Card className="rounded-lg">
               <CardContent className="p-7">
-                <h2 className="text-2xl font-black">Company overview</h2>
+                <h2 className="text-2xl font-black">Who We Are</h2>
                 <p className="mt-4 leading-7 text-muted-foreground">
-                  GPS Roadlines is a St. John’s based roadside assistance and transport company
-                  offering towing, recovery, mobile mechanic, container transport, and logistics
-                  services through a practical dispatch model.
+                  GPS Roadlines is a St. John's based roadside assistance and transport company
+                  providing towing, recovery, mobile mechanic and logistics services. Designed for
+                  both emergency and scheduled transport needs, serving private drivers, businesses,
+                  contractors and fleet operators across St. John's and Avalon Peninsula corridors.
                 </p>
               </CardContent>
             </Card>
             <Card className="rounded-lg">
               <CardContent className="p-7">
-                <h2 className="text-2xl font-black">Mission</h2>
+                <h2 className="text-2xl font-black">Our Mission</h2>
                 <p className="mt-4 leading-7 text-muted-foreground">
-                  To provide safe, fast, and transparent support when drivers and businesses need
-                  roadside or transport help, reducing stress and downtime through one reliable
-                  contact point.
+                  To deliver dependable towing, roadside assistance and transport services with fast
+                  and safe response for every customer situation. To integrate towing, mechanic and
+                  logistics into one service model with transparent pricing and clear communication.
                 </p>
               </CardContent>
             </Card>
             <Card className="rounded-lg">
               <CardContent className="p-7">
-                <h2 className="text-2xl font-black">Vision</h2>
+                <h2 className="text-2xl font-black">Our Vision</h2>
                 <p className="mt-4 leading-7 text-muted-foreground">
-                  To become a trusted regional road support platform where emergency service,
-                  transport planning, and modern dispatch work together seamlessly.
+                  To become a trusted roadside and logistics brand in Atlantic Canada. To expand
+                  services across Newfoundland & Labrador, integrate modern technology into roadside
+                  assistance operations, and redefine roadside assistance with reliability and speed.
                 </p>
               </CardContent>
             </Card>
           </div>
         </InfoBand>
+
+        {/* What We Do — service summary grid */}
         <ServicesGrid
           services={coreServices}
-          title="Services that work together"
+          title="What We Do"
           text="Roadside, recovery, mobile mechanic, container transport, and commercial logistics under one coordinated operating model."
         />
+
+        {/* How We Operate — 5-step timeline */}
         <TimelineSection detailed />
+
         <IntegratedModelSection />
         <WhyChooseSection />
-        <CTASection />
+
+        {/* CTA — document: "WANT TO KNOW MORE ABOUT GPS ROADLINES?" */}
+        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+          <div className="mx-auto max-w-screen-xl animate-rise-up rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between">
+            <div>
+              <h2 className="text-3xl font-black sm:text-4xl">
+                WANT TO KNOW MORE ABOUT GPS ROADLINES?
+              </h2>
+              <p className="mt-3 text-primary-foreground/82">
+                Learn how we support towing, roadside help and transport across NL.
+              </p>
+            </div>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:mt-0">
+              <Button size="xl" variant="dark" asChild>
+                <Link to="/contact">Contact Us</Link>
+              </Button>
+              <Button size="xl" variant="light" asChild>
+                <Link to="/get-in-touch">Get a Quote</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
       </main>
     </PageShell>
   );
