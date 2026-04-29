@@ -9,14 +9,36 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import hero1 from "@/assets/gps-roadlines-hero-1.jpg";
 import hero2 from "@/assets/gps-roadlines-hero-2.jpg";
 import hero3 from "@/assets/gps-roadlines-hero-3.jpg";
+import containerLogisticsImage from "@/assets/gps-roadlines-container-logistics.jpg";
+import dispatchControlImage from "@/assets/gps-roadlines-dispatch-control.jpg";
+import emergencyTowImage from "@/assets/gps-roadlines-emergency-tow.jpg";
+import mobileMechanicImage from "@/assets/gps-roadlines-mobile-mechanic.jpg";
 import transportImage from "@/assets/gps-roadlines-transport.jpg";
 import { company, coreServices, steps, transportServices, type Service } from "./data";
 
 const heroSlides = [
-  { image: hero1, title: "Reliable Roadside Assistance & Transport Services in St. John’s", text: "Fast towing, roadside support, recovery, mobile mechanic & logistics", className: "animate-slide-fade" },
-  { image: hero2, title: "Complete Road Support When You Need It Most", text: "One trusted provider for all roadside + transport needs", className: "animate-slide-fade-delayed" },
-  { image: hero3, title: "Smart Dispatch + Faster Response", text: "Modern tracking & booking system", className: "animate-slide-fade-late" },
+  { image: emergencyTowImage, title: "Reliable Roadside Assistance & Transport Services in St. John’s", text: "Fast towing, roadside support, recovery, mobile mechanic & logistics", className: "animate-slide-fade" },
+  { image: containerLogisticsImage, title: "Complete Road Support When You Need It Most", text: "One trusted provider for all roadside + transport needs", className: "animate-slide-fade-delayed" },
+  { image: dispatchControlImage, title: "Smart Dispatch + Faster Response", text: "Modern tracking & booking system", className: "animate-slide-fade-late" },
 ];
+
+const serviceImages: Record<string, string> = {
+  "Towing Services": emergencyTowImage,
+  Towing: emergencyTowImage,
+  "Roadside Assistance": mobileMechanicImage,
+  "Vehicle Recovery": emergencyTowImage,
+  "Mobile Mechanic": mobileMechanicImage,
+  "Battery Boost": mobileMechanicImage,
+  "Fuel Delivery": mobileMechanicImage,
+  Lockout: mobileMechanicImage,
+  "Container Transport": containerLogisticsImage,
+  "Commercial Logistics": dispatchControlImage,
+  Logistics: dispatchControlImage,
+  "Fleet Transport": containerLogisticsImage,
+  "Vehicle Transport": transportImage,
+  "Equipment Transport": containerLogisticsImage,
+  "Oversized Transport": containerLogisticsImage,
+};
 
 export function SectionHeader({ eyebrow, title, text }: { eyebrow?: string; title: string; text?: string }) {
   return (
@@ -77,8 +99,10 @@ export function ServicesGrid({ services = coreServices, title = "Services Built 
 
 export function ServiceCard({ service }: { service: Service }) {
   const Icon = service.icon;
+  const image = serviceImages[service.title] ?? transportImage;
   return (
     <Card className="group overflow-hidden rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
+      <img src={image} alt={`${service.title} by GPS Roadlines`} loading="lazy" width={1600} height={1000} className="aspect-[16/10] w-full object-cover" />
       <CardHeader><div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-accent text-primary transition-transform duration-300 group-hover:scale-110"><Icon className="size-6" /></div><CardTitle className="text-xl">{service.title}</CardTitle></CardHeader>
       <CardContent><p className="min-h-20 text-sm leading-7 text-muted-foreground">{service.description}</p><Button className="mt-5" variant="outline" asChild><Link to="/get-in-touch">Request Service <ArrowRight /></Link></Button></CardContent>
     </Card>
@@ -133,8 +157,8 @@ export function InfoBand({ children }: { children: ReactNode }) {
 
 export function DispatchWorkflow() {
   return (
-    <InfoBand><div className="grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center"><div><RadioTower className="mb-5 size-10 text-primary" /><h2 className="text-3xl font-black sm:text-4xl">Dispatch workflow that keeps requests moving</h2><p className="mt-4 text-lg leading-8 text-muted-foreground">GPS Roadlines collects the essential details, reviews the safest response path, assigns the right operator, and keeps the service aligned from first call to completion.</p></div><div className="grid gap-4 md:grid-cols-2">{["Confirm location","Review vehicle status","Match service type","Coordinate completion"].map((item) => <Card key={item} className="rounded-lg"><CardContent className="flex items-center gap-3 p-5"><Route className="size-5 text-primary" /><span className="font-semibold">{item}</span></CardContent></Card>)}</div></div></InfoBand>
+    <InfoBand><div className="grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center"><div><RadioTower className="mb-5 size-10 text-primary" /><h2 className="text-3xl font-black sm:text-4xl">Dispatch workflow that keeps requests moving</h2><p className="mt-4 text-lg leading-8 text-muted-foreground">GPS Roadlines collects the essential details, reviews the safest response path, assigns the right operator, and keeps the service aligned from first call to completion.</p><img src={dispatchControlImage} alt="GPS Roadlines dispatch control and route coordination" loading="lazy" width={1600} height={1000} className="mt-7 aspect-[16/10] rounded-lg object-cover shadow-road" /></div><div className="grid gap-4 md:grid-cols-2">{["Confirm location","Review vehicle status","Match service type","Coordinate completion"].map((item) => <Card key={item} className="rounded-lg"><CardContent className="flex items-center gap-3 p-5"><Route className="size-5 text-primary" /><span className="font-semibold">{item}</span></CardContent></Card>)}</div></div></InfoBand>
   );
 }
 
-export { transportImage };
+export { containerLogisticsImage, dispatchControlImage, emergencyTowImage, mobileMechanicImage, transportImage };
