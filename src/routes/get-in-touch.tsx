@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BriefcaseBusiness, CheckCircle2, PhoneCall, ShieldCheck, Zap } from "lucide-react";
 
-import { emergencyTowImage } from "@/components/roadlines/assets";
+import { sectionServiceRequestImage } from "@/components/roadlines/assets";
 import { company } from "@/components/roadlines/data";
 import { ServiceContactForm } from "@/components/roadlines/forms";
 import { PageShell } from "@/components/roadlines/site-layout";
@@ -35,7 +35,7 @@ function GetInTouchPage() {
         <PageHero
           title="Get in Touch With GPS Roadlines"
           text="Submit a detailed service request for emergency roadside help, transport planning, fleet movement, or commercial logistics."
-          image={emergencyTowImage}
+          image={sectionServiceRequestImage}
         />
         <section className="px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
