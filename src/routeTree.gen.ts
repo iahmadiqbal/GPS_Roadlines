@@ -9,8 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TransportMovingRouteImport } from './routes/transport-moving'
+import { Route as EmergencyServicesRouteImport } from './routes/emergency-services'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TransportMovingRoute = TransportMovingRouteImport.update({
+  id: '/transport-moving',
+  path: '/transport-moving',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmergencyServicesRoute = EmergencyServicesRouteImport.update({
+  id: '/emergency-services',
+  path: '/emergency-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +31,50 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/emergency-services': typeof EmergencyServicesRoute
+  '/transport-moving': typeof TransportMovingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/emergency-services': typeof EmergencyServicesRoute
+  '/transport-moving': typeof TransportMovingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/emergency-services': typeof EmergencyServicesRoute
+  '/transport-moving': typeof TransportMovingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/emergency-services' | '/transport-moving'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/emergency-services' | '/transport-moving'
+  id: '__root__' | '/' | '/emergency-services' | '/transport-moving'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EmergencyServicesRoute: typeof EmergencyServicesRoute
+  TransportMovingRoute: typeof TransportMovingRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/transport-moving': {
+      id: '/transport-moving'
+      path: '/transport-moving'
+      fullPath: '/transport-moving'
+      preLoaderRoute: typeof TransportMovingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/emergency-services': {
+      id: '/emergency-services'
+      path: '/emergency-services'
+      fullPath: '/emergency-services'
+      preLoaderRoute: typeof EmergencyServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EmergencyServicesRoute: EmergencyServicesRoute,
+  TransportMovingRoute: TransportMovingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
