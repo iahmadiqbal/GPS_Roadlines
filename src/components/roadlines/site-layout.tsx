@@ -8,10 +8,10 @@ import {
   Menu,
   Navigation,
   PhoneCall,
-  Truck,
 } from "lucide-react";
 import type { ReactNode } from "react";
 
+import gpsRoadlinesLogo from "@/assets/gps-roadlines-logo.jpeg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -44,13 +44,39 @@ const navLinks = [
 
 export function Logo({ inverse = false }: { inverse?: boolean }) {
   return (
-    <Link to="/" className="group flex items-center gap-3" aria-label="GPS Roadlines home">
-      <span className="flex size-11 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-glow transition-transform duration-300 group-hover:scale-105">
-        <Truck className="size-5" />
+    <Link
+      to="/"
+      className="group flex min-w-0 items-center gap-3"
+      aria-label="GPS Roadlines home"
+    >
+      <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-card p-1 shadow-road transition-transform duration-300 group-hover:scale-105 sm:h-16 sm:w-16">
+        <img
+          src={gpsRoadlinesLogo}
+          alt="GPS Roadlines logo"
+          width={96}
+          height={96}
+          className="h-full w-full object-contain"
+        />
       </span>
-      <span className="leading-tight">
-        <span className={inverse ? "block text-lg font-black text-brand-dark-foreground" : "block text-lg font-black text-foreground"}>GPS Roadlines</span>
-        <span className={inverse ? "block text-xs font-semibold uppercase tracking-wide text-brand-dark-foreground/70" : "block text-xs font-semibold uppercase tracking-wide text-muted-foreground"}>Roadside + Logistics</span>
+      <span className="hidden min-w-0 leading-tight sm:block">
+        <span
+          className={
+            inverse
+              ? "block truncate text-lg font-black text-brand-dark-foreground"
+              : "block truncate text-lg font-black text-foreground"
+          }
+        >
+          GPS Roadlines
+        </span>
+        <span
+          className={
+            inverse
+              ? "block truncate text-xs font-semibold uppercase tracking-wide text-brand-dark-foreground/70"
+              : "block truncate text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+          }
+        >
+          Roadside + Logistics
+        </span>
       </span>
     </Link>
   );
@@ -88,8 +114,8 @@ function AppDialog() {
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/88 backdrop-blur-xl supports-[backdrop-filter]:bg-background/78">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-4">
+      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:h-24 lg:px-8 xl:gap-6">
+        <div className="flex min-w-0 items-center gap-3">
           <DropdownMenu>
             <DropdownMenuTrigger asChild><Button variant="outline" size="icon" aria-label="Open navigation"><Menu /></Button></DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-72 rounded-lg bg-popover p-2">
@@ -113,9 +139,9 @@ export function Header() {
               {navLinks.slice(1).map((link) => <DropdownMenuItem key={link.to} asChild><Link to={link.to}>{link.label}</Link></DropdownMenuItem>)}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Logo inverse />
+          <Logo />
         </div>
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-4 lg:flex xl:gap-6">
           <Link to="/emergency-services" className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary">Emergency</Link>
           <Link to="/transport-moving" className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary">Transport</Link>
           <Link to="/how-it-works" className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary">How It Works</Link>
@@ -133,7 +159,7 @@ export function Footer() {
     <footer className="bg-brand-dark text-brand-dark-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8">
         <div className="md:col-span-2">
-          <Logo />
+          <Logo inverse />
           <p className="mt-5 max-w-xl text-sm leading-7 text-brand-dark-foreground/75">{company.legalName} provides roadside assistance, towing, recovery, mobile mechanic coordination, container transport, and logistics support from St. John’s, Newfoundland and Labrador.</p>
           <div className="mt-6 flex gap-3"><Facebook className="size-5" /><Instagram className="size-5" /><Linkedin className="size-5" /></div>
         </div>
