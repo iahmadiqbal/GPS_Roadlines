@@ -94,9 +94,7 @@ function ScrollToTop() {
     const scroll = () => {
       if (location.hash) {
         const targetId = location.hash.replace(/^#/, "");
-        document
-          .getElementById(targetId)
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
 
