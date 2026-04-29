@@ -1,4 +1,12 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { useEffect } from "react";
+import {
+  Outlet,
+  Link,
+  createRootRoute,
+  HeadContent,
+  Scripts,
+  useLocation,
+} from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 
@@ -65,5 +73,29 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
+}
+
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const scroll = () => {
+      if (location.hash) {
+        document.getElementById(location.hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
+
+    window.requestAnimationFrame(scroll);
+  }, [location.pathname, location.hash]);
+
+  return null;
 }
