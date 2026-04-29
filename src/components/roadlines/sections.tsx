@@ -41,7 +41,7 @@ export function HeroSlideshow({ compact = false }: { compact?: boolean }) {
           <Badge className="mb-5 bg-primary text-primary-foreground">24/7 St. John’s Dispatch</Badge>
           <h1 className="max-w-5xl text-4xl font-black leading-tight sm:text-6xl lg:text-7xl">Reliable Roadside Assistance & Transport Services in St. John’s</h1>
           <p className="mt-6 max-w-2xl text-xl leading-9 text-brand-dark-foreground/82">Fast towing, roadside support, recovery, mobile mechanic & logistics from one integrated local team.</p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button size="xl" variant="hero" asChild><Link to="/get-in-touch">Book Service <ArrowRight /></Link></Button><Button size="xl" variant="outline" asChild><a href={company.phoneHref}><PhoneCall /> Call Dispatch</a></Button></div>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button size="xl" variant="hero" asChild><Link to="/get-in-touch">Book Service <ArrowRight /></Link></Button><Button size="xl" variant="light" asChild><a href={company.phoneHref}><PhoneCall /> Call Dispatch</a></Button></div>
           <div className="mt-10 grid max-w-3xl grid-cols-3 gap-3 text-sm font-semibold text-brand-dark-foreground/78">
             <span className="rounded-lg border border-brand-dark-foreground/15 bg-brand-dark-foreground/10 p-3 backdrop-blur">Towing</span>
             <span className="rounded-lg border border-brand-dark-foreground/15 bg-brand-dark-foreground/10 p-3 backdrop-blur">Recovery</span>
@@ -117,7 +117,7 @@ export function IntegratedModelSection() {
 
 export function CTASection({ title = "NEED IMMEDIATE ROAD HELP?", text = "Talk to GPS Roadlines dispatch or submit a service request now." }: { title?: string; text?: string }) {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8"><div className="mx-auto max-w-6xl rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between"><div><h2 className="text-3xl font-black sm:text-4xl">{title}</h2><p className="mt-3 text-primary-foreground/82">{text}</p></div><div className="mt-6 flex flex-col gap-3 sm:flex-row lg:mt-0"><Button size="xl" variant="dark" asChild><a href={company.phoneHref}><PhoneCall /> Call Now</a></Button><Button size="xl" variant="outline" asChild><Link to="/get-in-touch">Book Service</Link></Button></div></div></section>
+    <section className="px-4 py-20 sm:px-6 lg:px-8"><div className="mx-auto max-w-6xl rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between"><div><h2 className="text-3xl font-black sm:text-4xl">{title}</h2><p className="mt-3 text-primary-foreground/82">{text}</p></div><div className="mt-6 flex flex-col gap-3 sm:flex-row lg:mt-0"><Button size="xl" variant="dark" asChild><a href={company.phoneHref}><PhoneCall /> Call Now</a></Button><Button size="xl" variant="light" asChild><Link to="/get-in-touch">Book Service</Link></Button></div></div></section>
   );
 }
 
