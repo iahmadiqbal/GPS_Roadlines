@@ -1,26 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { PageShell } from "@/components/roadlines/site-layout";
+import { AboutPreview, CTASection, HeroSlideshow, IntegratedModelSection, ServicesGrid, TimelineSection, WhyChooseSection } from "@/components/roadlines/sections";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "GPS Roadlines | Roadside Assistance St. John’s" },
+      { name: "description", content: "GPS Roadlines provides towing, roadside assistance, recovery, mobile mechanic, container transport, and logistics in St. John’s." },
+      { property: "og:title", content: "GPS Roadlines | Roadside Assistance St. John’s" },
+      { property: "og:description", content: "Reliable roadside assistance and transport services in St. John’s, Newfoundland and Labrador." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <PageShell>
+      <main>
+        <HeroSlideshow />
+        <ServicesGrid />
+        <AboutPreview />
+        <WhyChooseSection />
+        <TimelineSection />
+        <IntegratedModelSection />
+        <CTASection />
+      </main>
+    </PageShell>
+  );
 }
