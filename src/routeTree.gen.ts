@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransportMovingRouteImport } from './routes/transport-moving'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as EmergencyServicesRouteImport } from './routes/emergency-services'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TransportMovingRoute = TransportMovingRouteImport.update({
@@ -18,9 +20,19 @@ const TransportMovingRoute = TransportMovingRouteImport.update({
   path: '/transport-moving',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmergencyServicesRoute = EmergencyServicesRouteImport.update({
   id: '/emergency-services',
   path: '/emergency-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,31 +43,55 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/emergency-services': typeof EmergencyServicesRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/transport-moving': typeof TransportMovingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/emergency-services': typeof EmergencyServicesRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/transport-moving': typeof TransportMovingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/emergency-services': typeof EmergencyServicesRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/transport-moving': typeof TransportMovingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/emergency-services' | '/transport-moving'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/emergency-services'
+    | '/how-it-works'
+    | '/transport-moving'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/emergency-services' | '/transport-moving'
-  id: '__root__' | '/' | '/emergency-services' | '/transport-moving'
+  to:
+    | '/'
+    | '/about'
+    | '/emergency-services'
+    | '/how-it-works'
+    | '/transport-moving'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/emergency-services'
+    | '/how-it-works'
+    | '/transport-moving'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   EmergencyServicesRoute: typeof EmergencyServicesRoute
+  HowItWorksRoute: typeof HowItWorksRoute
   TransportMovingRoute: typeof TransportMovingRoute
 }
 
@@ -68,11 +104,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TransportMovingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/emergency-services': {
       id: '/emergency-services'
       path: '/emergency-services'
       fullPath: '/emergency-services'
       preLoaderRoute: typeof EmergencyServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +137,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   EmergencyServicesRoute: EmergencyServicesRoute,
+  HowItWorksRoute: HowItWorksRoute,
   TransportMovingRoute: TransportMovingRoute,
 }
 export const routeTree = rootRouteImport
