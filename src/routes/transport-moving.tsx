@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { containerLogisticsImage } from "@/components/roadlines/assets";
 import { transportServices } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
-  containerLogisticsImage,
   CTASection,
   DispatchWorkflow,
   PageHero,

@@ -1,15 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Building2, Mail, MapPinned, PhoneCall, RadioTower } from "lucide-react";
 
+import { dispatchControlImage } from "@/components/roadlines/assets";
 import { company } from "@/components/roadlines/data";
 import { ServiceContactForm } from "@/components/roadlines/forms";
 import { PageShell } from "@/components/roadlines/site-layout";
-import {
-  CTASection,
-  dispatchControlImage,
-  InfoBand,
-  PageHero,
-} from "@/components/roadlines/sections";
+import { CTASection, InfoBand, PageHero } from "@/components/roadlines/sections";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const Route = createFileRoute("/contact")({

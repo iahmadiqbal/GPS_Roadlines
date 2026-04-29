@@ -96,30 +96,127 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    background: radial-gradient(circle at 10% 0%, color-mix(in oklab, var(--primary) 8%, transparent), transparent 30%), var(--color-background);
+    background:
+      radial-gradient(
+        circle at 10% 0%,
+        color-mix(in oklab, var(--primary) 8%, transparent),
+        transparent 30%
+      ),
+      var(--color-background);
     color: var(--color-foreground);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
-  h1, h2, h3 { letter-spacing: 0; }
+  h1,
+  h2,
+  h3 {
+    letter-spacing: 0;
+  }
 }
 
 @layer utilities {
   .road-grid {
-    background-image: linear-gradient(color-mix(in oklab, var(--primary) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--primary) 10%, transparent) 1px, transparent 1px);
+    background-image:
+      linear-gradient(color-mix(in oklab, var(--primary) 10%, transparent) 1px, transparent 1px),
+      linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--primary) 10%, transparent) 1px,
+        transparent 1px
+      );
     background-size: 44px 44px;
   }
-  .animate-slide-fade { animation: slide-fade 18s infinite; }
-  .animate-slide-fade-delayed { animation: slide-fade 18s infinite 6s; }
-  .animate-slide-fade-late { animation: slide-fade 18s infinite 12s; }
+  .animate-slide-fade {
+    animation: slide-fade 18s infinite;
+  }
+  .animate-slide-fade-delayed {
+    animation: slide-fade 18s infinite 6s;
+  }
+  .animate-slide-fade-late {
+    animation: slide-fade 18s infinite 12s;
+  }
+  .animate-from-top {
+    animation: from-top 0.75s ease-out both;
+  }
+  .animate-from-left {
+    animation: from-left 0.8s ease-out both;
+  }
+  .animate-from-right {
+    animation: from-right 0.8s ease-out both;
+  }
+  .animate-rise-up {
+    animation: rise-up 0.75s ease-out both;
+  }
   @keyframes slide-fade {
-    0%, 30% { opacity: 1; transform: scale(1); }
-    35%, 95% { opacity: 0; transform: scale(1.035); }
-    100% { opacity: 1; transform: scale(1); }
+    0%,
+    30% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    35%,
+    95% {
+      opacity: 0;
+      transform: scale(1.035);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes from-top {
+    0% {
+      opacity: 0;
+      transform: translateY(-28px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes from-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-32px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes from-right {
+    0% {
+      opacity: 0;
+      transform: translateX(32px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes rise-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   @media (prefers-reduced-motion: reduce) {
-    .animate-slide-fade, .animate-slide-fade-delayed, .animate-slide-fade-late { animation: none; }
+    .animate-slide-fade,
+    .animate-slide-fade-delayed,
+    .animate-slide-fade-late,
+    .animate-from-top,
+    .animate-from-left,
+    .animate-from-right,
+    .animate-rise-up {
+      animation: none;
+    }
   }
 }

@@ -6,14 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import hero1 from "@/assets/gps-roadlines-hero-1.jpg";
-import hero2 from "@/assets/gps-roadlines-hero-2.jpg";
-import hero3 from "@/assets/gps-roadlines-hero-3.jpg";
-import containerLogisticsImage from "@/assets/gps-roadlines-container-logistics.jpg";
-import dispatchControlImage from "@/assets/gps-roadlines-dispatch-control.jpg";
-import emergencyTowImage from "@/assets/gps-roadlines-emergency-tow.jpg";
-import mobileMechanicImage from "@/assets/gps-roadlines-mobile-mechanic.jpg";
-import transportImage from "@/assets/gps-roadlines-transport.jpg";
+import {
+  containerLogisticsImage,
+  dispatchControlImage,
+  emergencyTowImage,
+  mobileMechanicImage,
+  transportImage,
+} from "./assets";
 import { company, coreServices, steps, transportServices, type Service } from "./data";
 
 const heroSlides = [
@@ -65,7 +64,7 @@ export function SectionHeader({
   text?: string;
 }) {
   return (
-    <div className="mx-auto mb-10 max-w-3xl text-center">
+    <div className="mx-auto mb-10 max-w-3xl animate-rise-up text-center">
       {eyebrow && (
         <Badge variant="secondary" className="mb-4">
           {eyebrow}
@@ -97,7 +96,7 @@ export function HeroSlideshow({ compact = false }: { compact?: boolean }) {
       <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/78 to-brand-dark/20" />
       <div className="absolute inset-0 road-grid opacity-25" />
       <div className="relative z-10 mx-auto flex min-h-[inherit] max-w-7xl items-center px-4 py-24 sm:px-6 lg:px-8">
-        <div className="max-w-4xl text-brand-dark-foreground">
+        <div className="max-w-4xl animate-from-left text-brand-dark-foreground">
           <Badge className="mb-5 bg-primary text-primary-foreground">
             24/7 St. John’s Dispatch
           </Badge>
@@ -156,7 +155,7 @@ export function PageHero({
         className="absolute inset-0 h-full w-full object-cover opacity-35"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/84 to-brand-dark/35" />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl animate-from-top px-4 sm:px-6 lg:px-8">
         <Badge className="mb-5 bg-primary text-primary-foreground">GPS Roadlines</Badge>
         <h1 className="max-w-4xl text-4xl font-black leading-tight sm:text-6xl">{title}</h1>
         <p className="mt-6 max-w-2xl text-xl leading-9 text-brand-dark-foreground/80">{text}</p>
@@ -180,7 +179,7 @@ export function ServicesGrid({
         <SectionHeader eyebrow="Services" title={title} text={text} />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <ServiceCard key={service.title} service={service} />
+            <ServiceCard key={service.title} service={service} index={services.indexOf(service)} />
           ))}
         </div>
       </div>
@@ -188,11 +187,14 @@ export function ServicesGrid({
   );
 }
 
-export function ServiceCard({ service }: { service: Service }) {
+export function ServiceCard({ service, index = 0 }: { service: Service; index?: number }) {
   const Icon = service.icon;
   const image = serviceImages[service.title] ?? transportImage;
+  const animation = ["animate-from-left", "animate-rise-up", "animate-from-right"][index % 3];
   return (
-    <Card className="group overflow-hidden rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
+    <Card
+      className={`group overflow-hidden rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow ${animation}`}
+    >
       <img
         src={image}
         alt={`${service.title} by GPS Roadlines`}
@@ -232,7 +234,7 @@ export function WhyChooseSection() {
             "Professional Team",
             "Transparency",
           ].map((item, index) => (
-            <Card key={item} className="rounded-lg shadow-road">
+            <Card key={item} className="animate-rise-up rounded-lg shadow-road">
               <CardContent className="p-6">
                 <CheckCircle2 className="mb-4 size-7 text-primary" />
                 <h3 className="font-bold">{item}</h3>
@@ -287,7 +289,7 @@ export function IntegratedModelSection() {
   return (
     <section className="bg-brand-dark px-4 py-20 text-brand-dark-foreground sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-        <div>
+        <div className="animate-from-left">
           <Badge className="mb-5 bg-primary text-primary-foreground">Integrated model</Badge>
           <h2 className="text-3xl font-black sm:text-5xl">One Call Solves Everything</h2>
           <p className="mt-5 text-lg leading-8 text-brand-dark-foreground/76">
@@ -299,7 +301,7 @@ export function IntegratedModelSection() {
         </div>
         <Tabs
           defaultValue="roadside"
-          className="rounded-lg border border-brand-dark-foreground/15 bg-brand-dark-foreground/10 p-3 backdrop-blur"
+          className="animate-from-right rounded-lg border border-brand-dark-foreground/15 bg-brand-dark-foreground/10 p-3 backdrop-blur"
         >
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="roadside">Roadside</TabsTrigger>
@@ -342,8 +344,8 @@ export function CTASection({
 }) {
   return (
     <section className="px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between">
-        <div>
+      <div className="mx-auto max-w-6xl animate-rise-up rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between">
+        <div className="animate-from-left">
           <h2 className="text-3xl font-black sm:text-4xl">{title}</h2>
           <p className="mt-3 text-primary-foreground/82">{text}</p>
         </div>
@@ -389,7 +391,7 @@ export function AboutPreview() {
           loading="lazy"
           width={1400}
           height={900}
-          className="aspect-[4/3] rounded-lg object-cover shadow-road"
+          className="animate-from-right aspect-[4/3] rounded-lg object-cover shadow-road"
         />
       </div>
     </section>
@@ -399,7 +401,7 @@ export function AboutPreview() {
 export function InfoBand({ children }: { children: ReactNode }) {
   return (
     <section className="bg-secondary/60 px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">{children}</div>
+      <div className="mx-auto max-w-7xl animate-rise-up">{children}</div>
     </section>
   );
 }
@@ -408,7 +410,7 @@ export function DispatchWorkflow() {
   return (
     <InfoBand>
       <div className="grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center">
-        <div>
+        <div className="animate-from-left">
           <RadioTower className="mb-5 size-10 text-primary" />
           <h2 className="text-3xl font-black sm:text-4xl">
             Dispatch workflow that keeps requests moving
@@ -426,7 +428,7 @@ export function DispatchWorkflow() {
             className="mt-7 aspect-[16/10] rounded-lg object-cover shadow-road"
           />
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid animate-from-right gap-4 md:grid-cols-2">
           {[
             "Confirm location",
             "Review vehicle status",
@@ -445,11 +447,3 @@ export function DispatchWorkflow() {
     </InfoBand>
   );
 }
-
-export {
-  containerLogisticsImage,
-  dispatchControlImage,
-  emergencyTowImage,
-  mobileMechanicImage,
-  transportImage,
-};
