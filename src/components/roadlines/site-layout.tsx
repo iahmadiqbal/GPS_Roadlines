@@ -126,47 +126,47 @@ export function Header() {
       <div className="mx-auto flex h-24 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:h-24 lg:px-8 xl:gap-6">
         <div className="flex min-w-0 items-center gap-3">
           <div className="lg:hidden">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon" aria-label="Open navigation">
-                <Menu />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-72 rounded-lg bg-popover p-2">
-              <DropdownMenuLabel>Navigation</DropdownMenuLabel>
-              <DropdownMenuItem asChild>
-                <Link to="/">Home</Link>
-              </DropdownMenuItem>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>Emergency Services</DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="w-64 bg-popover">
-                  <DropdownMenuItem asChild>
-                    <Link to="/emergency-services">Overview</Link>
-                  </DropdownMenuItem>
-                  {emergencyServices.slice(0, 6).map((service) => (
-                    <DropdownMenuItem key={service.title}>{service.title}</DropdownMenuItem>
-                  ))}
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>Transport & Moving</DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="w-64 bg-popover">
-                  <DropdownMenuItem asChild>
-                    <Link to="/transport-moving">Overview</Link>
-                  </DropdownMenuItem>
-                  {transportServices.slice(0, 6).map((service) => (
-                    <DropdownMenuItem key={service.title}>{service.title}</DropdownMenuItem>
-                  ))}
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <DropdownMenuSeparator />
-              {navLinks.slice(1).map((link) => (
-                <DropdownMenuItem key={link.to} asChild>
-                  <Link to={link.to}>{link.label}</Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon" aria-label="Open navigation">
+                  <Menu />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-72 rounded-lg bg-popover p-2">
+                <DropdownMenuLabel>Navigation</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <Link to="/">Home</Link>
                 </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Emergency Services</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent className="w-64 bg-popover">
+                    <DropdownMenuItem asChild>
+                      <Link to="/emergency-services">Overview</Link>
+                    </DropdownMenuItem>
+                    {emergencyServices.slice(0, 6).map((service) => (
+                      <DropdownMenuItem key={service.title}>{service.title}</DropdownMenuItem>
+                    ))}
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Transport & Moving</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent className="w-64 bg-popover">
+                    <DropdownMenuItem asChild>
+                      <Link to="/transport-moving">Overview</Link>
+                    </DropdownMenuItem>
+                    {transportServices.slice(0, 6).map((service) => (
+                      <DropdownMenuItem key={service.title}>{service.title}</DropdownMenuItem>
+                    ))}
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSeparator />
+                {navLinks.slice(1).map((link) => (
+                  <DropdownMenuItem key={link.to} asChild>
+                    <Link to={link.to}>{link.label}</Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
           <Logo />
         </div>
