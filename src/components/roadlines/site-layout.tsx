@@ -122,7 +122,7 @@ function AppDialog() {
 
 function servicePath(section: "emergency" | "transport", title: string) {
   const base = section === "emergency" ? "/emergency-services" : "/transport-moving";
-  return `${base}#${serviceSlug(title)}`;
+  return base;
 }
 
 export function Header() {
@@ -149,9 +149,14 @@ export function Header() {
                       <Link to="/emergency-services">Overview</Link>
                     </DropdownMenuItem>
                     {emergencyServices.slice(0, 6).map((service) => (
-                    <DropdownMenuItem key={service.title} asChild>
-                      <Link to={servicePath("emergency", service.title)}>{service.title}</Link>
-                    </DropdownMenuItem>
+                      <DropdownMenuItem key={service.title} asChild>
+                        <Link
+                          to={servicePath("emergency", service.title)}
+                          hash={serviceSlug(service.title)}
+                        >
+                          {service.title}
+                        </Link>
+                      </DropdownMenuItem>
                     ))}
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -162,9 +167,14 @@ export function Header() {
                       <Link to="/transport-moving">Overview</Link>
                     </DropdownMenuItem>
                     {transportServices.slice(0, 6).map((service) => (
-                    <DropdownMenuItem key={service.title} asChild>
-                      <Link to={servicePath("transport", service.title)}>{service.title}</Link>
-                    </DropdownMenuItem>
+                      <DropdownMenuItem key={service.title} asChild>
+                        <Link
+                          to={servicePath("transport", service.title)}
+                          hash={serviceSlug(service.title)}
+                        >
+                          {service.title}
+                        </Link>
+                      </DropdownMenuItem>
                     ))}
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
