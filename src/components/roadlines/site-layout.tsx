@@ -120,7 +120,7 @@ function AppDialog() {
   );
 }
 
-function servicePath(section: "emergency" | "transport", title: string) {
+function servicePath(section: "emergency" | "transport") {
   const base = section === "emergency" ? "/emergency-services" : "/transport-moving";
   return base;
 }
@@ -151,7 +151,7 @@ export function Header() {
                     {emergencyServices.slice(0, 6).map((service) => (
                       <DropdownMenuItem key={service.title} asChild>
                         <Link
-                          to={servicePath("emergency", service.title)}
+                          to={servicePath("emergency")}
                           hash={serviceSlug(service.title)}
                         >
                           {service.title}
@@ -169,7 +169,7 @@ export function Header() {
                     {transportServices.slice(0, 6).map((service) => (
                       <DropdownMenuItem key={service.title} asChild>
                         <Link
-                          to={servicePath("transport", service.title)}
+                          to={servicePath("transport")}
                           hash={serviceSlug(service.title)}
                         >
                           {service.title}
