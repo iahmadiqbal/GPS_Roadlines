@@ -114,12 +114,32 @@
   .animate-slide-fade { animation: slide-fade 18s infinite; }
   .animate-slide-fade-delayed { animation: slide-fade 18s infinite 6s; }
   .animate-slide-fade-late { animation: slide-fade 18s infinite 12s; }
+  .animate-from-top { animation: from-top 0.75s ease-out both; }
+  .animate-from-left { animation: from-left 0.8s ease-out both; }
+  .animate-from-right { animation: from-right 0.8s ease-out both; }
+  .animate-rise-up { animation: rise-up 0.75s ease-out both; }
   @keyframes slide-fade {
     0%, 30% { opacity: 1; transform: scale(1); }
     35%, 95% { opacity: 0; transform: scale(1.035); }
     100% { opacity: 1; transform: scale(1); }
   }
+  @keyframes from-top {
+    0% { opacity: 0; transform: translateY(-28px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes from-left {
+    0% { opacity: 0; transform: translateX(-32px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes from-right {
+    0% { opacity: 0; transform: translateX(32px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes rise-up {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
   @media (prefers-reduced-motion: reduce) {
-    .animate-slide-fade, .animate-slide-fade-delayed, .animate-slide-fade-late { animation: none; }
+    .animate-slide-fade, .animate-slide-fade-delayed, .animate-slide-fade-late, .animate-from-top, .animate-from-left, .animate-from-right, .animate-rise-up { animation: none; }
   }
 }
