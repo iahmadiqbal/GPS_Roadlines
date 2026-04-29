@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransportMovingRouteImport } from './routes/transport-moving'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as GetInTouchRouteImport } from './routes/get-in-touch'
 import { Route as EmergencyServicesRouteImport } from './routes/emergency-services'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -25,9 +27,19 @@ const HowItWorksRoute = HowItWorksRouteImport.update({
   path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GetInTouchRoute = GetInTouchRouteImport.update({
+  id: '/get-in-touch',
+  path: '/get-in-touch',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmergencyServicesRoute = EmergencyServicesRouteImport.update({
   id: '/emergency-services',
   path: '/emergency-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -44,14 +56,18 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/emergency-services': typeof EmergencyServicesRoute
+  '/get-in-touch': typeof GetInTouchRoute
   '/how-it-works': typeof HowItWorksRoute
   '/transport-moving': typeof TransportMovingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/emergency-services': typeof EmergencyServicesRoute
+  '/get-in-touch': typeof GetInTouchRoute
   '/how-it-works': typeof HowItWorksRoute
   '/transport-moving': typeof TransportMovingRoute
 }
@@ -59,7 +75,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/emergency-services': typeof EmergencyServicesRoute
+  '/get-in-touch': typeof GetInTouchRoute
   '/how-it-works': typeof HowItWorksRoute
   '/transport-moving': typeof TransportMovingRoute
 }
@@ -68,21 +86,27 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/contact'
     | '/emergency-services'
+    | '/get-in-touch'
     | '/how-it-works'
     | '/transport-moving'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/contact'
     | '/emergency-services'
+    | '/get-in-touch'
     | '/how-it-works'
     | '/transport-moving'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/contact'
     | '/emergency-services'
+    | '/get-in-touch'
     | '/how-it-works'
     | '/transport-moving'
   fileRoutesById: FileRoutesById
@@ -90,7 +114,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   EmergencyServicesRoute: typeof EmergencyServicesRoute
+  GetInTouchRoute: typeof GetInTouchRoute
   HowItWorksRoute: typeof HowItWorksRoute
   TransportMovingRoute: typeof TransportMovingRoute
 }
@@ -111,11 +137,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/get-in-touch': {
+      id: '/get-in-touch'
+      path: '/get-in-touch'
+      fullPath: '/get-in-touch'
+      preLoaderRoute: typeof GetInTouchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/emergency-services': {
       id: '/emergency-services'
       path: '/emergency-services'
       fullPath: '/emergency-services'
       preLoaderRoute: typeof EmergencyServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -138,7 +178,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   EmergencyServicesRoute: EmergencyServicesRoute,
+  GetInTouchRoute: GetInTouchRoute,
   HowItWorksRoute: HowItWorksRoute,
   TransportMovingRoute: TransportMovingRoute,
 }
