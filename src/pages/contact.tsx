@@ -180,6 +180,7 @@ export default function ContactPage() {
         <CTASection
           title="NEED ROAD ASSISTANCE RIGHT NOW?"
           text="Fast towing, roadside help & transport support available 24/7."
+          secondLabel="Get a Quote"
         />
       </main>
     </PageShell>
