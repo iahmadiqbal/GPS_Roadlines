@@ -135,12 +135,14 @@ export function PageHero({
   image = transportImage,
   ctaLabel,
   ctaHref,
+  secondLabel,
 }: {
   title: string;
   text: string;
   image?: string;
   ctaLabel?: string;
   ctaHref?: string;
+  secondLabel?: string;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-brand-dark py-28 text-brand-dark-foreground sm:py-36">
@@ -170,11 +172,11 @@ export function PageHero({
                 </a>
               </Button>
             )}
-            <Button size="xl" variant="light" asChild>
-              <a href={company.phoneHref}>
-                <PhoneCall /> Call Now
-              </a>
-            </Button>
+            {secondLabel && (
+              <Button size="xl" variant="light" asChild>
+                <Link to="/get-in-touch">{secondLabel} <ArrowRight /></Link>
+              </Button>
+            )}
           </div>
         )}
       </Reveal>

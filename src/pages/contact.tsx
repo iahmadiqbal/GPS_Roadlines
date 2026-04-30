@@ -13,7 +13,7 @@ export default function ContactPage() {
     {
       title: "Phone Support",
       value: company.phone,
-      sub: "Available 24/7 for emergency roadside assistance",
+      sub: "Available 24/7 for emergency roadside assistance. Fast dispatch for towing, recovery & breakdown support",
       icon: PhoneCall,
       href: company.phoneHref,
     },
@@ -29,13 +29,6 @@ export default function ContactPage() {
       value: "St. John's, NL + Avalon Peninsula",
       sub: "Emergency coverage and scheduled transport services",
       icon: MapPinned,
-    },
-    {
-      title: "Emergency",
-      value: "24/7 dispatch support",
-      sub: "Fast dispatch for towing, recovery & breakdown support",
-      icon: RadioTower,
-      href: company.phoneHref,
     },
   ];
 
@@ -56,11 +49,13 @@ export default function ContactPage() {
           text="Call, email or submit a request for towing, recovery, or logistics assistance"
           image={sectionContactOfficeImage}
           ctaLabel="Call Now"
+          ctaHref="/get-in-touch"
+          secondLabel="Request Service"
         />
 
         {/* Quick Contact Options */}
         <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
-          <div className="mx-auto grid max-w-screen-2xl gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mx-auto grid max-w-screen-2xl gap-5 md:grid-cols-2 lg:grid-cols-3">
             {quickContacts.map((item) => {
               const Icon = item.icon;
               const content = (
