@@ -1,4 +1,4 @@
-import { RadioTower, ShieldCheck, Timer, Workflow } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 import { dispatchControlImage } from "@/components/roadlines/assets";
 import { PageShell } from "@/components/roadlines/site-layout";
@@ -11,17 +11,9 @@ import {
   ServicesGrid,
   TimelineSection,
 } from "@/components/roadlines/sections";
-import { coreServices } from "@/components/roadlines/data";
-import { Card, CardContent } from "@/components/ui/card";
+import { coreServices, whyProcessWorksBullets } from "@/components/roadlines/data";
 
 export default function HowItWorksPage() {
-  const benefits = [
-    { title: "Less downtime", icon: Timer },
-    { title: "One coordinated request", icon: Workflow },
-    { title: "Safety-led response", icon: ShieldCheck },
-    { title: "Clear communication", icon: RadioTower },
-  ];
-
   return (
     <PageShell>
       <main>
@@ -51,7 +43,7 @@ export default function HowItWorksPage() {
 
         {/* Why This Process Works */}
         <InfoBand>
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1fr]">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start">
             <div>
               <h2 className="text-3xl font-black sm:text-4xl">
                 Built for Speed, Safety &amp; Reliability
@@ -62,19 +54,17 @@ export default function HowItWorksPage() {
                 select the right service, and complete the job with clear next steps.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {benefits.map((benefit) => {
-                const Icon = benefit.icon;
-                return (
-                  <Card key={benefit.title} className="rounded-lg">
-                    <CardContent className="p-6">
-                      <Icon className="mb-4 size-7 text-primary" />
-                      <h3 className="font-bold">{benefit.title}</h3>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
+            <ul className="grid gap-3">
+              {whyProcessWorksBullets.map((point) => (
+                <li
+                  key={point}
+                  className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
+                >
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
         </InfoBand>
 

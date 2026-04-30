@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
+import { CheckCircle2 } from "lucide-react";
 import { sectionAboutOverviewImage } from "@/components/roadlines/assets";
-import { coreServices } from "@/components/roadlines/data";
+import {
+  coreServices,
+  companyOverviewPoints,
+  missionPoints,
+  visionPoints,
+  whyTrustPoints,
+} from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   InfoBand,
@@ -29,35 +36,57 @@ export default function AboutPage() {
         {/* Company Overview + Mission + Vision */}
         <InfoBand>
           <div className="grid gap-6 lg:grid-cols-3">
+            {/* Who We Are */}
             <Card className="rounded-lg">
               <CardContent className="p-7">
                 <h2 className="text-2xl font-black">Who We Are</h2>
-                <p className="mt-4 leading-7 text-muted-foreground">
-                  GPS Roadlines is a St. John's based roadside assistance and transport company
-                  providing towing, recovery, mobile mechanic and logistics services. Designed for
-                  both emergency and scheduled transport needs, serving private drivers, businesses,
-                  contractors and fleet operators across St. John's and Avalon Peninsula corridors.
-                </p>
+                <ul className="mt-4 grid gap-2">
+                  {companyOverviewPoints.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
+                    >
+                      <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
+
+            {/* Our Mission */}
             <Card className="rounded-lg">
               <CardContent className="p-7">
                 <h2 className="text-2xl font-black">Our Mission</h2>
-                <p className="mt-4 leading-7 text-muted-foreground">
-                  To deliver dependable towing, roadside assistance and transport services with fast
-                  and safe response for every customer situation. To integrate towing, mechanic and
-                  logistics into one service model with transparent pricing and clear communication.
-                </p>
+                <ul className="mt-4 grid gap-2">
+                  {missionPoints.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
+                    >
+                      <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
+
+            {/* Our Vision */}
             <Card className="rounded-lg">
               <CardContent className="p-7">
                 <h2 className="text-2xl font-black">Our Vision</h2>
-                <p className="mt-4 leading-7 text-muted-foreground">
-                  To become a trusted roadside and logistics brand in Atlantic Canada. To expand
-                  services across Newfoundland & Labrador, integrate modern technology into roadside
-                  assistance operations, and redefine roadside assistance with reliability and speed.
-                </p>
+                <ul className="mt-4 grid gap-2">
+                  {visionPoints.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
+                    >
+                      <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
           </div>
@@ -74,6 +103,33 @@ export default function AboutPage() {
         <TimelineSection detailed />
 
         <IntegratedModelSection />
+
+        {/* Why Customers Trust Us — full redesign */}
+        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+          <div className="mx-auto max-w-screen-2xl">
+            <div className="mb-12 text-center">
+              <h2 className="text-3xl font-black sm:text-4xl lg:text-5xl">Why Customers Trust Us</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Built around fast response, safety and professional service execution across Newfoundland & Labrador.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {whyTrustPoints.map((point, i) => (
+                <div
+                  key={point}
+                  className="flex items-start gap-4 rounded-lg border bg-card p-5 shadow-road transition-all hover:-translate-y-0.5 hover:shadow-glow"
+                >
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-sm font-black text-primary-foreground">
+                    {i + 1}
+                  </span>
+                  <span className="text-sm font-medium leading-6">{point}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose — 5 pillars */}
         <WhyChooseSection />
 
         {/* CTA */}

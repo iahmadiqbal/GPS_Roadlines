@@ -26,7 +26,7 @@ import {
   serviceVehicleTransportImage,
   transportImage,
 } from "./assets";
-import { company, coreServices, serviceSlug, steps, whyChoose, type Service } from "./data";
+import { company, coreServices, integratedFlowBullets, serviceSlug, steps, whyChoose, whyProcessWorksBullets, type Service, type ServiceDetail } from "./data";
 
 const heroSlides = [
   {
@@ -207,9 +207,10 @@ export function ServicesGrid({
   );
 }
 
-export function ServiceCard({ service, index = 0 }: { service: Service; index?: number }) {
+export function ServiceCard({ service, index = 0 }: { service: Service | ServiceDetail; index?: number }) {
   const Icon = service.icon;
   const image = serviceImages[service.title] ?? transportImage;
+  const bullets = (service as ServiceDetail).bullets;
   // Alternate: left → up → right → left → up → right …
   const directions = ["left", "up", "right"] as const;
   const direction = directions[index % 3];
@@ -235,8 +236,19 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
           <CardTitle className="text-xl">{service.title}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="min-h-20 text-sm leading-7 text-muted-foreground">{service.description}</p>
-          <Button className="mt-5" variant="outline" asChild>
+          {bullets && bullets.length > 0 ? (
+            <ul className="mb-5 grid gap-1.5">
+              {bullets.map((point) => (
+                <li key={point} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                  <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mb-5 min-h-20 text-sm leading-7 text-muted-foreground">{service.description}</p>
+          )}
+          <Button variant="outline" asChild>
             <Link to="/get-in-touch">
               Request Service <ArrowRight />
             </Link>
@@ -247,24 +259,30 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
   );
 }
 
-export function WhyChooseSection() {
+export function WhyChooseSection({ embedded = false }: { embedded?: boolean }) {
+  const content = (
+    <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+      {whyChoose.map((item, i) => (
+        <Reveal key={item.title} direction="up" delay={i * 0.1}>
+          <Card className="rounded-lg shadow-road">
+            <CardContent className="p-6">
+              <CheckCircle2 className="mb-4 size-7 text-primary" />
+              <h3 className="font-bold">{item.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.description}</p>
+            </CardContent>
+          </Card>
+        </Reveal>
+      ))}
+    </div>
+  );
+
+  if (embedded) return content;
+
   return (
     <section className="bg-secondary/55 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
       <div className="mx-auto max-w-screen-2xl">
-        <SectionHeader eyebrow="Why choose us" title="Roadside urgency with logistics discipline" />
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-          {whyChoose.map((item, i) => (
-            <Reveal key={item.title} direction="up" delay={i * 0.1}>
-              <Card className="rounded-lg shadow-road">
-                <CardContent className="p-6">
-                  <CheckCircle2 className="mb-4 size-7 text-primary" />
-                  <h3 className="font-bold">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.description}</p>
-                </CardContent>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
+        <SectionHeader eyebrow="Why choose us" title="Why Choose GPS Roadlines" />
+        {content}
       </div>
     </section>
   );
@@ -287,9 +305,20 @@ export function TimelineSection({ detailed = false }: { detailed?: boolean }) {
                   {index + 1}
                 </span>
                 <h3 className="text-lg font-bold">{step.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                  {detailed ? step.description : step.description.split(".")[0] + "."}
-                </p>
+                {detailed && step.bullets ? (
+                  <ul className="mt-3 grid gap-1.5">
+                    {step.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                        <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                    {step.description.split(".")[0] + "."}
+                  </p>
+                )}
               </div>
             </Reveal>
           ))}
@@ -306,11 +335,18 @@ export function IntegratedModelSection() {
         <Reveal direction="left">
           <h2 className="text-3xl font-black sm:text-5xl">One Call Solves Everything</h2>
           <p className="mt-5 text-lg leading-8 text-brand-dark-foreground/76">
-            GPS Roadlines combines towing, roadside assistance, vehicle recovery, mobile mechanic
-            coordination, and logistics into one dispatch-minded system. Instead of calling multiple
-            providers, customers and businesses can start with one request and be routed to the
-            right support.
+            Unlike traditional towing companies, GPS Roadlines combines towing, roadside assistance,
+            mobile mechanic services and logistics support. We don't just move vehicles — we solve
+            the full problem from breakdown to recovery or transport completion.
           </p>
+          <ul className="mt-6 grid gap-2">
+            {integratedFlowBullets.map((point) => (
+              <li key={point} className="flex items-start gap-2 text-sm leading-6 text-brand-dark-foreground/75">
+                <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                {point}
+              </li>
+            ))}
+          </ul>
         </Reveal>
         <Reveal direction="right">
           <Tabs
@@ -389,11 +425,13 @@ export function AboutPreview() {
           </h2>
           <p className="mt-5 text-lg leading-8 text-muted-foreground">
             GPS Roadlines is a St. John's based roadside assistance and transport company offering
-            towing, recovery, mobile mechanic, container transport, and logistics services.
+            towing, recovery, mobile mechanic support, container movement, and logistics services.
+            The company is built to handle both emergency and scheduled transport needs with fast
+            response and professional execution across Newfoundland and Labrador.
           </p>
           <Button className="mt-7" size="xl" variant="hero" asChild>
             <Link to="/about">
-              Learn More <ArrowRight />
+              Learn More About Us <ArrowRight />
             </Link>
           </Button>
         </Reveal>
