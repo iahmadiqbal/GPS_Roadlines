@@ -47,6 +47,7 @@ export default function EmergencyServicesPage() {
         <CTASection
           title="NEED EMERGENCY HELP RIGHT NOW?"
           text="Fast response across St. John's & Avalon Peninsula."
+          secondLabel="Request Emergency Service"
         />
       </main>
     </PageShell>

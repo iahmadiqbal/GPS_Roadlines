@@ -34,7 +34,7 @@ const mobileNavLinks = [
   { label: "How It Works", to: "/how-it-works" },
   { label: "About Us", to: "/about" },
   { label: "Contact Us", to: "/contact" },
-  { label: "Get a Quote", to: "/get-in-touch" },
+  { label: "Get in Touch", to: "/get-in-touch" },
 ] as const;
 
 function NavLink({

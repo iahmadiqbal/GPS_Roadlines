@@ -389,9 +389,11 @@ export function IntegratedModelSection() {
 export function CTASection({
   title = "NEED IMMEDIATE ROAD HELP?",
   text = "Fast response available 24/7 across St. John's and surrounding areas.",
+  secondLabel = "Book Now",
 }: {
   title?: string;
   text?: string;
+  secondLabel?: string;
 }) {
   return (
     <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
@@ -407,7 +409,7 @@ export function CTASection({
             </a>
           </Button>
           <Button size="xl" variant="light" asChild>
-            <Link to="/get-in-touch">Book Now</Link>
+            <Link to="/get-in-touch">{secondLabel}</Link>
           </Button>
         </div>
       </Reveal>
