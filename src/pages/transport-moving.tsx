@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import { containerLogisticsImage } from "@/components/roadlines/assets";
 import { transportServices } from "@/components/roadlines/data";
@@ -12,29 +12,11 @@ import {
   TimelineSection,
 } from "@/components/roadlines/sections";
 
-export const Route = createFileRoute("/transport-moving")({
-  head: () => ({
-    meta: [
-      { title: "Transport & Moving | GPS Roadlines" },
-      {
-        name: "description",
-        content:
-          "Container transport, logistics, fleet transport, vehicle transport, equipment transport, and oversized transport services.",
-      },
-      { property: "og:title", content: "Transport & Moving | GPS Roadlines" },
-      {
-        property: "og:description",
-        content: "Commercial transport and logistics support from GPS Roadlines.",
-      },
-    ],
-  }),
-  component: TransportMovingPage,
-});
+export default function TransportMovingPage() {
+  const location = useLocation();
 
-function TransportMovingPage() {
-  // Scroll to hash section after page renders
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
+    const hash = location.hash.replace("#", "");
     if (!hash) return;
 
     const timer = setTimeout(() => {
@@ -45,7 +27,7 @@ function TransportMovingPage() {
     }, 120);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [location.hash]);
 
   return (
     <PageShell>

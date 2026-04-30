@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Building2, Clock, Mail, MapPinned, PhoneCall, RadioTower, Truck, Zap } from "lucide-react";
 
 import { sectionContactOfficeImage } from "@/components/roadlines/assets";
@@ -9,27 +8,7 @@ import { CTASection, InfoBand, PageHero } from "@/components/roadlines/sections"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact GPS Roadlines | St. John's NL" },
-      {
-        name: "description",
-        content:
-          "Contact GPS Roadlines for roadside assistance, towing, recovery, transport, and logistics services in St. John's.",
-      },
-      { property: "og:title", content: "Contact GPS Roadlines" },
-      {
-        property: "og:description",
-        content:
-          "Reach GPS Roadlines by phone, email, service request form, or emergency dispatch.",
-      },
-    ],
-  }),
-  component: ContactPage,
-});
-
-function ContactPage() {
+export default function ContactPage() {
   const quickContacts = [
     {
       title: "Phone Support",
@@ -71,7 +50,7 @@ function ContactPage() {
   return (
     <PageShell>
       <main>
-        {/* Hero — document: "Contact GPS Roadlines – 24/7 Roadside & Transport Support" */}
+        {/* Hero */}
         <PageHero
           title="Contact GPS Roadlines – 24/7 Roadside & Transport Support"
           text="Call, email or submit a request for towing, recovery, or logistics assistance"
@@ -79,7 +58,7 @@ function ContactPage() {
           ctaLabel="Call Now"
         />
 
-        {/* Quick Contact Options — document: Phone, Email, Service Area cards */}
+        {/* Quick Contact Options */}
         <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
           <div className="mx-auto grid max-w-screen-2xl gap-5 md:grid-cols-2 lg:grid-cols-4">
             {quickContacts.map((item) => {
@@ -105,7 +84,7 @@ function ContactPage() {
           </div>
         </section>
 
-        {/* Emergency Contact Section — document requirement */}
+        {/* Emergency Contact Section */}
         <InfoBand>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>

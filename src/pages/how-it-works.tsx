@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { RadioTower, ShieldCheck, Timer, Workflow } from "lucide-react";
 
 import { dispatchControlImage } from "@/components/roadlines/assets";
@@ -15,27 +14,7 @@ import {
 import { coreServices } from "@/components/roadlines/data";
 import { Card, CardContent } from "@/components/ui/card";
 
-export const Route = createFileRoute("/how-it-works")({
-  head: () => ({
-    meta: [
-      { title: "How It Works | GPS Roadlines Dispatch" },
-      {
-        name: "description",
-        content:
-          "See how GPS Roadlines manages requests from service intake through dispatch, operator assignment, and completion.",
-      },
-      { property: "og:title", content: "How It Works | GPS Roadlines" },
-      {
-        property: "og:description",
-        content: "A clear dispatch flow for roadside and transport services.",
-      },
-    ],
-  }),
-  component: HowItWorksPage,
-});
-
-function HowItWorksPage() {
-  // Document: "Why This Process Works" — 4 benefit cards
+export default function HowItWorksPage() {
   const benefits = [
     { title: "Less downtime", icon: Timer },
     { title: "One coordinated request", icon: Workflow },
@@ -46,7 +25,7 @@ function HowItWorksPage() {
   return (
     <PageShell>
       <main>
-        {/* Hero — document: "How GPS Roadlines Works – Fast, Simple & Reliable Road Support" */}
+        {/* Hero */}
         <PageHero
           title="How GPS Roadlines Works – Fast, Simple & Reliable Road Support"
           text="From request to resolution – towing, roadside assistance & transport made easy"
@@ -55,7 +34,7 @@ function HowItWorksPage() {
           ctaHref="/get-in-touch"
         />
 
-        {/* Step-by-step process — detailed */}
+        {/* Step-by-step process */}
         <TimelineSection detailed />
 
         {/* Integrated Service Flow */}
@@ -99,7 +78,7 @@ function HowItWorksPage() {
           </div>
         </InfoBand>
 
-        {/* CTA — document: "NEED HELP RIGHT NOW OR WANT TO BOOK A SERVICE?" */}
+        {/* CTA */}
         <CTASection
           title="NEED HELP RIGHT NOW OR WANT TO BOOK A SERVICE?"
           text="Fast towing, roadside assistance & transport across St. John's."

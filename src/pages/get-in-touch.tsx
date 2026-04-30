@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import {
   BriefcaseBusiness,
   CheckCircle2,
@@ -17,26 +16,6 @@ import { CTASection, InfoBand, PageHero } from "@/components/roadlines/sections"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export const Route = createFileRoute("/get-in-touch")({
-  head: () => ({
-    meta: [
-      { title: "Get in Touch | GPS Roadlines Service Request" },
-      {
-        name: "description",
-        content:
-          "Submit a GPS Roadlines lead form for towing, roadside assistance, transport, logistics, fleet, or business service needs.",
-      },
-      { property: "og:title", content: "Get in Touch | GPS Roadlines" },
-      {
-        property: "og:description",
-        content: "Request roadside, transport, or logistics support from GPS Roadlines.",
-      },
-    ],
-  }),
-  component: GetInTouchPage,
-});
-
-// Document: "Why Customers Choose Us" — 8 points
 const whyContactItems = [
   { label: "24/7 availability across St. John's region", icon: Zap },
   { label: "Fast response emergency dispatch system", icon: Truck },
@@ -48,11 +27,11 @@ const whyContactItems = [
   { label: "Local expertise in Newfoundland conditions", icon: CheckCircle2 },
 ];
 
-function GetInTouchPage() {
+export default function GetInTouchPage() {
   return (
     <PageShell>
       <main>
-        {/* Hero — document: "Get in Touch with GPS Roadlines" */}
+        {/* Hero */}
         <PageHero
           title="Get in Touch with GPS Roadlines"
           text="Request a quote for towing, roadside assistance, vehicle recovery or transport"
@@ -104,7 +83,7 @@ function GetInTouchPage() {
               </Card>
             </div>
 
-            {/* Lead form with all document-required fields */}
+            {/* Lead form */}
             <Card className="rounded-lg shadow-road">
               <CardContent className="p-6 sm:p-8">
                 <h2 className="mb-6 text-2xl font-black">Tell Us What You Need</h2>
@@ -114,7 +93,7 @@ function GetInTouchPage() {
           </div>
         </section>
 
-        {/* Why Contact GPS Roadlines — document requirement */}
+        {/* Why Contact GPS Roadlines */}
         <InfoBand>
           <div className="mx-auto max-w-4xl">
             <h2 className="mb-8 text-center text-3xl font-black sm:text-4xl">

@@ -1,9 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { sectionAboutOverviewImage } from "@/components/roadlines/assets";
 import { coreServices } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
-  CTASection,
   InfoBand,
   IntegratedModelSection,
   PageHero,
@@ -13,32 +12,12 @@ import {
 } from "@/components/roadlines/sections";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About GPS Roadlines | Roadside & Logistics" },
-      {
-        name: "description",
-        content:
-          "Learn about GPS Roadlines, a St. John's roadside assistance and transport company serving drivers and businesses.",
-      },
-      { property: "og:title", content: "About GPS Roadlines" },
-      {
-        property: "og:description",
-        content: "A modern St. John's road support and logistics partner.",
-      },
-    ],
-  }),
-  component: AboutPage,
-});
-
-function AboutPage() {
+export default function AboutPage() {
   return (
     <PageShell>
       <main>
-        {/* Hero — document: "About GPS Roadlines – Built for Reliable Road Support in St. John's" */}
+        {/* Hero */}
         <PageHero
           title="About GPS Roadlines – Built for Reliable Road Support in St. John's"
           text="Towing, roadside assistance, mobile mechanics & transport solutions across Newfoundland & Labrador"
@@ -47,7 +26,7 @@ function AboutPage() {
           ctaHref="/get-in-touch"
         />
 
-        {/* Company Overview + Mission + Vision — document requirement */}
+        {/* Company Overview + Mission + Vision */}
         <InfoBand>
           <div className="grid gap-6 lg:grid-cols-3">
             <Card className="rounded-lg">
@@ -84,20 +63,20 @@ function AboutPage() {
           </div>
         </InfoBand>
 
-        {/* What We Do — service summary grid */}
+        {/* What We Do */}
         <ServicesGrid
           services={coreServices}
           title="What We Do"
           text="Roadside, recovery, mobile mechanic, container transport, and commercial logistics under one coordinated operating model."
         />
 
-        {/* How We Operate — 5-step timeline */}
+        {/* How We Operate */}
         <TimelineSection detailed />
 
         <IntegratedModelSection />
         <WhyChooseSection />
 
-        {/* CTA — document: "WANT TO KNOW MORE ABOUT GPS ROADLINES?" */}
+        {/* CTA */}
         <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
           <div className="mx-auto max-w-screen-xl animate-rise-up rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between">
             <div>

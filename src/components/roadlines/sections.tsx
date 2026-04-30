@@ -1,4 +1,4 @@
-﻿import { Link } from "@tanstack/react-router";
+﻿import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, PhoneCall, RadioTower, Route } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -159,7 +159,7 @@ export function PageHero({
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             {ctaHref ? (
               <Button size="xl" variant="hero" asChild>
-                <Link to={ctaHref as "/"}>
+                <Link to={ctaHref}>
                   {ctaLabel} <ArrowRight />
                 </Link>
               </Button>

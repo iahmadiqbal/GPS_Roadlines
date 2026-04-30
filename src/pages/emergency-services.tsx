@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import { emergencyTowImage } from "@/components/roadlines/assets";
 import { emergencyServices } from "@/components/roadlines/data";
@@ -11,32 +11,13 @@ import {
   ServicesGrid,
 } from "@/components/roadlines/sections";
 
-export const Route = createFileRoute("/emergency-services")({
-  head: () => ({
-    meta: [
-      { title: "Emergency Services | GPS Roadlines" },
-      {
-        name: "description",
-        content:
-          "Emergency towing, roadside assistance, recovery, battery boost, fuel delivery, and lockout service in St. John's.",
-      },
-      { property: "og:title", content: "Emergency Services | GPS Roadlines" },
-      {
-        property: "og:description",
-        content: "Fast emergency roadside dispatch from GPS Roadlines.",
-      },
-    ],
-  }),
-  component: EmergencyServicesPage,
-});
+export default function EmergencyServicesPage() {
+  const location = useLocation();
 
-function EmergencyServicesPage() {
-  // Scroll to hash section after page renders
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
+    const hash = location.hash.replace("#", "");
     if (!hash) return;
 
-    // Small delay to let the page fully render before scrolling
     const timer = setTimeout(() => {
       const el = document.getElementById(hash);
       if (el) {
@@ -45,7 +26,7 @@ function EmergencyServicesPage() {
     }, 120);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [location.hash]);
 
   return (
     <PageShell>
