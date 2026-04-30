@@ -407,7 +407,7 @@ export function CTASection({
             </a>
           </Button>
           <Button size="xl" variant="light" asChild>
-            <Link to="/get-in-touch">Book Service</Link>
+            <Link to="/get-in-touch">Book Now</Link>
           </Button>
         </div>
       </Reveal>

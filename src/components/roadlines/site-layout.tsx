@@ -34,7 +34,7 @@ const mobileNavLinks = [
   { label: "How It Works", to: "/how-it-works" },
   { label: "About Us", to: "/about" },
   { label: "Contact Us", to: "/contact" },
-  { label: "Get in Touch", to: "/get-in-touch" },
+  { label: "Get a Quote", to: "/get-in-touch" },
 ] as const;
 
 function NavLink({
@@ -280,7 +280,7 @@ export function Header() {
           <NavLink to="/how-it-works">How It Works</NavLink>
           <NavLink to="/about">About Us</NavLink>
           <NavLink to="/contact">Contact Us</NavLink>
-          <NavLink to="/get-in-touch">Get in Touch</NavLink>
+          <NavLink to="/get-in-touch">Get a Quote</NavLink>
         </nav>
 
         {/* Right: CTA buttons */}
@@ -334,7 +334,7 @@ export function Footer() {
             <Link to="/about">About Us</Link>
             <Link to="/how-it-works">How It Works</Link>
             <Link to="/contact">Contact</Link>
-            <Link to="/get-in-touch">Get in Touch</Link>
+            <Link to="/get-in-touch">Get a Quote</Link>
           </div>
         </div>
 
