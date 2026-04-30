@@ -131,6 +131,7 @@ export function PageHero({
   ctaLabel,
   ctaHref,
   secondLabel,
+  secondHref,
 }: {
   title: string;
   text: string;
@@ -138,6 +139,7 @@ export function PageHero({
   ctaLabel?: string;
   ctaHref?: string;
   secondLabel?: string;
+  secondHref?: string;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-brand-dark py-28 text-brand-dark-foreground sm:py-36">
@@ -168,9 +170,15 @@ export function PageHero({
               </Button>
             )}
             {secondLabel && (
-              <Button size="xl" variant="light" asChild>
-                <Link to="/get-in-touch">{secondLabel} <ArrowRight /></Link>
-              </Button>
+              secondHref ? (
+                <Button size="xl" variant="light" asChild>
+                  <Link to={secondHref}>{secondLabel} <ArrowRight /></Link>
+                </Button>
+              ) : (
+                <Button size="xl" variant="light" asChild>
+                  <Link to="/get-in-touch">{secondLabel} <ArrowRight /></Link>
+                </Button>
+              )
             )}
           </div>
         )}

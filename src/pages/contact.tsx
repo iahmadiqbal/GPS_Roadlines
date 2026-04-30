@@ -49,8 +49,8 @@ export default function ContactPage() {
           text="Call, email or submit a request for towing, recovery, or logistics assistance"
           image={sectionContactOfficeImage}
           ctaLabel="Call Now"
-          ctaHref="/get-in-touch"
           secondLabel="Request Service"
+          secondHref="/get-in-touch"
         />
 
         {/* Quick Contact Options */}
