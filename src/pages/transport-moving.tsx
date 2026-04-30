@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { containerLogisticsImage } from "@/components/roadlines/assets";
-import { transportServices } from "@/components/roadlines/data";
+import { company, transportServices } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   CTASection,
@@ -49,6 +49,8 @@ export default function TransportMovingPage() {
         <CTASection
           title="NEED RELIABLE TRANSPORT OR MOVING SERVICES?"
           text="Container, fleet, equipment or vehicle transport across Newfoundland."
+          secondLabel="Call for Transport Support"
+          secondHref={company.phoneHref}
         />
       </main>
     </PageShell>

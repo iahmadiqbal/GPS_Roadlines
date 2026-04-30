@@ -119,6 +119,7 @@ export default function GetInTouchPage() {
         <CTASection
           title="READY TO GET HELP OR A QUOTE?"
           text="Fast roadside assistance, towing & transport solutions."
+          secondLabel="Submit Request"
         />
       </main>
     </PageShell>

@@ -72,6 +72,7 @@ export default function HowItWorksPage() {
         <CTASection
           title="NEED HELP RIGHT NOW OR WANT TO BOOK A SERVICE?"
           text="Fast towing, roadside assistance & transport across St. John's."
+          secondLabel="Get a Quote"
         />
       </main>
     </PageShell>
