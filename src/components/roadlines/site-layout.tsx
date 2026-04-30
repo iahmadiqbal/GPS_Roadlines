@@ -61,7 +61,7 @@ function NavLink({
 export function Logo() {
   return (
     <Link to="/" className="group flex min-w-0 items-center gap-3" aria-label="GPS Roadlines home">
-      <span className="flex h-16 w-20 shrink-0 items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:w-24 lg:h-20 lg:w-28">
+      <span className="flex h-20 w-28 shrink-0 items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-32 lg:h-24 lg:w-36">
         <img
           src={gpsRoadlinesLogo}
           alt="GPS Roadlines logo"
@@ -295,11 +295,21 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="bg-brand-dark text-brand-dark-foreground">
+    <footer className="text-brand-dark-foreground" style={{ backgroundColor: "#A7A7AF" }}>
       <div className="mx-auto grid max-w-screen-2xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8 2xl:px-16">
         {/* Logo + description + social */}
         <div className="md:col-span-2">
-          <Logo />
+          <div className="h-28 w-36 sm:h-32 sm:w-40">
+            <Link to="/" aria-label="GPS Roadlines home">
+              <img
+                src={gpsRoadlinesLogo}
+                alt="GPS Roadlines logo"
+                width={320}
+                height={260}
+                className="h-full w-full object-contain drop-shadow-sm"
+              />
+            </Link>
+          </div>
           <p className="mt-5 max-w-xl text-sm leading-7 text-brand-dark-foreground/75">
             Reliable roadside assistance, towing and transport solutions
             <br />
