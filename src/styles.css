@@ -41,58 +41,63 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.99 0.004 260);
-  --foreground: oklch(0.16 0.055 264);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.16 0.055 264);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.16 0.055 264);
-  --primary: oklch(0.56 0.24 272.6);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.018 264);
-  --secondary-foreground: oklch(0.17 0.06 264);
-  --muted: oklch(0.95 0.01 264);
-  --muted-foreground: oklch(0.58 0.016 282);
-  --accent: oklch(0.91 0.052 272.6);
-  --accent-foreground: oklch(0.17 0.06 264);
-  --destructive: oklch(0.58 0.23 27);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.016 264);
-  --input: oklch(0.88 0.016 264);
-  --ring: oklch(0.56 0.24 272.6);
-  --brand-dark: oklch(0.16 0.08 266.5);
-  --brand-dark-foreground: oklch(0.98 0.006 260);
-  --steel: oklch(0.78 0.013 282);
-  --roadline: oklch(0.82 0.17 90);
-  --shadow-road: 0 18px 45px -26px color-mix(in oklab, var(--brand-dark) 45%, transparent);
-  --shadow-glow: 0 18px 40px -18px color-mix(in oklab, var(--primary) 60%, transparent);
-  --shadow-emergency: 0 18px 40px -18px color-mix(in oklab, var(--destructive) 55%, transparent);
+  /* Page background — clean white */
+  --background: #ffffff;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  /* PRIMARY = GPS Roadlines Red #B2091C */
+  --primary: #B2091C;
+  --primary-foreground: #ffffff;
+  /* Secondary — light silver tint from logo #C0BFC5 */
+  --secondary: #f0f0f2;
+  --secondary-foreground: #111111;
+  --muted: #f4f4f5;
+  --muted-foreground: #6b6b72;
+  /* Accent — very light red tint */
+  --accent: #fdf0f1;
+  --accent-foreground: #B2091C;
+  --destructive: #B2091C;
+  --destructive-foreground: #ffffff;
+  --border: #e2e2e5;
+  --input: #e2e2e5;
+  --ring: #B2091C;
+  /* BRAND DARK = GPS Roadlines Navy #03296F */
+  --brand-dark: #03296F;
+  --brand-dark-foreground: #ffffff;
+  --steel: #C0BFC5;
+  --roadline: #f5c518;
+  --shadow-road: 0 18px 45px -26px rgba(3, 41, 111, 0.35);
+  --shadow-glow: 0 18px 40px -18px rgba(178, 9, 28, 0.45);
+  --shadow-emergency: 0 18px 40px -18px rgba(178, 9, 28, 0.45);
 }
 
 .dark {
-  --background: oklch(0.16 0.08 266.5);
-  --foreground: oklch(0.98 0.006 260);
-  --card: oklch(0.2 0.07 266.5);
-  --card-foreground: oklch(0.98 0.006 260);
-  --popover: oklch(0.2 0.07 266.5);
-  --popover-foreground: oklch(0.98 0.006 260);
-  --primary: oklch(0.66 0.22 272.6);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.25 0.05 266);
-  --secondary-foreground: oklch(0.98 0.006 260);
-  --muted: oklch(0.25 0.05 266);
-  --muted-foreground: oklch(0.78 0.013 282);
-  --accent: oklch(0.3 0.08 272.6);
-  --accent-foreground: oklch(0.98 0.006 260);
-  --destructive: oklch(0.65 0.21 27);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.66 0.22 272.6);
-  --brand-dark: oklch(0.12 0.06 266.5);
-  --brand-dark-foreground: oklch(0.98 0.006 260);
-  --steel: oklch(0.72 0.013 282);
-  --roadline: oklch(0.86 0.16 90);
+  --background: #0d1a2e;
+  --foreground: #f5f5f7;
+  --card: #132040;
+  --card-foreground: #f5f5f7;
+  --popover: #132040;
+  --popover-foreground: #f5f5f7;
+  --primary: #d4102a;
+  --primary-foreground: #ffffff;
+  --secondary: #1a2d50;
+  --secondary-foreground: #f5f5f7;
+  --muted: #1a2d50;
+  --muted-foreground: #9ca3af;
+  --accent: #2a1a1e;
+  --accent-foreground: #f5f5f7;
+  --destructive: #d4102a;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #d4102a;
+  --brand-dark: #021d4d;
+  --brand-dark-foreground: #ffffff;
+  --steel: #C0BFC5;
+  --roadline: #f5c518;
 }
 
 @layer base {

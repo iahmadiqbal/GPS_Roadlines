@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { company } from "./data";
 
-const gpsRoadlinesLogo = "/images/gps-roadlines-logo-transparent.png";
+const gpsRoadlinesLogo = "/images/gpslogowebsite.png";
 
 // ─── Mega Menu Data ────────────────────────────────────────────────────────
 
@@ -311,16 +311,14 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
 
 export function Logo() {
   return (
-    <Link to="/" className="group flex min-w-0 items-center gap-3" aria-label="GPS Roadlines home">
-      <span className="flex h-20 w-28 shrink-0 items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-32 lg:h-24 lg:w-36">
-        <img
-          src={gpsRoadlinesLogo}
-          alt="GPS Roadlines logo"
-          width={220}
-          height={180}
-          className="h-full w-full object-contain drop-shadow-sm"
-        />
-      </span>
+    <Link to="/" className="group inline-block shrink-0" aria-label="GPS Roadlines home">
+      <img
+        src={gpsRoadlinesLogo}
+        alt="GPS Roadlines logo"
+        width={160}
+        height={112}
+        className="h-28 w-40 object-contain transition-transform duration-300 group-hover:scale-105"
+      />
     </Link>
   );
 }
@@ -484,27 +482,29 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="text-brand-dark-foreground" style={{ backgroundColor: "#A7A7AF" }}>
+    <footer style={{ backgroundColor: "#03296F", color: "#ffffff" }}>
       <div className="mx-auto grid max-w-screen-2xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8 2xl:px-16">
+
         {/* Logo + description + social */}
         <div className="md:col-span-2">
-          <div className="h-28 w-36 sm:h-32 sm:w-40">
-            <Link to="/" aria-label="GPS Roadlines home">
-              <img
-                src={gpsRoadlinesLogo}
-                alt="GPS Roadlines logo"
-                width={320}
-                height={260}
-                className="h-full w-full object-contain drop-shadow-sm"
-              />
-            </Link>
-          </div>
-          <p className="mt-5 max-w-xl text-sm leading-7 text-brand-dark-foreground/75">
+          {/* Logo — no wrapper div, no overflow-hidden, no crop */}
+          <Link to="/" aria-label="GPS Roadlines home" className="inline-block">
+            <img
+              src={gpsRoadlinesLogo}
+              alt="GPS Roadlines logo"
+              width={160}
+              height={112}
+              className="h-28 w-40 object-contain transition-opacity hover:opacity-85"
+            />
+          </Link>
+
+          <p className="mt-5 max-w-xl text-sm leading-7" style={{ color: "rgba(255,255,255,0.80)" }}>
             Reliable roadside assistance, towing and transport solutions
             <br />
             in Newfoundland &amp; Labrador.
           </p>
-          <div className="mt-6 flex gap-3">
+
+          <div className="mt-6 flex gap-4" style={{ color: "rgba(255,255,255,0.75)" }}>
             <a href="/" aria-label="Facebook" className="transition-opacity hover:opacity-70">
               <svg className="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
@@ -525,35 +525,43 @@ export function Footer() {
 
         {/* Quick links */}
         <div>
-          <h3 className="font-bold">Quick links</h3>
-          <div className="mt-4 grid gap-3 text-sm text-brand-dark-foreground/75">
-            <Link to="/">Home</Link>
-            <Link to="/emergency-services">Emergency Services</Link>
-            <Link to="/transport-moving">Transport &amp; Moving</Link>
-            <Link to="/about">About Us</Link>
-            <Link to="/how-it-works">How It Works</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/get-in-touch">Get a Quote</Link>
+          <h3 className="font-bold text-white">Quick links</h3>
+          <div className="mt-4 grid gap-3 text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            <Link to="/emergency-services" className="hover:text-white transition-colors">Emergency Services</Link>
+            <Link to="/transport-moving" className="hover:text-white transition-colors">Transport &amp; Moving</Link>
+            <Link to="/about" className="hover:text-white transition-colors">About Us</Link>
+            <Link to="/how-it-works" className="hover:text-white transition-colors">How It Works</Link>
+            <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+            <Link to="/get-in-touch" className="hover:text-white transition-colors">Get a Quote</Link>
           </div>
         </div>
 
         {/* Contact info */}
         <div>
-          <h3 className="font-bold">Contact</h3>
-          <div className="mt-4 grid gap-3 text-sm text-brand-dark-foreground/75">
-            <a href={company.phoneHref} className="flex gap-2">
-              <PhoneCall className="size-4" /> {company.phone}
+          <h3 className="font-bold text-white">Contact</h3>
+          <div className="mt-4 grid gap-3 text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
+            <a href={company.phoneHref} className="flex gap-2 hover:text-white transition-colors">
+              <PhoneCall className="size-4 shrink-0 mt-0.5" /> {company.phone}
             </a>
-            <a href={company.emailHref} className="flex gap-2">
-              <Mail className="size-4" /> {company.email}
+            <a href={company.emailHref} className="flex gap-2 hover:text-white transition-colors">
+              <Mail className="size-4 shrink-0 mt-0.5" /> {company.email}
             </a>
             <span className="flex gap-2">
-              <Navigation className="size-4" /> {company.address}
+              <Navigation className="size-4 shrink-0 mt-0.5" /> {company.address}
             </span>
             <span className="flex gap-2">
-              <Clock3 className="size-4" /> 24/7 emergency dispatch
+              <Clock3 className="size-4 shrink-0 mt-0.5" /> 24/7 emergency dispatch
             </span>
           </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}>
+        <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs sm:flex-row sm:px-6 lg:px-8 2xl:px-16" style={{ color: "rgba(255,255,255,0.50)" }}>
+          <span>© {new Date().getFullYear()} GPS Roadlines. All rights reserved.</span>
+          <span>Newfoundland &amp; Labrador, Canada</span>
         </div>
       </div>
     </footer>
