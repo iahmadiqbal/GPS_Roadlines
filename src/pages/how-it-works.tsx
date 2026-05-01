@@ -1,6 +1,6 @@
 import { CheckCircle2, Route, Siren, ShieldCheck, Truck, Wrench } from "lucide-react";
 
-import { dispatchControlImage } from "@/components/roadlines/assets";
+import { dispatchControlImage, serviceTowingImage } from "@/components/roadlines/assets";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   CTASection,
@@ -40,7 +40,7 @@ export default function HowItWorksPage() {
         <TimelineSection detailed showHeader />
 
         {/* Integrated Service Flow */}
-        <IntegratedModelSection showBullets showImage />
+        <IntegratedModelSection showBullets showImage altTitle />
 
         {/* Service Types Covered — 5 cards */}
         <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
@@ -71,23 +71,31 @@ export default function HowItWorksPage() {
 
         {/* Why This Process Works */}
         <InfoBand>
-          <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <h2 className="text-3xl font-black sm:text-4xl">
                 Built for Speed, Safety &amp; Reliability
               </h2>
+              <ul className="mt-5 grid gap-3">
+                {whyProcessWorksBullets.map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
+                  >
+                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="grid gap-3">
-              {whyProcessWorksBullets.map((point) => (
-                <li
-                  key={point}
-                  className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
-                >
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
-                  {point}
-                </li>
-              ))}
-            </ul>
+            <img
+              src={serviceTowingImage}
+              alt="GPS Roadlines successful service delivery"
+              loading="lazy"
+              width={1400}
+              height={900}
+              className="aspect-[4/3] w-full rounded-lg object-cover shadow-road"
+            />
           </div>
         </InfoBand>
 

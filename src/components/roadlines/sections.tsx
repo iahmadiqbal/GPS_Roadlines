@@ -427,12 +427,14 @@ export function TimelineSection({ detailed = false, showHeader = false }: { deta
   );
 }
 
-export function IntegratedModelSection({ showBullets = false, showImage = false }: { showBullets?: boolean; showImage?: boolean }) {
+export function IntegratedModelSection({ showBullets = false, showImage = false, altTitle = false }: { showBullets?: boolean; showImage?: boolean; altTitle?: boolean }) {
   return (
     <section className="bg-brand-dark px-4 py-20 text-brand-dark-foreground sm:px-6 lg:px-8 2xl:px-16">
       <div className={`mx-auto max-w-screen-2xl ${showImage ? "grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center" : ""}`}>
         <Reveal direction="left">
-          <h2 className="text-3xl font-black sm:text-5xl">One Call Solves Everything</h2>
+          <h2 className="text-3xl font-black sm:text-5xl">
+            {altTitle ? "One System. Multiple Solutions." : "One Call Solves Everything"}
+          </h2>
           <p className="mt-5 text-lg leading-8 text-brand-dark-foreground/76">
             Unlike traditional towing companies, GPS Roadlines combines towing, roadside assistance,
             mobile mechanic services and logistics support. We don't just move vehicles — we solve

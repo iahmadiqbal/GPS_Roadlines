@@ -126,6 +126,7 @@ export default function AboutPage() {
         <ServicesGrid
           services={coreServices}
           title="What We Do"
+          simple
         />
 
         {/* How We Operate */}
