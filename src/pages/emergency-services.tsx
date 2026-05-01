@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-
 import { emergencyTowImage } from "@/components/roadlines/assets";
 import { emergencyServices, serviceSlug } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
@@ -11,28 +8,13 @@ import {
   ServiceSection,
 } from "@/components/roadlines/sections";
 
+// Document: Towing, Roadside Assistance, Vehicle Recovery, Battery Boost, Fuel Delivery, Lockout
+// Mobile Mechanic is NOT in the Emergency page per document
+const emergencyPageServices = emergencyServices.filter(
+  (s) => s.title !== "Mobile Mechanic"
+);
+
 export default function EmergencyServicesPage() {
-  const location = useLocation();
-  const [activeSlug, setActiveSlug] = useState<string | null>(null);
-
-  useEffect(() => {
-    const hash = location.hash.replace("#", "");
-    if (!hash) {
-      setActiveSlug(null);
-      return;
-    }
-    // Find matching service by slug
-    const matched = emergencyServices.find((s) => serviceSlug(s.title) === hash);
-    if (matched) {
-      setActiveSlug(hash);
-      setTimeout(() => {
-        document.getElementById("service-detail")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }, 120);
-    }
-  }, [location.hash]);
-
-  const activeService = emergencyServices.find((s) => serviceSlug(s.title) === activeSlug) ?? null;
-
   return (
     <PageShell>
       <main>
@@ -44,13 +26,13 @@ export default function EmergencyServicesPage() {
           ctaHref="/get-in-touch"
         />
 
-        {/* Active service section — only shown when a service is selected from menu */}
-        {activeService && (
+        {emergencyPageServices.map((service) => (
           <ServiceSection
-            id="service-detail"
-            service={activeService}
+            key={service.title}
+            id={serviceSlug(service.title)}
+            service={service}
           />
-        )}
+        ))}
 
         <DispatchWorkflow />
         <CTASection

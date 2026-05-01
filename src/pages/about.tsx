@@ -13,11 +13,9 @@ import {
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   InfoBand,
-  IntegratedModelSection,
   PageHero,
   ServicesGrid,
   TimelineSection,
-  WhyChooseSection,
 } from "@/components/roadlines/sections";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -50,7 +48,7 @@ export default function AboutPage() {
         <InfoBand>
           <div className="grid gap-6 lg:grid-cols-3">
             {/* Who We Are */}
-            <Card id="overview" className="scroll-mt-32 rounded-lg">
+            <Card id="overview" className="scroll-mt-28 rounded-lg">
               <CardContent className="p-7">
                 <h2 className="text-2xl font-black">Who We Are</h2>
                 <ul className="mt-4 grid gap-2">
@@ -68,7 +66,7 @@ export default function AboutPage() {
             </Card>
 
             {/* Our Mission */}
-            <Card id="mission" className="scroll-mt-32 rounded-lg">
+            <Card id="mission" className="scroll-mt-28 rounded-lg">
               <CardContent className="p-7">
                 <h2 className="text-2xl font-black">Our Mission</h2>
                 <ul className="mt-4 grid gap-2">
@@ -86,7 +84,7 @@ export default function AboutPage() {
             </Card>
 
             {/* Our Vision */}
-            <Card id="vision" className="scroll-mt-32 rounded-lg">
+            <Card id="vision" className="scroll-mt-28 rounded-lg">
               <CardContent className="p-7">
                 <h2 className="text-2xl font-black">Our Vision</h2>
                 <ul className="mt-4 grid gap-2">
@@ -115,10 +113,8 @@ export default function AboutPage() {
         {/* How We Operate */}
         <TimelineSection detailed />
 
-        <IntegratedModelSection />
-
         {/* Why Customers Trust Us */}
-        <section id="trust" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+        <section id="trust" className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
           <div className="mx-auto max-w-screen-2xl">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-black sm:text-4xl lg:text-5xl">Why Customers Trust Us</h2>
@@ -141,9 +137,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-
-        {/* Why Choose — 5 pillars */}
-        <WhyChooseSection />
 
         {/* CTA */}
         <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">

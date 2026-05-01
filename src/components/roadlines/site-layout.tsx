@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { company, emergencyServices, serviceSlug, transportServices } from "./data";
+import { company } from "./data";
 
 const gpsRoadlinesLogo = "/images/gps-roadlines-logo-transparent.png";
 
@@ -58,10 +58,12 @@ const megaMenuCategories: MenuCategory[] = [
     id: "emergency",
     label: "Emergency Services",
     to: "/emergency-services",
-    links: emergencyServices.map((s) => ({
-      label: s.title,
-      to: `/emergency-services#${serviceSlug(s.title)}`,
-    })),
+    links: [
+      { label: "Towing", to: "/emergency-services#towing" },
+      { label: "Roadside Assistance", to: "/emergency-services#roadside-assistance" },
+      { label: "Vehicle Recovery", to: "/emergency-services#vehicle-recovery" },
+      { label: "Mobile Mechanic", to: "/emergency-services#mobile-mechanic" },
+    ],
     mostRequested: [
       { label: "24/7 Towing", to: "/emergency-services#towing" },
       { label: "Battery Boost", to: "/emergency-services#battery-boost" },
@@ -73,10 +75,11 @@ const megaMenuCategories: MenuCategory[] = [
     id: "transport",
     label: "Transport & Moving",
     to: "/transport-moving",
-    links: transportServices.map((s) => ({
-      label: s.title,
-      to: `/transport-moving#${serviceSlug(s.title)}`,
-    })),
+    links: [
+      { label: "Container Transport", to: "/transport-moving#container-transport" },
+      { label: "General Logistics", to: "/transport-moving#logistics" },
+      { label: "Equipment Transport", to: "/transport-moving#equipment-transport" },
+    ],
     mostRequested: [
       { label: "Container Transport", to: "/transport-moving#container-transport" },
       { label: "Fleet Transport", to: "/transport-moving#fleet-transport" },
@@ -212,10 +215,7 @@ function MegaMenu({
 
           {/* Right col: Most requested */}
           <div style={{ minWidth: 240 }}>
-            <p className="mb-5 border-b border-gray-200 pb-2 text-sm font-black uppercase tracking-widest text-gray-500">
-              Most requested
-            </p>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mt-7">
               {activeCategory.mostRequested.map((link) => (
                 <li key={link.to}>
                   <Link
@@ -322,6 +322,26 @@ export function Logo() {
         />
       </span>
     </Link>
+  );
+}
+
+function DownloadAppDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button size="xl" variant="outline" className="hidden sm:flex">
+          <Download className="size-4" /> Download App
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="rounded-lg border-border bg-card">
+        <DialogHeader>
+          <DialogTitle>Our App is Coming Soon</DialogTitle>
+        </DialogHeader>
+        <p className="text-sm leading-7 text-muted-foreground">
+          Our mobile app is launching soon to make bookings faster, easier, and more transparent. Stay tuned.
+        </p>
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -444,11 +464,7 @@ export function Header() {
           {/* Right: buttons */}
           <div className="flex shrink-0 items-center gap-3">
             <UrgentDialog />
-            <Button size="xl" variant="outline" asChild className="hidden sm:flex">
-              <a href="#" aria-label="Download App">
-                <Download className="size-4" /> Download App
-              </a>
-            </Button>
+            <DownloadAppDialog />
           </div>
         </div>
 

@@ -1,38 +1,14 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-
 import { containerLogisticsImage } from "@/components/roadlines/assets";
-import { company, transportServices, serviceSlug } from "@/components/roadlines/data";
+import { company, transportServices } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   CTASection,
   DispatchWorkflow,
   PageHero,
   ServiceSection,
-  TimelineSection,
 } from "@/components/roadlines/sections";
 
 export default function TransportMovingPage() {
-  const location = useLocation();
-  const [activeSlug, setActiveSlug] = useState<string | null>(null);
-
-  useEffect(() => {
-    const hash = location.hash.replace("#", "");
-    if (!hash) {
-      setActiveSlug(null);
-      return;
-    }
-    const matched = transportServices.find((s) => serviceSlug(s.title) === hash);
-    if (matched) {
-      setActiveSlug(hash);
-      setTimeout(() => {
-        document.getElementById("service-detail")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }, 120);
-    }
-  }, [location.hash]);
-
-  const activeService = transportServices.find((s) => serviceSlug(s.title) === activeSlug) ?? null;
-
   return (
     <PageShell>
       <main>
@@ -44,15 +20,15 @@ export default function TransportMovingPage() {
           ctaHref="/get-in-touch"
         />
 
-        {/* Active service section */}
-        {activeService && (
+        {/* All 6 transport services — each as a full section */}
+        {transportServices.map((service) => (
           <ServiceSection
-            id="service-detail"
-            service={activeService}
+            key={service.title}
+            id={service.title.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}
+            service={service}
           />
-        )}
+        ))}
 
-        <TimelineSection />
         <DispatchWorkflow />
         <CTASection
           title="NEED RELIABLE TRANSPORT OR MOVING SERVICES?"

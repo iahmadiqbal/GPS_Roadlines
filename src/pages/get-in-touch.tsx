@@ -42,7 +42,16 @@ export default function GetInTouchPage() {
 
         {/* Main form + sidebar */}
         <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
-          <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+          <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
+            {/* Lead form — main left column */}
+            <Card className="rounded-lg shadow-road">
+              <CardContent className="p-6 sm:p-8">
+                <h2 className="mb-6 text-2xl font-black">Tell Us What You Need</h2>
+                <ServiceContactForm variant="lead" />
+              </CardContent>
+            </Card>
+
+            {/* Right sidebar — emergency + business cards */}
             <div className="grid gap-5">
               {/* Emergency shortcut */}
               <Card className="rounded-lg bg-primary text-primary-foreground shadow-glow">
@@ -82,14 +91,6 @@ export default function GetInTouchPage() {
                 </CardContent>
               </Card>
             </div>
-
-            {/* Lead form */}
-            <Card className="rounded-lg shadow-road">
-              <CardContent className="p-6 sm:p-8">
-                <h2 className="mb-6 text-2xl font-black">Tell Us What You Need</h2>
-                <ServiceContactForm variant="lead" />
-              </CardContent>
-            </Card>
           </div>
         </section>
 

@@ -1,6 +1,6 @@
 import { Building2, Clock, Mail, MapPinned, PhoneCall, RadioTower, Truck, Zap } from "lucide-react";
 
-import { sectionContactOfficeImage } from "@/components/roadlines/assets";
+import { emergencyTowImage, sectionContactOfficeImage } from "@/components/roadlines/assets";
 import { company } from "@/components/roadlines/data";
 import { ServiceContactForm } from "@/components/roadlines/forms";
 import { PageShell } from "@/components/roadlines/site-layout";
@@ -104,6 +104,68 @@ export default function ContactPage() {
                 </a>
               </Button>
             </div>
+            <img
+              src={emergencyTowImage}
+              alt="GPS Roadlines emergency tow truck at night"
+              loading="lazy"
+              width={1400}
+              height={900}
+              className="aspect-[4/3] w-full rounded-lg object-cover shadow-road"
+            />
+          </div>
+        </InfoBand>
+
+        {/* Contact Form — Send Us a Message */}
+        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+          <div className="mx-auto max-w-screen-2xl">
+            <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+              <div>
+                <h2 className="text-3xl font-black sm:text-4xl">Send Us a Message</h2>
+                <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                  Send details about your vehicle, location, service type, and timing. For urgent
+                  roadside assistance, call dispatch directly.
+                </p>
+              </div>
+              <Card className="rounded-lg shadow-road">
+                <CardContent className="p-6 sm:p-8">
+                  <ServiceContactForm />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Fleet & Business Support */}
+        <InfoBand>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <h2 className="text-3xl font-black sm:text-4xl">Fleet &amp; Business Support Inquiries</h2>
+              <ul className="mt-5 grid gap-3 text-sm text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <Building2 className="size-4 shrink-0 text-primary" /> Dedicated support for commercial accounts
+                </li>
+                <li className="flex items-center gap-2">
+                  <Building2 className="size-4 shrink-0 text-primary" /> Fleet towing and breakdown assistance
+                </li>
+                <li className="flex items-center gap-2">
+                  <Building2 className="size-4 shrink-0 text-primary" /> Scheduled logistics and transport contracts
+                </li>
+                <li className="flex items-center gap-2">
+                  <Building2 className="size-4 shrink-0 text-primary" /> Priority dispatch for business clients
+                </li>
+                <li className="flex items-center gap-2">
+                  <Building2 className="size-4 shrink-0 text-primary" /> Monthly billing and service agreements
+                </li>
+                <li className="flex items-center gap-2">
+                  <Building2 className="size-4 shrink-0 text-primary" /> Custom transport solutions available
+                </li>
+              </ul>
+              <Button className="mt-7" variant="hero" size="xl" asChild>
+                <a href={company.phoneHref}>
+                  <PhoneCall /> Request Business Callback
+                </a>
+              </Button>
+            </div>
             <div className="rounded-lg border bg-card p-8">
               <h3 className="text-xl font-black">Response Time Commitment</h3>
               <div className="mt-5 grid gap-4">
@@ -124,56 +186,25 @@ export default function ContactPage() {
           </div>
         </InfoBand>
 
-        {/* Contact Form + Business Inquiry */}
-        <InfoBand>
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div>
-              <h2 className="text-3xl font-black sm:text-4xl">Send Us a Message</h2>
-              <p className="mt-4 text-lg leading-8 text-muted-foreground">
-                Send details about your vehicle, location, service type, and timing. For urgent
-                roadside assistance, call dispatch directly.
-              </p>
-              <div className="mt-6 rounded-lg border bg-card p-6">
-                <h3 className="flex items-center gap-2 font-bold">
-                  <Building2 className="size-5 text-primary" /> Fleet &amp; Business Support Inquiries
-                </h3>
-                <ul className="mt-3 grid gap-2 text-sm text-muted-foreground">
-                  <li>Dedicated support for commercial accounts</li>
-                  <li>Fleet towing and breakdown assistance</li>
-                  <li>Scheduled logistics and transport contracts</li>
-                  <li>Priority dispatch for business clients</li>
-                  <li>Monthly billing and service agreements</li>
-                  <li>Custom transport solutions available</li>
-                </ul>
-                <Button className="mt-5" variant="outline" asChild>
-                  <a href={company.phoneHref}>
-                    <PhoneCall /> Request Business Callback
-                  </a>
-                </Button>
-              </div>
-            </div>
-            <Card className="rounded-lg shadow-road">
-              <CardContent className="p-6 sm:p-8">
-                <ServiceContactForm />
-              </CardContent>
-            </Card>
-          </div>
-        </InfoBand>
-
         {/* Map / Location Section */}
-        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+        <section id="location" className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
           <div className="mx-auto max-w-screen-2xl">
-            <div className="flex min-h-[320px] items-center justify-center rounded-lg border border-dashed bg-secondary/65 p-8 text-center">
-              <div>
-                <MapPinned className="mx-auto mb-4 size-10 text-primary" />
-                <h2 className="text-2xl font-black">Our Service Coverage</h2>
-                <p className="mt-3 max-w-xl text-muted-foreground">
-                  St. John's metropolitan area · Avalon Peninsula corridors · Highway and rural
-                  roadside coverage zones
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground">{company.address}</p>
-              </div>
+            <h2 className="mb-6 text-2xl font-black">Our Service Coverage</h2>
+            <div className="overflow-hidden rounded-lg shadow-road">
+              <iframe
+                title="GPS Roadlines location — 215 Water Street, St John's NL"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.3!2d-52.7126!3d47.5615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0ca3a7b7b7b7b7%3A0x0!2s215+Water+St%2C+St.+John%27s%2C+NL+A1C+6C9!5e0!3m2!1sen!2sca!4v1"
+                width="100%"
+                height="420"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              {company.address} · St. John's metropolitan area · Avalon Peninsula corridors · Highway and rural roadside coverage zones
+            </p>
           </div>
         </section>
 
