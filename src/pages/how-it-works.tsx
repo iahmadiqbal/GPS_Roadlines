@@ -37,10 +37,10 @@ export default function HowItWorksPage() {
         />
 
         {/* Step-by-step process — detailed with bullets */}
-        <TimelineSection detailed />
+        <TimelineSection detailed showHeader />
 
         {/* Integrated Service Flow */}
-        <IntegratedModelSection />
+        <IntegratedModelSection showBullets />
 
         {/* Service Types Covered — 5 cards */}
         <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">

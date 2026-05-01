@@ -253,7 +253,7 @@ export function ServiceSection({
 export function ServicesGrid({
   services = coreServices,
   title = "Services Built Around Road Reality",
-  text = "One coordinated team for emergency support, recovery, mobile mechanic needs, container transport, and commercial logistics.",
+  text,
   id = "services",
 }: {
   services?: Service[];
@@ -264,7 +264,7 @@ export function ServicesGrid({
   return (
     <section id={id} className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
       <div className="mx-auto max-w-screen-2xl">
-        <SectionHeader eyebrow="Services" title={title} text={text} />
+        {(title || text) && <SectionHeader eyebrow="Services" title={title} text={text} />}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -343,15 +343,17 @@ const stepImages = [
   serviceTowingImage,            // Step 5 — Service Completion
 ];
 
-export function TimelineSection({ detailed = false }: { detailed?: boolean }) {
+export function TimelineSection({ detailed = false, showHeader = false }: { detailed?: boolean; showHeader?: boolean }) {
   return (
     <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
       <div className="mx-auto max-w-screen-2xl">
-        <SectionHeader
-          eyebrow="How it works"
-          title="A dispatch flow designed for speed and clarity"
-          text="From first contact to completion, GPS Roadlines keeps every request moving through a practical service workflow."
-        />
+        {showHeader && (
+          <SectionHeader
+            eyebrow="How it works"
+            title="A dispatch flow designed for speed and clarity"
+            text="From first contact to completion, GPS Roadlines keeps every request moving through a practical service workflow."
+          />
+        )}
         <div className="grid gap-8">
           {steps.map((step, index) => {
             const isEven = index % 2 === 1;
@@ -405,7 +407,7 @@ export function TimelineSection({ detailed = false }: { detailed?: boolean }) {
   );
 }
 
-export function IntegratedModelSection() {
+export function IntegratedModelSection({ showBullets = false }: { showBullets?: boolean }) {
   return (
     <section className="bg-brand-dark px-4 py-20 text-brand-dark-foreground sm:px-6 lg:px-8 2xl:px-16">
       <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
@@ -416,14 +418,16 @@ export function IntegratedModelSection() {
             mobile mechanic services and logistics support. We don't just move vehicles — we solve
             the full problem from breakdown to recovery or transport completion.
           </p>
-          <ul className="mt-6 grid gap-2">
-            {integratedFlowBullets.map((point) => (
-              <li key={point} className="flex items-start gap-2 text-sm leading-6 text-brand-dark-foreground/75">
-                <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
-                {point}
-              </li>
-            ))}
-          </ul>
+          {showBullets && (
+            <ul className="mt-6 grid gap-2">
+              {integratedFlowBullets.map((point) => (
+                <li key={point} className="flex items-start gap-2 text-sm leading-6 text-brand-dark-foreground/75">
+                  <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          )}
         </Reveal>
         <Reveal direction="right">
           <img

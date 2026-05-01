@@ -126,11 +126,10 @@ export default function AboutPage() {
         <ServicesGrid
           services={coreServices}
           title="What We Do"
-          text="Roadside, recovery, mobile mechanic, container transport, and commercial logistics under one coordinated operating model."
         />
 
         {/* How We Operate */}
-        <TimelineSection detailed />
+        <TimelineSection detailed showHeader />
 
         {/* Why Customers Trust Us */}
         <section id="trust" className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
