@@ -1,43 +1,21 @@
-import containerLogisticsImage from "@/assets/gps-roadlines-container-logistics.jpg";
-import dispatchControlImage from "@/assets/gps-roadlines-dispatch-control.jpg";
-import emergencyTowImage from "@/assets/gps-roadlines-emergency-tow.jpg";
-import transportImage from "@/assets/gps-roadlines-transport.jpg";
-import sectionAboutOverviewImage from "@/assets/gps-section-about-overview.jpg";
-import sectionContactOfficeImage from "@/assets/gps-section-contact-office.jpg";
-import sectionServiceRequestImage from "@/assets/gps-section-service-request.jpg";
-import serviceBatteryBoostImage from "@/assets/gps-service-battery-boost.jpg";
-import serviceCommercialLogisticsImage from "@/assets/gps-service-commercial-logistics.jpg";
-import serviceContainerTransportImage from "@/assets/gps-service-container-transport.jpg";
-import serviceEquipmentTransportImage from "@/assets/gps-service-equipment-transport.jpg";
-import serviceFleetTransportImage from "@/assets/gps-service-fleet-transport.jpg";
-import serviceFuelDeliveryImage from "@/assets/gps-service-fuel-delivery.jpg";
-import serviceLockoutImage from "@/assets/gps-service-lockout.jpg";
-import serviceMobileMechanicImage from "@/assets/gps-service-mobile-mechanic.jpg";
-import serviceOversizedTransportImage from "@/assets/gps-service-oversized-transport.jpg";
-import serviceRoadsideAssistanceImage from "@/assets/gps-service-roadside-assistance.jpg";
-import serviceTowingImage from "@/assets/gps-service-towing.jpg";
-import serviceVehicleRecoveryImage from "@/assets/gps-service-vehicle-recovery.jpg";
-import serviceVehicleTransportImage from "@/assets/gps-service-vehicle-transport.jpg";
-
-export {
-  containerLogisticsImage,
-  dispatchControlImage,
-  emergencyTowImage,
-  sectionAboutOverviewImage,
-  sectionContactOfficeImage,
-  sectionServiceRequestImage,
-  serviceBatteryBoostImage,
-  serviceCommercialLogisticsImage,
-  serviceContainerTransportImage,
-  serviceEquipmentTransportImage,
-  serviceFleetTransportImage,
-  serviceFuelDeliveryImage,
-  serviceLockoutImage,
-  serviceMobileMechanicImage,
-  serviceOversizedTransportImage,
-  serviceRoadsideAssistanceImage,
-  serviceTowingImage,
-  serviceVehicleRecoveryImage,
-  serviceVehicleTransportImage,
-  transportImage,
-};
+// All images are served from /public/images/ as static assets
+export const containerLogisticsImage = "/images/gps-roadlines-container-logistics.jpg";
+export const dispatchControlImage = "/images/gps-roadlines-dispatch-control.jpg";
+export const emergencyTowImage = "/images/gps-roadlines-emergency-tow.jpg";
+export const transportImage = "/images/gps-roadlines-transport.jpg";
+export const sectionAboutOverviewImage = "/images/gps-section-about-overview.jpg";
+export const sectionContactOfficeImage = "/images/gps-section-contact-office.jpg";
+export const sectionServiceRequestImage = "/images/gps-section-service-request.jpg";
+export const serviceBatteryBoostImage = "/images/gps-service-battery-boost.jpg";
+export const serviceCommercialLogisticsImage = "/images/gps-service-commercial-logistics.jpg";
+export const serviceContainerTransportImage = "/images/gps-service-container-transport.jpg";
+export const serviceEquipmentTransportImage = "/images/gps-service-equipment-transport.jpg";
+export const serviceFleetTransportImage = "/images/gps-service-fleet-transport.jpg";
+export const serviceFuelDeliveryImage = "/images/gps-service-fuel-delivery.jpg";
+export const serviceLockoutImage = "/images/gps-service-lockout.jpg";
+export const serviceMobileMechanicImage = "/images/gps-service-mobile-mechanic.jpg";
+export const serviceOversizedTransportImage = "/images/gps-service-oversized-transport.jpg";
+export const serviceRoadsideAssistanceImage = "/images/gps-service-roadside-assistance.jpg";
+export const serviceTowingImage = "/images/gps-service-towing.jpg";
+export const serviceVehicleRecoveryImage = "/images/gps-service-vehicle-recovery.jpg";
+export const serviceVehicleTransportImage = "/images/gps-service-vehicle-transport.jpg";

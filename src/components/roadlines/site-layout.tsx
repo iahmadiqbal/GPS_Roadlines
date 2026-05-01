@@ -1,62 +1,313 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   ChevronDown,
   ChevronRight,
   Clock3,
+  Download,
   Mail,
   Menu,
   Navigation,
   PhoneCall,
+  X,
 } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 
-import gpsRoadlinesLogo from "@/assets/gps-roadlines-logo-transparent.png";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { company, emergencyServices, serviceSlug, transportServices } from "./data";
 
-const mobileNavLinks = [
-  { label: "How It Works", to: "/how-it-works" },
-  { label: "About Us", to: "/about" },
-  { label: "Contact Us", to: "/contact" },
-  { label: "Get in Touch", to: "/get-in-touch" },
-] as const;
+const gpsRoadlinesLogo = "/images/gps-roadlines-logo-transparent.png";
 
-function NavLink({
-  to,
-  children,
-  exact = false,
-}: {
+// ─── Mega Menu Data ────────────────────────────────────────────────────────
+
+type MenuLink = { label: string; to: string };
+
+type MenuCategory = {
+  id: string;
+  label: string;
   to: string;
-  children: ReactNode;
-  exact?: boolean;
+  links: MenuLink[];
+  mostRequested: MenuLink[];
+};
+
+const megaMenuCategories: MenuCategory[] = [
+  {
+    id: "home",
+    label: "Home",
+    to: "/",
+    links: [
+      { label: "Welcome", to: "/" },
+      { label: "Our Services", to: "/#services" },
+      { label: "Why Choose Us", to: "/#why-choose" },
+      { label: "How It Works", to: "/how-it-works" },
+    ],
+    mostRequested: [
+      { label: "Get a Free Quote", to: "/get-in-touch" },
+      { label: "Emergency Towing", to: "/emergency-services#towing" },
+      { label: "Roadside Assistance", to: "/emergency-services#roadside-assistance" },
+      { label: "Contact Us Now", to: "/contact" },
+    ],
+  },
+  {
+    id: "emergency",
+    label: "Emergency Services",
+    to: "/emergency-services",
+    links: emergencyServices.map((s) => ({
+      label: s.title,
+      to: `/emergency-services#${serviceSlug(s.title)}`,
+    })),
+    mostRequested: [
+      { label: "24/7 Towing", to: "/emergency-services#towing" },
+      { label: "Battery Boost", to: "/emergency-services#battery-boost" },
+      { label: "Fuel Delivery", to: "/emergency-services#fuel-delivery" },
+      { label: "Vehicle Lockout", to: "/emergency-services#lockout" },
+    ],
+  },
+  {
+    id: "transport",
+    label: "Transport & Moving",
+    to: "/transport-moving",
+    links: transportServices.map((s) => ({
+      label: s.title,
+      to: `/transport-moving#${serviceSlug(s.title)}`,
+    })),
+    mostRequested: [
+      { label: "Container Transport", to: "/transport-moving#container-transport" },
+      { label: "Fleet Transport", to: "/transport-moving#fleet-transport" },
+      { label: "Vehicle Transport", to: "/transport-moving#vehicle-transport" },
+      { label: "Equipment Transport", to: "/transport-moving#equipment-transport" },
+    ],
+  },
+  {
+    id: "about",
+    label: "About Us",
+    to: "/about",
+    links: [
+      { label: "Company Overview", to: "/about#overview" },
+      { label: "Our Mission", to: "/about#mission" },
+      { label: "Our Vision", to: "/about#vision" },
+      { label: "Why Trust Us", to: "/about#trust" },
+    ],
+    mostRequested: [
+      { label: "Our Story", to: "/about" },
+      { label: "How It Works", to: "/how-it-works" },
+      { label: "Get in Touch", to: "/get-in-touch" },
+      { label: "Contact Us", to: "/contact" },
+    ],
+  },
+  {
+    id: "how-it-works",
+    label: "How It Works",
+    to: "/how-it-works",
+    links: [
+      { label: "Request Service", to: "/how-it-works#request" },
+      { label: "Location & Issue Review", to: "/how-it-works#review" },
+      { label: "Operator Assigned", to: "/how-it-works#assigned" },
+      { label: "Fast Dispatch & Arrival", to: "/how-it-works#dispatch" },
+      { label: "Service Completion", to: "/how-it-works#completion" },
+    ],
+    mostRequested: [
+      { label: "Book a Service", to: "/get-in-touch" },
+      { label: "Emergency Help", to: "/emergency-services" },
+      { label: "Call Us Now", to: "/contact" },
+      { label: "Transport Services", to: "/transport-moving" },
+    ],
+  },
+  {
+    id: "contact",
+    label: "Contact",
+    to: "/contact",
+    links: [
+      { label: "Contact Us", to: "/contact" },
+      { label: "Get a Quote", to: "/get-in-touch" },
+      { label: "Emergency Line", to: "/contact#emergency" },
+      { label: "Office Location", to: "/contact#location" },
+    ],
+    mostRequested: [
+      { label: "Call 905-781-5278", to: company.phoneHref },
+      { label: "Email Us", to: company.emailHref },
+      { label: "Get a Free Quote", to: "/get-in-touch" },
+      { label: "Emergency Services", to: "/emergency-services" },
+    ],
+  },
+];
+
+// ─── Mega Menu — Canada.ca style ───────────────────────────────────────────
+
+function MegaMenu({
+  onClose,
+  onMouseEnter,
+  onMouseLeave,
+}: {
+  onClose: () => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }) {
-  const location = useLocation();
-  const isActive = exact ? location.pathname === to : location.pathname === to;
+  const [activeCategory, setActiveCategory] = useState<MenuCategory>(megaMenuCategories[0]);
+
   return (
-    <Link
-      to={to}
-      className={`whitespace-nowrap text-sm font-semibold transition-colors hover:text-primary ${isActive ? "text-primary" : "text-muted-foreground"}`}
+    <div
+      className="fixed left-0 right-0 z-50 border-t-2 border-primary shadow-2xl"
+      style={{ top: "var(--header-height, 96px)" }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
-      {children}
-    </Link>
+      <div className="flex" style={{ minHeight: 340 }}>
+
+        {/* Left sidebar — dark, category list */}
+        <div className="flex flex-col bg-brand-dark" style={{ minWidth: 260, width: 260 }}>
+          {megaMenuCategories.map((cat) => (
+            <button
+              key={cat.id}
+              onMouseEnter={() => setActiveCategory(cat)}
+              className={`flex w-full items-center justify-between px-6 py-3.5 text-left text-sm font-medium transition-colors ${
+                activeCategory.id === cat.id
+                  ? "bg-white text-gray-900"
+                  : "text-brand-dark-foreground/85 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <span>{cat.label}</span>
+              {activeCategory.id === cat.id && (
+                <ChevronRight className="size-3.5 shrink-0 text-gray-500" />
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Right panel — white, Canada.ca layout */}
+        <div className="flex flex-1 gap-16 bg-white px-10 py-7">
+
+          {/* Left col: category title + links */}
+          <div style={{ minWidth: 240 }}>
+            <Link
+              to={activeCategory.to}
+              onClick={onClose}
+              className="mb-5 block border-b-2 border-primary pb-2 text-xl font-black text-gray-900 hover:text-primary hover:underline"
+            >
+              {activeCategory.label}
+            </Link>
+            <ul className="space-y-3">
+              {activeCategory.links.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    onClick={onClose}
+                    className="group flex items-start gap-2 text-sm text-primary"
+                  >
+                    <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-primary transition-transform group-hover:scale-125" />
+                    <span className="underline underline-offset-2 group-hover:no-underline group-hover:text-primary/70">
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right col: Most requested */}
+          <div style={{ minWidth: 240 }}>
+            <p className="mb-5 border-b border-gray-200 pb-2 text-sm font-black uppercase tracking-widest text-gray-500">
+              Most requested
+            </p>
+            <ul className="space-y-3">
+              {activeCategory.mostRequested.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    onClick={onClose}
+                    className="group flex items-start gap-2 text-sm text-primary"
+                  >
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-gray-400 transition-colors group-hover:bg-primary" />
+                    <span className="underline underline-offset-2 group-hover:no-underline group-hover:text-primary/70">
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
   );
 }
+
+// ─── Mobile Menu ───────────────────────────────────────────────────────────
+
+function MobileMenu({ onClose }: { onClose: () => void }) {
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col bg-white" style={{ overflowY: "auto" }}>
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4">
+        <Logo />
+        <button
+          onClick={onClose}
+          aria-label="Close menu"
+          className="rounded-md p-2 text-gray-600 hover:bg-gray-100"
+        >
+          <X className="size-5" />
+        </button>
+      </div>
+
+      <nav className="flex-1 px-4 py-4">
+        {megaMenuCategories.map((cat) => (
+          <div key={cat.id} className="border-b border-gray-100">
+            <button
+              className="flex w-full items-center justify-between py-3 text-left text-sm font-semibold text-gray-800"
+              onClick={() => setOpenSection(openSection === cat.id ? null : cat.id)}
+            >
+              {cat.label}
+              <ChevronRight
+                className={`size-4 shrink-0 transition-transform ${openSection === cat.id ? "rotate-90" : ""}`}
+              />
+            </button>
+            {openSection === cat.id && (
+              <div className="mb-3 ml-3 space-y-2 border-l-2 border-primary/20 pl-3">
+                <Link
+                  to={cat.to}
+                  onClick={onClose}
+                  className="block text-sm font-bold text-primary"
+                >
+                  {cat.label} — Overview
+                </Link>
+                {cat.links.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={onClose}
+                    className="block py-1 text-sm text-primary hover:underline"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </nav>
+
+      <div className="border-t border-gray-200 px-4 py-4">
+        <a
+          href={company.phoneHref}
+          className="flex w-full items-center justify-center gap-2 rounded-md bg-primary py-3 text-sm font-bold text-primary-foreground"
+          onClick={onClose}
+        >
+          <PhoneCall className="size-4" /> {company.phone}
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ─── Shared Components ─────────────────────────────────────────────────────
 
 export function Logo() {
   return (
@@ -78,14 +329,13 @@ function UrgentDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="emergency">
+        <Button size="xl" variant="emergency">
           <PhoneCall /> Immediate Help
         </Button>
       </DialogTrigger>
       <DialogContent className="rounded-lg border-border bg-card">
         <DialogHeader>
           <DialogTitle>Need urgent roadside assistance?</DialogTitle>
-          <DialogDescription>Call our 24/7 dispatch team now.</DialogDescription>
         </DialogHeader>
         <Button size="xl" variant="hero" asChild>
           <a href={company.phoneHref}>
@@ -97,201 +347,124 @@ function UrgentDialog() {
   );
 }
 
-function AppDialog() {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Download App</Button>
-      </DialogTrigger>
-      <DialogContent className="rounded-lg border-border bg-card">
-        <DialogHeader>
-          <DialogTitle>Mobile app launching soon...</DialogTitle>
-          <DialogDescription>
-            Our mobile app is launching soon to make bookings faster, easier, and more transparent.
-            Stay tuned.
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
-  );
-}
+// ─── Header ────────────────────────────────────────────────────────────────
 
 export function Header() {
-  const [emergencyOpen, setEmergencyOpen] = useState(false);
-  const [transportOpen, setTransportOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      document.documentElement.style.setProperty(
+        "--header-height",
+        `${headerRef.current.offsetHeight}px`,
+      );
+    }
+  });
+
+  useEffect(() => {
+    if (!megaOpen) return;
+    function handleOutsideClick(e: MouseEvent) {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setMegaOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [megaOpen]);
+
+  useEffect(() => {
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMegaOpen(false);
+    }
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, []);
+
+  function handleMouseEnter() {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    setMegaOpen(true);
+  }
+
+  function handleMouseLeave() {
+    hoverTimeoutRef.current = setTimeout(() => setMegaOpen(false), 120);
+  }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/88 backdrop-blur-xl supports-[backdrop-filter]:bg-background/78">
-      <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between gap-3 px-4 sm:px-6 lg:h-24 lg:px-8 xl:gap-6 2xl:px-16">
-        {/* Left: Hamburger (mobile) + Logo */}
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="lg:hidden">
-            <DropdownMenu
-              open={mobileMenuOpen}
-              onOpenChange={(open) => {
-                setMobileMenuOpen(open);
-                if (!open) {
-                  setEmergencyOpen(false);
-                  setTransportOpen(false);
-                }
-              }}
+    <>
+      {mobileOpen && <MobileMenu onClose={() => setMobileOpen(false)} />}
+
+      <header
+        ref={headerRef}
+        className="sticky top-0 z-40 border-b border-border/80 bg-background/88 backdrop-blur-xl supports-[backdrop-filter]:bg-background/78"
+      >
+        <div
+          className="mx-auto flex max-w-screen-2xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8 xl:gap-6 2xl:px-16"
+          style={{ minHeight: "6rem" }}
+        >
+          {/* Left */}
+          <div className="flex min-w-0 items-center gap-3">
+            {/* Mobile hamburger */}
+            <button
+              className="flex items-center gap-2 rounded-md border border-primary/30 bg-primary px-3 py-2 text-sm font-bold text-primary-foreground lg:hidden"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open navigation"
             >
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon" aria-label="Open navigation">
-                  <Menu />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="start"
-                className="w-[calc(100vw-2rem)] max-w-xs max-h-[80vh] overflow-y-auto rounded-lg bg-popover p-2"
+              <Menu className="size-4" />
+              MENU
+            </button>
+
+            {/* Desktop: Logo + MENU stacked */}
+            <div className="hidden lg:flex lg:flex-col lg:items-start">
+              <Logo />
+              <button
+                className={`flex items-center gap-2 rounded-none border-0 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors ${
+                  megaOpen ? "bg-primary/85" : "bg-primary hover:bg-primary/85"
+                }`}
+                aria-expanded={megaOpen}
+                aria-haspopup="true"
+                onClick={() => setMegaOpen((v) => !v)}
               >
-                <DropdownMenuLabel>Navigation</DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <Link to="/" onClick={() => setMobileMenuOpen(false)}>
-                    Home
-                  </Link>
-                </DropdownMenuItem>
+                <Menu className="size-4" />
+                MENU
+                <ChevronDown
+                  className={`size-3.5 transition-transform duration-200 ${megaOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+            </div>
 
-                {/* Emergency Services — inline accordion */}
-                <button
-                  className="flex w-full items-center justify-between rounded-sm px-2 py-1.5 text-sm font-medium outline-none hover:bg-accent hover:text-accent-foreground"
-                  onClick={() => setEmergencyOpen((v) => !v)}
-                >
-                  Emergency Services
-                  <ChevronRight
-                    className={`size-4 shrink-0 transition-transform duration-200 ${emergencyOpen ? "rotate-90" : ""}`}
-                  />
-                </button>
-                {emergencyOpen && (
-                  <div className="ml-3 mt-0.5 border-l border-border pl-3">
-                    <DropdownMenuItem asChild>
-                      <Link to="/emergency-services" onClick={() => setMobileMenuOpen(false)}>
-                        Overview
-                      </Link>
-                    </DropdownMenuItem>
-                    {emergencyServices.map((service) => (
-                      <DropdownMenuItem key={service.title} asChild>
-                        <Link
-                          to={`/emergency-services#${serviceSlug(service.title)}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {service.title}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </div>
-                )}
-
-                {/* Transport & Moving — inline accordion */}
-                <button
-                  className="flex w-full items-center justify-between rounded-sm px-2 py-1.5 text-sm font-medium outline-none hover:bg-accent hover:text-accent-foreground"
-                  onClick={() => setTransportOpen((v) => !v)}
-                >
-                  Transport &amp; Moving
-                  <ChevronRight
-                    className={`size-4 shrink-0 transition-transform duration-200 ${transportOpen ? "rotate-90" : ""}`}
-                  />
-                </button>
-                {transportOpen && (
-                  <div className="ml-3 mt-0.5 border-l border-border pl-3">
-                    <DropdownMenuItem asChild>
-                      <Link to="/transport-moving" onClick={() => setMobileMenuOpen(false)}>
-                        Overview
-                      </Link>
-                    </DropdownMenuItem>
-                    {transportServices.map((service) => (
-                      <DropdownMenuItem key={service.title} asChild>
-                        <Link
-                          to={`/transport-moving#${serviceSlug(service.title)}`}
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {service.title}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </div>
-                )}
-
-                <DropdownMenuSeparator />
-                {mobileNavLinks.map((link) => (
-                  <DropdownMenuItem key={link.to} asChild>
-                    <Link to={link.to} onClick={() => setMobileMenuOpen(false)}>
-                      {link.label}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* Mobile: logo only */}
+            <div className="lg:hidden">
+              <Logo />
+            </div>
           </div>
-          <Logo />
+
+          {/* Right: buttons */}
+          <div className="flex shrink-0 items-center gap-3">
+            <UrgentDialog />
+            <Button size="xl" variant="outline" asChild className="hidden sm:flex">
+              <a href="#" aria-label="Download App">
+                <Download className="size-4" /> Download App
+              </a>
+            </Button>
+          </div>
         </div>
 
-        {/* Center: Desktop nav with dropdowns */}
-        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-3 lg:flex xl:gap-5">
-          <NavLink to="/" exact>
-            Home
-          </NavLink>
-
-          {/* Emergency Services Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-muted-foreground outline-none transition-colors hover:text-primary data-[state=open]:text-primary">
-              Emergency Services <ChevronDown className="size-3.5" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-56 rounded-lg bg-popover p-2">
-              <DropdownMenuItem asChild>
-                <Link to="/emergency-services" className="font-semibold">
-                  Overview
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              {emergencyServices.map((service) => (
-                <DropdownMenuItem key={service.title} asChild>
-                  <Link to={`/emergency-services#${serviceSlug(service.title)}`}>
-                    {service.title}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {/* Transport & Moving Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-muted-foreground outline-none transition-colors hover:text-primary data-[state=open]:text-primary">
-              Transport &amp; Moving <ChevronDown className="size-3.5" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-56 rounded-lg bg-popover p-2">
-              <DropdownMenuItem asChild>
-                <Link to="/transport-moving" className="font-semibold">
-                  Overview
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              {transportServices.map((service) => (
-                <DropdownMenuItem key={service.title} asChild>
-                  <Link to={`/transport-moving#${serviceSlug(service.title)}`}>
-                    {service.title}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <NavLink to="/how-it-works">How It Works</NavLink>
-          <NavLink to="/about">About Us</NavLink>
-          <NavLink to="/contact">Contact Us</NavLink>
-          <NavLink to="/get-in-touch">Get a Quote</NavLink>
-        </nav>
-
-        {/* Right: CTA buttons */}
-        <div className="hidden shrink-0 items-center gap-2 xl:flex">
-          <UrgentDialog />
-          <AppDialog />
-        </div>
-      </div>
-    </header>
+        {megaOpen && (
+          <MegaMenu
+            onClose={() => setMegaOpen(false)}
+            onMouseEnter={() => {}}
+            onMouseLeave={() => {}}
+          />
+        )}
+      </header>
+    </>
   );
 }
+
+// ─── Footer ────────────────────────────────────────────────────────────────
 
 export function Footer() {
   return (
