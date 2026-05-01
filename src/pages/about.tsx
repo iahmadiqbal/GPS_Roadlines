@@ -31,8 +31,11 @@ export default function AboutPage() {
     if (!hash) return;
     setTimeout(() => {
       const el = document.getElementById(hash);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 120);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 192;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    }, 150);
   }, [location.hash]);
 
   return (
@@ -48,8 +51,8 @@ export default function AboutPage() {
         />
 
         {/* Company Overview — Who We Are */}
-        <InfoBand>
-          <div id="overview" className="grid gap-10 lg:grid-cols-2 lg:items-center" style={{ scrollMarginTop: "var(--header-height, 96px)" }}>
+        <InfoBand id="overview">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <img
               src={sectionAboutOverviewImage}
               alt="GPS Roadlines fleet vehicles and roadside operation"
@@ -73,7 +76,7 @@ export default function AboutPage() {
         </InfoBand>
 
         {/* Mission */}
-        <section id="mission" className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "var(--header-height, 96px)" }}>
+        <section id="mission" className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "12rem" }}>
           <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <h2 className="text-3xl font-black sm:text-4xl">Our Mission</h2>
@@ -98,8 +101,8 @@ export default function AboutPage() {
         </section>
 
         {/* Vision */}
-        <InfoBand>
-          <div id="vision" className="grid gap-10 lg:grid-cols-2 lg:items-center" style={{ scrollMarginTop: "var(--header-height, 96px)" }}>
+        <InfoBand id="vision">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <img
               src={transportImage}
               alt="GPS Roadlines highway logistics network and fleet operations"
@@ -133,7 +136,7 @@ export default function AboutPage() {
         <TimelineSection detailed showHeader />
 
         {/* Why Customers Trust Us */}
-        <section id="trust" className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "var(--header-height, 96px)" }}>
+        <section id="trust" className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "12rem" }}>
           <div className="mx-auto max-w-screen-2xl">
             <h2 className="mb-8 text-3xl font-black sm:text-4xl lg:text-5xl">Why Customers Trust Us</h2>
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

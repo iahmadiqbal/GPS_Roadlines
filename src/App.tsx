@@ -16,12 +16,21 @@ function ScrollToTop() {
     const scroll = () => {
       if (location.hash) {
         const targetId = location.hash.replace(/^#/, "");
-        document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const el = document.getElementById(targetId);
+        if (el) {
+          const headerHeight = parseInt(
+            getComputedStyle(document.documentElement).getPropertyValue("--header-height") || "96"
+          );
+          const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 24;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
         return;
       }
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     };
-    window.requestAnimationFrame(scroll);
+    // Small delay to let the page render first
+    const timer = setTimeout(scroll, 100);
+    return () => clearTimeout(timer);
   }, [location.pathname, location.hash]);
 
   return null;

@@ -202,7 +202,7 @@ export function ServiceSection({
     <section
       id={id}
       className="px-4 py-16 sm:px-6 lg:px-8 2xl:px-16"
-      style={{ animation: "expandIn 0.35s ease-out both", scrollMarginTop: "var(--header-height, 96px)" }}
+      style={{ animation: "expandIn 0.35s ease-out both", scrollMarginTop: "12rem" }}
     >
       <div className="mx-auto max-w-screen-2xl overflow-hidden rounded-2xl border border-border bg-card shadow-road">
         <div className="grid lg:grid-cols-[1fr_1.6fr]">
@@ -264,7 +264,7 @@ export function ServicesGrid({
   simple?: boolean;
 }) {
   return (
-    <section id={id} className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "var(--header-height, 96px)" }}>
+    <section id={id} className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "12rem" }}>
       <div className="mx-auto max-w-screen-2xl">
         {(title || text) && <SectionHeader eyebrow="Services" title={title ?? ""} text={text} />}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -382,7 +382,7 @@ export function TimelineSection({ detailed = false, showHeader = false }: { deta
                 <div
                   id={stepIds[index]}
                   className="grid overflow-hidden rounded-2xl border border-border bg-card shadow-road lg:grid-cols-2"
-                  style={{ scrollMarginTop: "var(--header-height, 96px)" }}
+                  style={{ scrollMarginTop: "12rem" }}
                 >
                   {/* Step content */}
                   <div className={`flex flex-col justify-center p-8 lg:p-12 ${isEven ? "lg:order-2" : ""}`}>
@@ -541,9 +541,13 @@ export function AboutPreview() {
   );
 }
 
-export function InfoBand({ children }: { children: ReactNode }) {
+export function InfoBand({ children, id }: { children: ReactNode; id?: string }) {
   return (
-    <section className="bg-secondary/60 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+    <section
+      id={id}
+      className="bg-secondary/60 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16"
+      style={id ? { scrollMarginTop: "12rem" } : undefined}
+    >
       <Reveal direction="up" className="mx-auto max-w-screen-2xl">
         {children}
       </Reveal>
