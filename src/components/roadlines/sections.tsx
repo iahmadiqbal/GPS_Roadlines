@@ -1,6 +1,6 @@
 ﻿import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, PhoneCall, RadioTower, Route } from "lucide-react";
-import type { ReactNode } from "react";
+import { useState, useRef, type ReactNode } from "react";
 
 import { Reveal } from "./motion";
 import { Button } from "@/components/ui/button";
@@ -187,6 +187,69 @@ export function PageHero({
   );
 }
 
+export function ServiceSection({
+  service,
+  id,
+}: {
+  service: Service | ServiceDetail;
+  id?: string;
+}) {
+  const Icon = service.icon;
+  const image = serviceImages[service.title] ?? transportImage;
+  const bullets = (service as ServiceDetail).bullets;
+
+  return (
+    <section
+      id={id}
+      className="scroll-mt-32 px-4 py-16 sm:px-6 lg:px-8 2xl:px-16"
+      style={{ animation: "expandIn 0.35s ease-out both" }}
+    >
+      <div className="mx-auto max-w-screen-2xl overflow-hidden rounded-2xl border border-border bg-card shadow-road">
+        <div className="grid lg:grid-cols-[1fr_1.6fr]">
+          {/* Image */}
+          <img
+            src={image}
+            alt={`${service.title} by GPS Roadlines`}
+            width={1600}
+            height={1000}
+            className="h-full max-h-[540px] w-full object-cover"
+          />
+          {/* Content */}
+          <div className="flex flex-col p-8 lg:p-12">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent">
+                <Icon className="size-6 text-primary" />
+              </span>
+              <h2 className="text-2xl font-black">{service.title}</h2>
+            </div>
+            <p className="mb-6 text-sm leading-7 text-muted-foreground">
+              {service.description}
+            </p>
+            {bullets && bullets.length > 0 && (
+              <ul className="mb-8 grid gap-2 sm:grid-cols-2">
+                {bullets.map((point) => (
+                  <li key={point} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <div className="mt-auto flex flex-wrap gap-3">
+              <Button variant="hero" size="xl" asChild>
+                <Link to="/get-in-touch">Request Service <ArrowRight /></Link>
+              </Button>
+              <Button variant="outline" size="xl" asChild>
+                <a href={company.phoneHref}><PhoneCall /> Call Now</a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function ServicesGrid({
   services = coreServices,
   title = "Services Built Around Road Reality",
@@ -198,15 +261,97 @@ export function ServicesGrid({
   text?: string;
   id?: string;
 }) {
+  const [activeTitle, setActiveTitle] = useState<string | null>(null);
+  const detailRef = useRef<HTMLDivElement | null>(null);
+
+  function handleSelect(serviceTitle: string) {
+    const next = activeTitle === serviceTitle ? null : serviceTitle;
+    setActiveTitle(next);
+    if (next) {
+      setTimeout(() => {
+        detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 60);
+    }
+  }
+
+  const activeService = services.find((s) => s.title === activeTitle) ?? null;
+
   return (
     <section id={id} className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
       <div className="mx-auto max-w-screen-2xl">
         <SectionHeader eyebrow="Services" title={title} text={text} />
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => (
-            <ServiceCard key={service.title} service={service} index={i} />
-          ))}
+
+        {/* ── Service name buttons ── */}
+        <div className="flex flex-wrap justify-center gap-3">
+          {services.map((service) => {
+            const Icon = service.icon;
+            const isActive = activeTitle === service.title;
+            return (
+              <button
+                key={service.title}
+                onClick={() => handleSelect(service.title)}
+                className={`flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
+                  isActive
+                    ? "border-primary bg-primary text-primary-foreground shadow-glow"
+                    : "border-border bg-card text-foreground hover:border-primary hover:text-primary"
+                }`}
+              >
+                <Icon className="size-4 shrink-0" />
+                {service.title}
+              </button>
+            );
+          })}
         </div>
+
+        {/* ── Active service full section ── */}
+        {activeService && (
+          <div
+            ref={detailRef}
+            className="mt-10 scroll-mt-28 overflow-hidden rounded-2xl border border-border bg-card shadow-road"
+            style={{ animation: "expandIn 0.35s ease-out both" }}
+          >
+            <div className="grid lg:grid-cols-[1fr_1.6fr]">
+              {/* Image */}
+              <img
+                src={serviceImages[activeService.title] ?? transportImage}
+                alt={`${activeService.title} by GPS Roadlines`}
+                width={1600}
+                height={1000}
+                className="h-full max-h-[520px] w-full object-cover"
+              />
+              {/* Content */}
+              <div className="flex flex-col p-8 lg:p-12">
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent">
+                    <activeService.icon className="size-6 text-primary" />
+                  </span>
+                  <h2 className="text-2xl font-black">{activeService.title}</h2>
+                </div>
+                <p className="mb-6 text-sm leading-7 text-muted-foreground">
+                  {activeService.description}
+                </p>
+                {(activeService as ServiceDetail).bullets?.length > 0 && (
+                  <ul className="mb-8 grid gap-2 sm:grid-cols-2">
+                    {(activeService as ServiceDetail).bullets.map((point) => (
+                      <li key={point} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                        <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <div className="mt-auto flex flex-wrap gap-3">
+                  <Button variant="hero" size="xl" asChild>
+                    <Link to="/get-in-touch">Request Service <ArrowRight /></Link>
+                  </Button>
+                  <Button variant="outline" size="xl" asChild>
+                    <a href={company.phoneHref}><PhoneCall /> Call Now</a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -302,31 +447,58 @@ export function TimelineSection({ detailed = false }: { detailed?: boolean }) {
           title="A dispatch flow designed for speed and clarity"
           text="From first contact to completion, GPS Roadlines keeps every request moving through a practical service workflow."
         />
-        <div className="grid gap-5 lg:grid-cols-5">
-          {steps.map((step, index) => (
-            <Reveal key={step.title} direction="up" delay={index * 0.1}>
-              <div className="relative rounded-lg border bg-card p-6 shadow-road">
-                <span className="mb-5 flex size-11 items-center justify-center rounded-lg bg-primary text-lg font-black text-primary-foreground">
-                  {index + 1}
-                </span>
-                <h3 className="text-lg font-bold">{step.title}</h3>
-                {detailed && step.bullets ? (
-                  <ul className="mt-3 grid gap-1.5">
-                    {step.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
-                        <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                    {step.description.split(".")[0] + "."}
-                  </p>
-                )}
-              </div>
-            </Reveal>
-          ))}
+        <div className="grid gap-8">
+          {steps.map((step, index) => {
+            const isEven = index % 2 === 1;
+            return (
+              <Reveal key={step.title} direction={isEven ? "right" : "left"} delay={0.05}>
+                <div
+                  id={`step-${index + 1}`}
+                  className={`grid overflow-hidden rounded-2xl border border-border bg-card shadow-road lg:grid-cols-2`}
+                >
+                  {/* Step number + content — alternates sides */}
+                  <div className={`flex flex-col justify-center p-8 lg:p-12 ${isEven ? "lg:order-2" : ""}`}>
+                    <div className="mb-5 flex items-center gap-4">
+                      <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-primary text-2xl font-black text-primary-foreground shadow-glow">
+                        {index + 1}
+                      </span>
+                      <h3 className="text-2xl font-black">{step.title}</h3>
+                    </div>
+                    <p className="mb-6 text-sm leading-7 text-muted-foreground">
+                      {step.description}
+                    </p>
+                    {(detailed || step.bullets) && step.bullets && (
+                      <ul className="grid gap-2 sm:grid-cols-2">
+                        {step.bullets.map((b) => (
+                          <li key={b} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                            <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  {/* Visual panel — step accent */}
+                  <div
+                    className={`flex items-center justify-center bg-brand-dark p-12 ${isEven ? "lg:order-1" : ""}`}
+                  >
+                    <div className="text-center text-brand-dark-foreground">
+                      <span className="block text-8xl font-black text-primary/30 leading-none">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <p className="mt-4 text-xl font-black text-brand-dark-foreground/90">
+                        {step.title}
+                      </p>
+                      <p className="mt-3 max-w-xs text-sm leading-6 text-brand-dark-foreground/60">
+                        {step.description.split(".")[0]}.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

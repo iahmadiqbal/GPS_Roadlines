@@ -1,32 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { emergencyTowImage } from "@/components/roadlines/assets";
-import { emergencyServices } from "@/components/roadlines/data";
+import { emergencyServices, serviceSlug } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   CTASection,
   DispatchWorkflow,
   PageHero,
-  ServicesGrid,
+  ServiceSection,
 } from "@/components/roadlines/sections";
 
 export default function EmergencyServicesPage() {
   const location = useLocation();
+  const [activeSlug, setActiveSlug] = useState<string | null>(null);
 
   useEffect(() => {
     const hash = location.hash.replace("#", "");
-    if (!hash) return;
-
-    const timer = setTimeout(() => {
-      const el = document.getElementById(hash);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 120);
-
-    return () => clearTimeout(timer);
+    if (!hash) {
+      setActiveSlug(null);
+      return;
+    }
+    // Find matching service by slug
+    const matched = emergencyServices.find((s) => serviceSlug(s.title) === hash);
+    if (matched) {
+      setActiveSlug(hash);
+      setTimeout(() => {
+        document.getElementById("service-detail")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 120);
+    }
   }, [location.hash]);
+
+  const activeService = emergencyServices.find((s) => serviceSlug(s.title) === activeSlug) ?? null;
 
   return (
     <PageShell>
@@ -38,11 +43,15 @@ export default function EmergencyServicesPage() {
           ctaLabel="Request Emergency Help"
           ctaHref="/get-in-touch"
         />
-        <ServicesGrid
-          services={emergencyServices}
-          title="Emergency Services"
-          text="Towing, roadside assistance, recovery, battery boost, fuel delivery, and lockout support through one responsive dispatch flow."
-        />
+
+        {/* Active service section — only shown when a service is selected from menu */}
+        {activeService && (
+          <ServiceSection
+            id="service-detail"
+            service={activeService}
+          />
+        )}
+
         <DispatchWorkflow />
         <CTASection
           title="NEED EMERGENCY HELP RIGHT NOW?"

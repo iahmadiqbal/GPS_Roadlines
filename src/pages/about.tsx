@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 import { sectionAboutOverviewImage } from "@/components/roadlines/assets";
 import {
@@ -21,6 +23,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function AboutPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash.replace("#", "");
+    if (!hash) return;
+    setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 120);
+  }, [location.hash]);
+
   return (
     <PageShell>
       <main>
@@ -37,7 +50,7 @@ export default function AboutPage() {
         <InfoBand>
           <div className="grid gap-6 lg:grid-cols-3">
             {/* Who We Are */}
-            <Card className="rounded-lg">
+            <Card id="overview" className="scroll-mt-32 rounded-lg">
               <CardContent className="p-7">
                 <h2 className="text-2xl font-black">Who We Are</h2>
                 <ul className="mt-4 grid gap-2">
@@ -55,7 +68,7 @@ export default function AboutPage() {
             </Card>
 
             {/* Our Mission */}
-            <Card className="rounded-lg">
+            <Card id="mission" className="scroll-mt-32 rounded-lg">
               <CardContent className="p-7">
                 <h2 className="text-2xl font-black">Our Mission</h2>
                 <ul className="mt-4 grid gap-2">
@@ -73,7 +86,7 @@ export default function AboutPage() {
             </Card>
 
             {/* Our Vision */}
-            <Card className="rounded-lg">
+            <Card id="vision" className="scroll-mt-32 rounded-lg">
               <CardContent className="p-7">
                 <h2 className="text-2xl font-black">Our Vision</h2>
                 <ul className="mt-4 grid gap-2">
@@ -104,8 +117,8 @@ export default function AboutPage() {
 
         <IntegratedModelSection />
 
-        {/* Why Customers Trust Us — full redesign */}
-        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+        {/* Why Customers Trust Us */}
+        <section id="trust" className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
           <div className="mx-auto max-w-screen-2xl">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-black sm:text-4xl lg:text-5xl">Why Customers Trust Us</h2>

@@ -1,33 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { containerLogisticsImage } from "@/components/roadlines/assets";
-import { company, transportServices } from "@/components/roadlines/data";
+import { company, transportServices, serviceSlug } from "@/components/roadlines/data";
 import { PageShell } from "@/components/roadlines/site-layout";
 import {
   CTASection,
   DispatchWorkflow,
   PageHero,
-  ServicesGrid,
+  ServiceSection,
   TimelineSection,
 } from "@/components/roadlines/sections";
 
 export default function TransportMovingPage() {
   const location = useLocation();
+  const [activeSlug, setActiveSlug] = useState<string | null>(null);
 
   useEffect(() => {
     const hash = location.hash.replace("#", "");
-    if (!hash) return;
-
-    const timer = setTimeout(() => {
-      const el = document.getElementById(hash);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 120);
-
-    return () => clearTimeout(timer);
+    if (!hash) {
+      setActiveSlug(null);
+      return;
+    }
+    const matched = transportServices.find((s) => serviceSlug(s.title) === hash);
+    if (matched) {
+      setActiveSlug(hash);
+      setTimeout(() => {
+        document.getElementById("service-detail")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 120);
+    }
   }, [location.hash]);
+
+  const activeService = transportServices.find((s) => serviceSlug(s.title) === activeSlug) ?? null;
 
   return (
     <PageShell>
@@ -39,11 +43,15 @@ export default function TransportMovingPage() {
           ctaLabel="Get a Quote"
           ctaHref="/get-in-touch"
         />
-        <ServicesGrid
-          services={transportServices}
-          title="Commercial Transport Capabilities"
-          text="Detailed transport support for businesses, sites, fleets, and freight movement across planned and urgent timelines."
-        />
+
+        {/* Active service section */}
+        {activeService && (
+          <ServiceSection
+            id="service-detail"
+            service={activeService}
+          />
+        )}
+
         <TimelineSection />
         <DispatchWorkflow />
         <CTASection
