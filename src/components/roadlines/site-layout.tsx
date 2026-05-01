@@ -38,23 +38,6 @@ type MenuCategory = {
 
 const megaMenuCategories: MenuCategory[] = [
   {
-    id: "home",
-    label: "Home",
-    to: "/",
-    links: [
-      { label: "Welcome", to: "/" },
-      { label: "Our Services", to: "/#services" },
-      { label: "Why Choose Us", to: "/#why-choose" },
-      { label: "How It Works", to: "/how-it-works" },
-    ],
-    mostRequested: [
-      { label: "Get a Free Quote", to: "/get-in-touch" },
-      { label: "Emergency Towing", to: "/emergency-services#towing" },
-      { label: "Roadside Assistance", to: "/emergency-services#roadside-assistance" },
-      { label: "Contact Us Now", to: "/contact" },
-    ],
-  },
-  {
     id: "emergency",
     label: "Emergency Services",
     to: "/emergency-services",
@@ -316,15 +299,18 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
 
 export function Logo() {
   return (
-    <Link to="/" className="group inline-block shrink-0" aria-label="GPS Roadlines home">
-      <img
-        src={gpsRoadlinesLogo}
-        alt="GPS Roadlines logo"
-        width={160}
-        height={112}
-        className="h-28 w-40 object-contain transition-transform duration-300 group-hover:scale-105"
-      />
-    </Link>
+    <img
+      src={gpsRoadlinesLogo}
+      alt="GPS Roadlines logo"
+      width={160}
+      height={112}
+      onClick={() => { window.location.href = "/"; }}
+      className="h-28 w-40 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
+      aria-label="GPS Roadlines home"
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === "Enter") window.location.href = "/"; }}
+    />
   );
 }
 
