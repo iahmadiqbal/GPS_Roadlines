@@ -347,7 +347,6 @@ export function WhyChooseSection({ embedded = false }: { embedded?: boolean }) {
   return (
     <section className="bg-secondary/55 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
       <div className="mx-auto max-w-screen-2xl">
-        <SectionHeader eyebrow="Why choose us" title="Why Choose GPS Roadlines" />
         {content}
       </div>
     </section>
@@ -428,10 +427,10 @@ export function TimelineSection({ detailed = false, showHeader = false }: { deta
   );
 }
 
-export function IntegratedModelSection({ showBullets = false }: { showBullets?: boolean }) {
+export function IntegratedModelSection({ showBullets = false, showImage = false }: { showBullets?: boolean; showImage?: boolean }) {
   return (
     <section className="bg-brand-dark px-4 py-20 text-brand-dark-foreground sm:px-6 lg:px-8 2xl:px-16">
-      <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+      <div className={`mx-auto max-w-screen-2xl ${showImage ? "grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center" : ""}`}>
         <Reveal direction="left">
           <h2 className="text-3xl font-black sm:text-5xl">One Call Solves Everything</h2>
           <p className="mt-5 text-lg leading-8 text-brand-dark-foreground/76">
@@ -450,16 +449,18 @@ export function IntegratedModelSection({ showBullets = false }: { showBullets?: 
             </ul>
           )}
         </Reveal>
-        <Reveal direction="right">
-          <img
-            src={containerLogisticsImage}
-            alt="GPS Roadlines integrated road support and logistics"
-            loading="lazy"
-            width={1400}
-            height={900}
-            className="aspect-[4/3] w-full rounded-lg object-cover shadow-road"
-          />
-        </Reveal>
+        {showImage && (
+          <Reveal direction="right">
+            <img
+              src={containerLogisticsImage}
+              alt="GPS Roadlines integrated road support and logistics"
+              loading="lazy"
+              width={1400}
+              height={900}
+              className="aspect-[4/3] w-full rounded-lg object-cover shadow-road"
+            />
+          </Reveal>
+        )}
       </div>
     </section>
   );

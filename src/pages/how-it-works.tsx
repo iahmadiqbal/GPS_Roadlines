@@ -40,7 +40,7 @@ export default function HowItWorksPage() {
         <TimelineSection detailed showHeader />
 
         {/* Integrated Service Flow */}
-        <IntegratedModelSection showBullets />
+        <IntegratedModelSection showBullets showImage />
 
         {/* Service Types Covered — 5 cards */}
         <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
