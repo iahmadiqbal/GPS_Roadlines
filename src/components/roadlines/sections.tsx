@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, PhoneCall } from "lucide-react";
 import { type ReactNode } from "react";
 
@@ -38,7 +38,7 @@ const heroSlides = [
   {
     image: containerLogisticsImage,
     title: "Complete Road Support When You Need It Most",
-    text: "From breakdowns to container transport — one trusted provider for all road needs",
+    text: "From breakdowns to container transport � one trusted provider for all road needs",
     className: "animate-slide-fade-delayed",
   },
   {
@@ -88,7 +88,7 @@ export function SectionHeader({
 export function HeroSlideshow({ compact = false }: { compact?: boolean }) {
   return (
     <section
-      className={`relative isolate overflow-hidden bg-brand-dark ${compact ? "min-h-[520px]" : "min-h-[760px]"}`}
+      className={`relative isolate overflow-hidden bg-brand-dark ${compact ? "min-h-[520px]" : "min-h-[760px] 2xl:min-h-[860px]"}`}
     >
       {heroSlides.map((slide, index) => (
         <img
@@ -102,12 +102,12 @@ export function HeroSlideshow({ compact = false }: { compact?: boolean }) {
       ))}
       <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/78 to-brand-dark/20" />
       <div className="absolute inset-0 road-grid opacity-25" />
-      <div className="relative z-10 mx-auto flex min-h-[inherit] max-w-screen-2xl items-center px-4 py-24 sm:px-6 lg:px-8 2xl:px-16">
+      <div className="relative z-10 mx-auto flex min-h-[inherit] max-w-screen-2xl items-center px-4 py-24 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <Reveal direction="left" className="max-w-4xl text-brand-dark-foreground">
-          <h1 className="max-w-5xl text-4xl font-black leading-tight sm:text-6xl lg:text-7xl">
+          <h1 className="max-w-5xl text-4xl font-black leading-tight sm:text-6xl lg:text-7xl xl:text-7xl 2xl:text-8xl">
             Reliable Roadside Assistance & Transport Services in St. John's
           </h1>
-          <p className="mt-6 max-w-2xl text-xl leading-9 text-brand-dark-foreground/82">
+          <p className="mt-6 max-w-2xl text-xl leading-9 text-brand-dark-foreground/82 2xl:text-2xl">
             Fast towing, roadside support, vehicle recovery, mobile mechanic &amp; logistics
             solutions.
           </p>
@@ -151,9 +151,9 @@ export function PageHero({
         className="absolute inset-0 h-full w-full object-cover opacity-35"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/84 to-brand-dark/35" />
-      <Reveal direction="down" className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
-        <h1 className="max-w-5xl text-4xl font-black leading-tight sm:text-6xl">{title}</h1>
-        <p className="mt-6 max-w-2xl text-xl leading-9 text-brand-dark-foreground/80">{text}</p>
+      <Reveal direction="down" className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 2xl:px-16">
+        <h1 className="max-w-5xl text-4xl font-black leading-tight sm:text-6xl 2xl:text-7xl">{title}</h1>
+        <p className="mt-6 max-w-2xl text-xl leading-9 text-brand-dark-foreground/80 2xl:text-2xl">{text}</p>
         {ctaLabel && (
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             {ctaHref ? (
@@ -201,8 +201,8 @@ export function ServiceSection({
   return (
     <section
       id={id}
-      className="px-4 py-16 sm:px-6 lg:px-8 2xl:px-16"
-      style={{ animation: "expandIn 0.35s ease-out both", scrollMarginTop: "12rem" }}
+      className="px-4 py-16 sm:px-6 lg:px-8 xl:px-12 2xl:px-16"
+      style={{ animation: "expandIn 0.35s ease-out both", scrollMarginTop: "6rem" }}
     >
       <div className="mx-auto max-w-screen-2xl overflow-hidden rounded-2xl border border-border bg-card shadow-road">
         <div className="grid lg:grid-cols-[1fr_1.6fr]">
@@ -264,7 +264,7 @@ export function ServicesGrid({
   simple?: boolean;
 }) {
   return (
-    <section id={id} className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "12rem" }}>
+    <section id={id} className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16" style={{ scrollMarginTop: "6rem" }}>
       <div className="mx-auto max-w-screen-2xl">
         {(title || text) && <SectionHeader eyebrow="Services" title={title ?? ""} text={text} />}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -345,7 +345,7 @@ export function WhyChooseSection({ embedded = false }: { embedded?: boolean }) {
   if (embedded) return content;
 
   return (
-    <section className="bg-secondary/55 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+    <section className="bg-secondary/55 px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
       <div className="mx-auto max-w-screen-2xl">
         {content}
       </div>
@@ -356,16 +356,16 @@ export function WhyChooseSection({ embedded = false }: { embedded?: boolean }) {
 const stepIds = ["request", "review", "assigned", "dispatch", "completion"];
 
 const stepImages = [
-  sectionServiceRequestImage,   // Step 1 — Request Service
-  dispatchControlImage,          // Step 2 — Location & Issue Review
-  serviceFleetTransportImage,    // Step 3 — Operator Assigned
-  emergencyTowImage,             // Step 4 — Fast Dispatch & Arrival
-  serviceTowingImage,            // Step 5 — Service Completion
+  sectionServiceRequestImage,   // Step 1 � Request Service
+  dispatchControlImage,          // Step 2 � Location & Issue Review
+  serviceFleetTransportImage,    // Step 3 � Operator Assigned
+  emergencyTowImage,             // Step 4 � Fast Dispatch & Arrival
+  serviceTowingImage,            // Step 5 � Service Completion
 ];
 
 export function TimelineSection({ detailed = false, showHeader = false }: { detailed?: boolean; showHeader?: boolean }) {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+    <section className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
       <div className="mx-auto max-w-screen-2xl">
         {showHeader && (
           <SectionHeader
@@ -382,7 +382,7 @@ export function TimelineSection({ detailed = false, showHeader = false }: { deta
                 <div
                   id={stepIds[index]}
                   className="grid overflow-hidden rounded-2xl border border-border bg-card shadow-road lg:grid-cols-2"
-                  style={{ scrollMarginTop: "12rem" }}
+                  style={{ scrollMarginTop: "6rem" }}
                 >
                   {/* Step content */}
                   <div className={`flex flex-col justify-center p-8 lg:p-12 ${isEven ? "lg:order-2" : ""}`}>
@@ -411,7 +411,7 @@ export function TimelineSection({ detailed = false, showHeader = false }: { deta
                   <div className={`relative overflow-hidden ${isEven ? "lg:order-1" : ""}`}>
                     <img
                       src={stepImages[index]}
-                      alt={`${step.title} — GPS Roadlines`}
+                      alt={`${step.title} � GPS Roadlines`}
                       loading="lazy"
                       width={1400}
                       height={900}
@@ -438,7 +438,7 @@ export function IntegratedModelSection({ showBullets = false, showImage = false,
           </h2>
           <p className="mt-5 text-lg leading-8 text-brand-dark-foreground/76">
             Unlike traditional towing companies, GPS Roadlines combines towing, roadside assistance,
-            mobile mechanic services and logistics support. We don't just move vehicles — we solve
+            mobile mechanic services and logistics support. We don't just move vehicles � we solve
             the full problem from breakdown to recovery or transport completion.
           </p>
           {showBullets && (
@@ -481,7 +481,7 @@ export function CTASection({
   secondHref?: string;
 }) {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+    <section className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
       <Reveal direction="up" className="mx-auto max-w-screen-xl rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between">
         <Reveal direction="left">
           <h2 className="text-3xl font-black sm:text-4xl">{title}</h2>
@@ -508,7 +508,7 @@ export function CTASection({
 
 export function AboutPreview() {
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+    <section className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
       <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-2 lg:items-center">
         <Reveal direction="left">
           <h2 className="text-3xl font-black sm:text-5xl">
@@ -545,8 +545,8 @@ export function InfoBand({ children, id }: { children: ReactNode; id?: string })
   return (
     <section
       id={id}
-      className="bg-secondary/60 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16"
-      style={id ? { scrollMarginTop: "12rem" } : undefined}
+      className="bg-secondary/60 px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16"
+      style={id ? { scrollMarginTop: "6rem" } : undefined}
     >
       <Reveal direction="up" className="mx-auto max-w-screen-2xl">
         {children}
@@ -555,7 +555,7 @@ export function InfoBand({ children, id }: { children: ReactNode; id?: string })
   );
 }
 
-// Home page — simple numbered flow, no images
+// Home page � simple numbered flow, no images
 export function SimpleHowItWorks() {
   const homeSteps = [
     "Request Service",
@@ -565,7 +565,7 @@ export function SimpleHowItWorks() {
     "Completion",
   ];
   return (
-    <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+    <section className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
       <div className="mx-auto max-w-screen-2xl">
         <div className="flex flex-wrap items-center justify-center gap-3 text-sm font-semibold">
           {homeSteps.map((step, i) => (

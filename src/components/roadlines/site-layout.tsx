@@ -305,7 +305,7 @@ export function Logo() {
       width={160}
       height={112}
       onClick={() => { window.location.href = "/"; }}
-      className="h-28 w-40 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
+      className="h-20 w-36 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
       aria-label="GPS Roadlines home"
       role="button"
       tabIndex={0}
@@ -368,8 +368,8 @@ export function Header() {
         className="sticky top-0 z-40 border-b border-border/80 bg-background/88 backdrop-blur-xl supports-[backdrop-filter]:bg-background/78"
       >
         <div
-          className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 xl:gap-6 2xl:px-16"
-          style={{ minHeight: "6rem" }}
+          className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 xl:px-12 xl:gap-6 2xl:px-16"
+          style={{ minHeight: "4.5rem" }}
         >
           {/* Left — Logo stacked above MENU (both mobile & desktop) */}
           <div className="flex min-w-0 flex-col items-start">
@@ -494,7 +494,7 @@ export function Header() {
 export function Footer() {
   return (
     <footer style={{ backgroundColor: "#000000", color: "#ffffff" }}>
-      <div className="mx-auto grid max-w-screen-2xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8 2xl:px-16">
+      <div className="mx-auto grid max-w-screen-2xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8 xl:px-12 2xl:px-16">
         {/* Logo + description + social */}
         <div className="md:col-span-2">
           {/* Logo — no wrapper div, no overflow-hidden, no crop */}
@@ -591,7 +591,7 @@ export function Footer() {
       {/* Bottom bar */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}>
         <div
-          className="mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs sm:flex-row sm:px-6 lg:px-8 2xl:px-16"
+          className="mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs sm:flex-row sm:px-6 lg:px-8 xl:px-12 2xl:px-16"
           style={{ color: "rgba(255,255,255,0.50)" }}
         >
           <span>© {new Date().getFullYear()} GPS Roadlines. All rights reserved.</span>

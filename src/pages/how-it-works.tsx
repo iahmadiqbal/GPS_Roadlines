@@ -43,7 +43,7 @@ export default function HowItWorksPage() {
         <IntegratedModelSection showBullets showImage altTitle />
 
         {/* Service Types Covered — 5 cards */}
-        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+        <section className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           <div className="mx-auto max-w-screen-2xl">
             <SectionHeader
               title="Service Types Covered in Process"

@@ -41,7 +41,7 @@ export default function GetInTouchPage() {
         />
 
         {/* Main form + sidebar */}
-        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+        <section className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
             {/* Lead form — main left column */}
             <Card className="rounded-lg shadow-road">

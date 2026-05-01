@@ -54,7 +54,7 @@ export default function ContactPage() {
         />
 
         {/* Quick Contact Options */}
-        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+        <section className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           <div className="mx-auto grid max-w-screen-2xl gap-5 md:grid-cols-2 lg:grid-cols-3">
             {quickContacts.map((item) => {
               const Icon = item.icon;
@@ -116,7 +116,7 @@ export default function ContactPage() {
         </InfoBand>
 
         {/* Contact Form — Send Us a Message */}
-        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+        <section className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           <div className="mx-auto max-w-screen-2xl">
             <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
               <div>
@@ -187,7 +187,7 @@ export default function ContactPage() {
         </InfoBand>
 
         {/* Map / Location Section */}
-        <section id="location" className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "12rem" }}>
+        <section id="location" className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16" style={{ scrollMarginTop: "6rem" }}>
           <div className="mx-auto max-w-screen-2xl">
             <h2 className="mb-6 text-3xl font-black sm:text-4xl">Our Service Coverage</h2>
             <div className="overflow-hidden rounded-lg shadow-road">

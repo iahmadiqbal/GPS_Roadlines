@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 import {
   sectionAboutOverviewImage,
@@ -24,20 +22,6 @@ import {
 import { Button } from "@/components/ui/button";
 
 export default function AboutPage() {
-  const location = useLocation();
-
-  useEffect(() => {
-    const hash = location.hash.replace("#", "");
-    if (!hash) return;
-    setTimeout(() => {
-      const el = document.getElementById(hash);
-      if (el) {
-        const top = el.getBoundingClientRect().top + window.scrollY - 192;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-    }, 150);
-  }, [location.hash]);
-
   return (
     <PageShell>
       <main>
@@ -76,7 +60,7 @@ export default function AboutPage() {
         </InfoBand>
 
         {/* Mission */}
-        <section id="mission" className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "12rem" }}>
+        <section id="mission" className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16" style={{ scrollMarginTop: "6rem" }}>
           <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <h2 className="text-3xl font-black sm:text-4xl">Our Mission</h2>
@@ -136,7 +120,7 @@ export default function AboutPage() {
         <TimelineSection detailed showHeader />
 
         {/* Why Customers Trust Us */}
-        <section id="trust" className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "12rem" }}>
+        <section id="trust" className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16" style={{ scrollMarginTop: "6rem" }}>
           <div className="mx-auto max-w-screen-2xl">
             <h2 className="mb-8 text-3xl font-black sm:text-4xl lg:text-5xl">Why Customers Trust Us</h2>
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -154,7 +138,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+        <section className="px-4 py-20 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
           <div className="mx-auto max-w-screen-xl animate-rise-up rounded-lg bg-primary p-8 text-primary-foreground shadow-glow sm:p-12 lg:flex lg:items-center lg:justify-between">
             <div>
               <h2 className="text-3xl font-black sm:text-4xl">

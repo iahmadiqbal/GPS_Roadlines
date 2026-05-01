@@ -108,6 +108,7 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    scroll-padding-top: var(--header-height, 80px);
   }
 
   body {

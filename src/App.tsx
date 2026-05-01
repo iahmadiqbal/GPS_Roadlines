@@ -18,10 +18,11 @@ function ScrollToTop() {
         const targetId = location.hash.replace(/^#/, "");
         const el = document.getElementById(targetId);
         if (el) {
-          const headerHeight = parseInt(
-            getComputedStyle(document.documentElement).getPropertyValue("--header-height") || "96"
-          );
-          const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 24;
+          const headerHeight =
+            parseFloat(
+              getComputedStyle(document.documentElement).getPropertyValue("--header-height")
+            ) || 80;
+          const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
           window.scrollTo({ top, behavior: "smooth" });
         }
         return;
@@ -29,9 +30,9 @@ function ScrollToTop() {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     };
     // Small delay to let the page render first
-    const timer = setTimeout(scroll, 100);
+    const timer = setTimeout(scroll, 120);
     return () => clearTimeout(timer);
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.hash, location.key]);
 
   return null;
 }
