@@ -201,8 +201,8 @@ export function ServiceSection({
   return (
     <section
       id={id}
-      className="scroll-mt-28 px-4 py-16 sm:px-6 lg:px-8 2xl:px-16"
-      style={{ animation: "expandIn 0.35s ease-out both" }}
+      className="px-4 py-16 sm:px-6 lg:px-8 2xl:px-16"
+      style={{ animation: "expandIn 0.35s ease-out both", scrollMarginTop: "var(--header-height, 96px)" }}
     >
       <div className="mx-auto max-w-screen-2xl overflow-hidden rounded-2xl border border-border bg-card shadow-road">
         <div className="grid lg:grid-cols-[1fr_1.6fr]">
@@ -264,7 +264,7 @@ export function ServicesGrid({
   simple?: boolean;
 }) {
   return (
-    <section id={id} className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+    <section id={id} className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "var(--header-height, 96px)" }}>
       <div className="mx-auto max-w-screen-2xl">
         {(title || text) && <SectionHeader eyebrow="Services" title={title ?? ""} text={text} />}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -381,7 +381,8 @@ export function TimelineSection({ detailed = false, showHeader = false }: { deta
               <Reveal key={step.title} direction={isEven ? "right" : "left"} delay={0.05}>
                 <div
                   id={stepIds[index]}
-                  className={`scroll-mt-28 grid overflow-hidden rounded-2xl border border-border bg-card shadow-road lg:grid-cols-2`}
+                  className="grid overflow-hidden rounded-2xl border border-border bg-card shadow-road lg:grid-cols-2"
+                  style={{ scrollMarginTop: "var(--header-height, 96px)" }}
                 >
                   {/* Step content */}
                   <div className={`flex flex-col justify-center p-8 lg:p-12 ${isEven ? "lg:order-2" : ""}`}>

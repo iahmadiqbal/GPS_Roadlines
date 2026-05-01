@@ -187,7 +187,7 @@ export default function ContactPage() {
         </InfoBand>
 
         {/* Map / Location Section */}
-        <section id="location" className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+        <section id="location" className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16" style={{ scrollMarginTop: "var(--header-height, 96px)" }}>
           <div className="mx-auto max-w-screen-2xl">
             <h2 className="mb-6 text-3xl font-black sm:text-4xl">Our Service Coverage</h2>
             <div className="overflow-hidden rounded-lg shadow-road">
