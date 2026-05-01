@@ -1,5 +1,5 @@
 ﻿import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, PhoneCall, RadioTower, Route } from "lucide-react";
+import { ArrowRight, CheckCircle2, PhoneCall } from "lucide-react";
 import { type ReactNode } from "react";
 
 import { Reveal } from "./motion";
@@ -32,19 +32,19 @@ const heroSlides = [
   {
     image: emergencyTowImage,
     title: "Reliable Roadside Assistance & Transport Services in St. John's",
-    text: "Fast towing, roadside support, recovery, mobile mechanic & logistics",
+    text: "Fast towing, roadside support, vehicle recovery, mobile mechanic & logistics solutions",
     className: "animate-slide-fade",
   },
   {
     image: containerLogisticsImage,
     title: "Complete Road Support When You Need It Most",
-    text: "One trusted provider for all roadside + transport needs",
+    text: "From breakdowns to container transport — one trusted provider for all road needs",
     className: "animate-slide-fade-delayed",
   },
   {
     image: dispatchControlImage,
     title: "Smart Dispatch + Faster Response",
-    text: "Modern tracking & booking system",
+    text: "Modern booking system with quick assignment, tracking & service updates",
     className: "animate-slide-fade-late",
   },
 ];
@@ -289,7 +289,7 @@ export function ServicesGrid({
                       {service.description}
                     </p>
                     <Button variant="outline" asChild>
-                      <Link to="/get-in-touch">
+                      <Link to="/contact">
                         Request Service <ArrowRight />
                       </Link>
                     </Button>
@@ -522,45 +522,40 @@ export function InfoBand({ children }: { children: ReactNode }) {
   );
 }
 
-export function DispatchWorkflow() {
+export function DispatchWorkflow({ variant = "emergency" }: { variant?: "emergency" | "transport" }) {
+  const emergencySteps = [
+    "Request received (call/app/web)",
+    "Location + issue confirmed",
+    "Nearest operator assigned",
+    "Technician dispatched immediately",
+    "Service completed or tow initiated",
+  ];
+
+  const transportSteps = [
+    "Customer submits transport request (online or phone)",
+    "Load type, size and pickup/drop details reviewed",
+    "Route planning and pricing confirmation provided",
+    "Assigned driver/operator scheduled",
+    "Transport completed with delivery confirmation",
+  ];
+
+  const steps = variant === "transport" ? transportSteps : emergencySteps;
+  const title = variant === "transport" ? "How Transport Requests Work" : "How Dispatch Works";
+
   return (
     <InfoBand>
-      <div className="grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-center">
-        <Reveal direction="left">
-          <RadioTower className="mb-5 size-10 text-primary" />
-          <h2 className="text-3xl font-black sm:text-4xl">
-            Dispatch workflow that keeps requests moving
-          </h2>
-          <p className="mt-4 text-lg leading-8 text-muted-foreground">
-            GPS Roadlines collects the essential details, reviews the safest response path, assigns
-            the right operator, and keeps the service aligned from first call to completion.
-          </p>
-          <img
-            src={dispatchControlImage}
-            alt="GPS Roadlines dispatch control and route coordination"
-            loading="lazy"
-            width={1600}
-            height={1000}
-            className="mt-7 aspect-[16/10] rounded-lg object-cover shadow-road"
-          />
-        </Reveal>
-        <Reveal direction="right">
-          <div className="grid gap-4 md:grid-cols-2">
-            {[
-              "Confirm location",
-              "Review vehicle status",
-              "Match service type",
-              "Coordinate completion",
-            ].map((item) => (
-              <Card key={item} className="rounded-lg">
-                <CardContent className="flex items-center gap-3 p-5">
-                  <Route className="size-5 text-primary" />
-                  <span className="font-semibold">{item}</span>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Reveal>
+      <div className="mx-auto max-w-screen-2xl">
+        <h2 className="mb-8 text-3xl font-black sm:text-4xl">{title}</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {steps.map((step, i) => (
+            <div key={step} className="flex flex-col gap-3 rounded-lg border bg-card p-5 shadow-road">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary text-lg font-black text-primary-foreground shadow-glow">
+                {i + 1}
+              </span>
+              <p className="text-sm font-medium leading-6">{step}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </InfoBand>
   );

@@ -29,7 +29,7 @@ export default function TransportMovingPage() {
           />
         ))}
 
-        <DispatchWorkflow />
+        <DispatchWorkflow variant="transport" />
         <CTASection
           title="NEED RELIABLE TRANSPORT OR MOVING SERVICES?"
           text="Container, fleet, equipment or vehicle transport across Newfoundland."

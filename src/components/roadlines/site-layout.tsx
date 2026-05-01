@@ -471,8 +471,8 @@ export function Header() {
         {megaOpen && (
           <MegaMenu
             onClose={() => setMegaOpen(false)}
-            onMouseEnter={() => {}}
-            onMouseLeave={() => {}}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           />
         )}
       </header>

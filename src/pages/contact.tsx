@@ -189,22 +189,30 @@ export default function ContactPage() {
         {/* Map / Location Section */}
         <section id="location" className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
           <div className="mx-auto max-w-screen-2xl">
-            <h2 className="mb-6 text-2xl font-black">Our Service Coverage</h2>
+            <h2 className="mb-6 text-3xl font-black sm:text-4xl">Our Service Coverage</h2>
             <div className="overflow-hidden rounded-lg shadow-road">
               <iframe
                 title="GPS Roadlines location — 215 Water Street, St John's NL"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.3!2d-52.7126!3d47.5615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0ca3a7b7b7b7b7%3A0x0!2s215+Water+St%2C+St.+John%27s%2C+NL+A1C+6C9!5e0!3m2!1sen!2sca!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.4856!2d-52.71481!3d47.56148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0ca3a7b7b7b7b7%3A0x4b0ca3a7b7b7b7b7!2s215+Water+St%2C+St.+John%27s%2C+NL+A1C+6C9%2C+Canada!5e0!3m2!1sen!2sca!4v1716000000000!5m2!1sen!2sca"
                 width="100%"
-                height="420"
-                style={{ border: 0 }}
+                height="480"
+                style={{ border: 0, display: "block" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              {company.address} · St. John's metropolitan area · Avalon Peninsula corridors · Highway and rural roadside coverage zones
-            </p>
+            <ul className="mt-5 grid gap-2 text-sm text-muted-foreground">
+              <li className="flex items-center gap-2">
+                <MapPinned className="size-4 shrink-0 text-primary" /> St. John's metropolitan area
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPinned className="size-4 shrink-0 text-primary" /> Avalon Peninsula corridors
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPinned className="size-4 shrink-0 text-primary" /> Highway and rural roadside coverage zones
+              </li>
+            </ul>
           </div>
         </section>
 

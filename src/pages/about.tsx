@@ -2,7 +2,11 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
-import { sectionAboutOverviewImage } from "@/components/roadlines/assets";
+import {
+  sectionAboutOverviewImage,
+  emergencyTowImage,
+  transportImage,
+} from "@/components/roadlines/assets";
 import {
   coreServices,
   companyOverviewPoints,
@@ -18,7 +22,6 @@ import {
   TimelineSection,
 } from "@/components/roadlines/sections";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 
 export default function AboutPage() {
   const location = useLocation();
@@ -44,62 +47,78 @@ export default function AboutPage() {
           ctaHref="/get-in-touch"
         />
 
-        {/* Company Overview + Mission + Vision */}
+        {/* Company Overview — Who We Are */}
         <InfoBand>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {/* Who We Are */}
-            <Card id="overview" className="scroll-mt-28 rounded-lg">
-              <CardContent className="p-7">
-                <h2 className="text-2xl font-black">Who We Are</h2>
-                <ul className="mt-4 grid gap-2">
-                  {companyOverviewPoints.map((point) => (
-                    <li
-                      key={point}
-                      className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
-                    >
-                      <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+          <div id="overview" className="scroll-mt-28 grid gap-10 lg:grid-cols-2 lg:items-center">
+            <img
+              src={sectionAboutOverviewImage}
+              alt="GPS Roadlines fleet vehicles and roadside operation"
+              loading="lazy"
+              width={1400}
+              height={900}
+              className="aspect-[4/3] w-full rounded-lg object-cover shadow-road"
+            />
+            <div>
+              <h2 className="text-3xl font-black sm:text-4xl">Who We Are</h2>
+              <ul className="mt-5 grid gap-2">
+                {companyOverviewPoints.map((point) => (
+                  <li key={point} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </InfoBand>
 
-            {/* Our Mission */}
-            <Card id="mission" className="scroll-mt-28 rounded-lg">
-              <CardContent className="p-7">
-                <h2 className="text-2xl font-black">Our Mission</h2>
-                <ul className="mt-4 grid gap-2">
-                  {missionPoints.map((point) => (
-                    <li
-                      key={point}
-                      className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
-                    >
-                      <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+        {/* Mission */}
+        <section id="mission" className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+          <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <h2 className="text-3xl font-black sm:text-4xl">Our Mission</h2>
+              <ul className="mt-5 grid gap-2">
+                {missionPoints.map((point) => (
+                  <li key={point} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <img
+              src={emergencyTowImage}
+              alt="GPS Roadlines roadside rescue assisting customer"
+              loading="lazy"
+              width={1400}
+              height={900}
+              className="aspect-[4/3] w-full rounded-lg object-cover shadow-road"
+            />
+          </div>
+        </section>
 
-            {/* Our Vision */}
-            <Card id="vision" className="scroll-mt-28 rounded-lg">
-              <CardContent className="p-7">
-                <h2 className="text-2xl font-black">Our Vision</h2>
-                <ul className="mt-4 grid gap-2">
-                  {visionPoints.map((point) => (
-                    <li
-                      key={point}
-                      className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
-                    >
-                      <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+        {/* Vision */}
+        <InfoBand>
+          <div id="vision" className="scroll-mt-28 grid gap-10 lg:grid-cols-2 lg:items-center">
+            <img
+              src={transportImage}
+              alt="GPS Roadlines highway logistics network and fleet operations"
+              loading="lazy"
+              width={1400}
+              height={900}
+              className="aspect-[4/3] w-full rounded-lg object-cover shadow-road"
+            />
+            <div>
+              <h2 className="text-3xl font-black sm:text-4xl">Our Vision</h2>
+              <ul className="mt-5 grid gap-2">
+                {visionPoints.map((point) => (
+                  <li key={point} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-primary" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </InfoBand>
 
