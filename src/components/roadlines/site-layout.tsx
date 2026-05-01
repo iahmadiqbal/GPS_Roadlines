@@ -507,7 +507,7 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer style={{ backgroundColor: "#03296F", color: "#ffffff" }}>
+    <footer style={{ backgroundColor: "#000000", color: "#ffffff" }}>
       <div className="mx-auto grid max-w-screen-2xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8 2xl:px-16">
         {/* Logo + description + social */}
         <div className="md:col-span-2">
