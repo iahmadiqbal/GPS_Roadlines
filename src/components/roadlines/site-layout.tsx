@@ -370,7 +370,7 @@ export function Header() {
           style={{ minHeight: "3.5rem" }}
         >
           {/* Left — Logo stacked above MENU (both mobile & desktop) */}
-          <div className="flex min-w-0 flex-col items-center">
+          <div className="flex min-w-0 flex-col items-center lg:items-center -ml-8 lg:ml-0">
             <Link to="/" aria-label="GPS Roadlines home">
               <Logo />
             </Link>
@@ -400,8 +400,8 @@ export function Header() {
             </button>
           </div>
 
-          {/* Right — desktop: original size buttons | mobile: compact one line */}
-          <div className="flex shrink-0 items-center gap-2">
+          {/* Right — desktop: original size buttons | mobile: stacked column */}
+          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col">
             {/* Immediate Help */}
             <Dialog>
               <DialogTrigger asChild>
