@@ -228,7 +228,9 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
     <div className="fixed inset-0 z-50 flex flex-col bg-white" style={{ overflowY: "auto" }}>
       {/* Header */}
       <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
-        <Logo />
+        <Link to="/" onClick={onClose} aria-label="GPS Roadlines home">
+          <Logo />
+        </Link>
         <button
           onClick={onClose}
           aria-label="Close menu"
@@ -304,12 +306,8 @@ export function Logo() {
       alt="GPS Roadlines logo"
       width={160}
       height={112}
-      onClick={() => { window.location.href = "/"; }}
-      className="h-20 w-36 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
+      className="h-28 w-48 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
       aria-label="GPS Roadlines home"
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => { if (e.key === "Enter") window.location.href = "/"; }}
     />
   );
 }
@@ -372,8 +370,10 @@ export function Header() {
           style={{ minHeight: "4.5rem" }}
         >
           {/* Left — Logo stacked above MENU (both mobile & desktop) */}
-          <div className="flex min-w-0 flex-col items-start">
-            <Logo />
+          <div className="flex min-w-0 flex-col items-center">
+            <Link to="/" aria-label="GPS Roadlines home">
+              <Logo />
+            </Link>
             {/* Desktop MENU button */}
             <button
               className={`hidden lg:flex items-center gap-2 rounded-none border-0 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors ${
@@ -504,7 +504,7 @@ export function Footer() {
               alt="GPS Roadlines logo"
               width={160}
               height={112}
-              className="h-28 w-40 object-contain transition-opacity hover:opacity-85"
+              className="h-32 w-48 object-contain transition-opacity hover:opacity-85"
             />
           </Link>
 
