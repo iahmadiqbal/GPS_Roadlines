@@ -134,25 +134,18 @@ export default function AboutPage() {
         {/* Why Customers Trust Us */}
         <section id="trust" className="scroll-mt-28 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
           <div className="mx-auto max-w-screen-2xl">
-            <div className="mb-12 text-center">
-              <h2 className="text-3xl font-black sm:text-4xl lg:text-5xl">Why Customers Trust Us</h2>
-              <p className="mt-4 text-lg text-muted-foreground">
-                Built around fast response, safety and professional service execution across Newfoundland & Labrador.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {whyTrustPoints.map((point, i) => (
-                <div
+            <h2 className="mb-8 text-3xl font-black sm:text-4xl lg:text-5xl">Why Customers Trust Us</h2>
+            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {whyTrustPoints.map((point) => (
+                <li
                   key={point}
-                  className="flex items-start gap-4 rounded-lg border bg-card p-5 shadow-road transition-all hover:-translate-y-0.5 hover:shadow-glow"
+                  className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
                 >
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-sm font-black text-primary-foreground">
-                    {i + 1}
-                  </span>
-                  <span className="text-sm font-medium leading-6">{point}</span>
-                </div>
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                  {point}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
 

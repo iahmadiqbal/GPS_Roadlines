@@ -76,11 +76,6 @@ export default function HowItWorksPage() {
               <h2 className="text-3xl font-black sm:text-4xl">
                 Built for Speed, Safety &amp; Reliability
               </h2>
-              <p className="mt-4 text-lg leading-8 text-muted-foreground">
-                Whether the request is a tow, boost, recovery, container move, or fleet transport,
-                GPS Roadlines uses one intake model to understand the problem, locate the asset,
-                select the right service, and complete the job with clear next steps.
-              </p>
             </div>
             <ul className="grid gap-3">
               {whyProcessWorksBullets.map((point) => (

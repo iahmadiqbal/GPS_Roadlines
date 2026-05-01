@@ -5,7 +5,7 @@ import {
   HeroSlideshow,
   IntegratedModelSection,
   ServicesGrid,
-  TimelineSection,
+  SimpleHowItWorks,
   WhyChooseSection,
 } from "@/components/roadlines/sections";
 
@@ -14,10 +14,10 @@ export default function IndexPage() {
     <PageShell>
       <main>
         <HeroSlideshow />
-        <ServicesGrid />
+        <ServicesGrid simple />
         <AboutPreview />
         <WhyChooseSection />
-        <TimelineSection />
+        <SimpleHowItWorks />
         <IntegratedModelSection />
         <CTASection />
       </main>

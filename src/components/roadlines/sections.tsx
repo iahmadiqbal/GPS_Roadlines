@@ -252,23 +252,44 @@ export function ServiceSection({
 
 export function ServicesGrid({
   services = coreServices,
-  title = "Services Built Around Road Reality",
+  title,
   text,
   id = "services",
+  simple = false,
 }: {
   services?: Service[];
   title?: string;
   text?: string;
   id?: string;
+  simple?: boolean;
 }) {
   return (
     <section id={id} className="scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
       <div className="mx-auto max-w-screen-2xl">
-        {(title || text) && <SectionHeader eyebrow="Services" title={title} text={text} />}
+        {(title || text) && <SectionHeader eyebrow="Services" title={title ?? ""} text={text} />}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             const Icon = service.icon;
             const image = serviceImages[service.title] ?? transportImage;
+            if (simple) {
+              return (
+                <Reveal key={service.title} direction={["left", "up", "right"][index % 3] as "left" | "up" | "right"} delay={index * 0.08}>
+                  <Card className="group flex flex-col rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
+                    <CardContent className="flex flex-col items-center p-6 text-center">
+                      <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-accent text-primary transition-transform duration-300 group-hover:scale-110">
+                        <Icon className="size-6" />
+                      </div>
+                      <h3 className="mb-4 text-lg font-black">{service.title}</h3>
+                      <Button variant="outline" asChild>
+                        <Link to="/contact">
+                          Request Service <ArrowRight />
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Reveal>
+              );
+            }
             return (
               <Reveal key={service.title} direction={["left", "up", "right"][index % 3] as "left" | "up" | "right"} delay={index * 0.08}>
                 <Card className="group flex flex-col overflow-hidden rounded-lg border-border/80 bg-card shadow-road transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
@@ -522,6 +543,41 @@ export function InfoBand({ children }: { children: ReactNode }) {
       <Reveal direction="up" className="mx-auto max-w-screen-2xl">
         {children}
       </Reveal>
+    </section>
+  );
+}
+
+// Home page — simple numbered flow, no images
+export function SimpleHowItWorks() {
+  const homeSteps = [
+    "Request Service",
+    "Location & Issue Review",
+    "Dispatch Operator",
+    "Service Delivery",
+    "Completion",
+  ];
+  return (
+    <section className="px-4 py-20 sm:px-6 lg:px-8 2xl:px-16">
+      <div className="mx-auto max-w-screen-2xl">
+        <div className="flex flex-wrap items-center justify-center gap-3 text-sm font-semibold">
+          {homeSteps.map((step, i) => (
+            <div key={step} className="flex items-center gap-3">
+              <div className="flex items-center gap-2 rounded-lg border bg-card px-4 py-3 shadow-road">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-black text-primary-foreground">
+                  {i + 1}
+                </span>
+                <span>{step}</span>
+              </div>
+              {i < homeSteps.length - 1 && (
+                <ArrowRight className="size-4 shrink-0 text-muted-foreground" />
+              )}
+            </div>
+          ))}
+        </div>
+        <p className="mt-6 text-center text-sm text-muted-foreground">
+          Customer requests are processed via phone or online system with fast assignment
+        </p>
+      </div>
     </section>
   );
 }
