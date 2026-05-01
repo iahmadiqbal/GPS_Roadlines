@@ -306,7 +306,7 @@ export function Logo() {
       alt="GPS Roadlines logo"
       width={160}
       height={112}
-      className="h-28 w-48 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
+      className="h-20 w-40 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
       aria-label="GPS Roadlines home"
     />
   );
@@ -367,7 +367,7 @@ export function Header() {
       >
         <div
           className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 xl:px-12 xl:gap-6 2xl:px-16"
-          style={{ minHeight: "4.5rem" }}
+          style={{ minHeight: "3.5rem" }}
         >
           {/* Left — Logo stacked above MENU (both mobile & desktop) */}
           <div className="flex min-w-0 flex-col items-center">
