@@ -367,7 +367,7 @@ export function Header() {
       >
         <div
           className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 xl:px-12 xl:gap-6 2xl:px-16"
-          style={{ minHeight: "3.5rem" }}
+          style={{ minHeight: "2rem" }}
         >
           {/* Left — Logo stacked above MENU */}
           <div className="flex min-w-0 flex-col items-start -ml-20 lg:-ml-16">
@@ -401,7 +401,7 @@ export function Header() {
           </div>
 
           {/* Right — desktop: original size buttons | mobile: stacked column */}
-          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col lg:-mt-12">
+          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col lg:-mt-16">
             {/* Immediate Help */}
             <Dialog>
               <DialogTrigger asChild>
