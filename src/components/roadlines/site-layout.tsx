@@ -370,7 +370,7 @@ export function Header() {
           style={{ minHeight: "2rem" }}
         >
           {/* Left — Logo stacked above MENU */}
-          <div className="flex min-w-0 flex-col items-start -ml-20 lg:-ml-16">
+          <div className="flex min-w-0 flex-col items-start -ml-16 lg:-ml-16">
             <Link to="/" aria-label="GPS Roadlines home">
               <Logo />
             </Link>
@@ -391,7 +391,7 @@ export function Header() {
             </button>
             {/* Mobile MENU button - below logo */}
             <button
-              className="flex lg:hidden items-center gap-2 rounded-none border-0 bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground ml-8"
+              className="flex lg:hidden items-center gap-2 rounded-none border-0 bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground ml-16"
               onClick={() => setMobileOpen(true)}
               aria-label="Open navigation"
             >
