@@ -304,9 +304,9 @@ export function Logo() {
     <img
       src={gpsRoadlinesLogo}
       alt="GPS Roadlines logo"
-      width={160}
-      height={112}
-      className="h-20 w-40 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
+      width={200}
+      height={140}
+      className="h-28 w-56 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
       aria-label="GPS Roadlines home"
     />
   );
@@ -369,14 +369,14 @@ export function Header() {
           className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 xl:px-12 xl:gap-6 2xl:px-16"
           style={{ minHeight: "3.5rem" }}
         >
-          {/* Left — Logo stacked above MENU (both mobile & desktop) */}
-          <div className="flex min-w-0 flex-col items-center lg:items-center -ml-8 lg:ml-0">
+          {/* Left — Logo stacked above MENU */}
+          <div className="flex min-w-0 flex-col items-start -ml-20 lg:-ml-16">
             <Link to="/" aria-label="GPS Roadlines home">
               <Logo />
             </Link>
-            {/* Desktop MENU button */}
+            {/* Desktop MENU button - below logo */}
             <button
-              className={`hidden lg:flex items-center gap-2 rounded-none border-0 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors ${
+              className={`hidden lg:flex items-center gap-2 rounded-none border-0 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors ml-16 ${
                 megaOpen ? "bg-primary/85" : "bg-primary hover:bg-primary/85"
               }`}
               aria-expanded={megaOpen}
@@ -389,9 +389,9 @@ export function Header() {
                 className={`size-3.5 transition-transform duration-200 ${megaOpen ? "rotate-180" : ""}`}
               />
             </button>
-            {/* Mobile MENU button */}
+            {/* Mobile MENU button - below logo */}
             <button
-              className="flex lg:hidden items-center gap-2 rounded-none border-0 bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground"
+              className="flex lg:hidden items-center gap-2 rounded-none border-0 bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground ml-8"
               onClick={() => setMobileOpen(true)}
               aria-label="Open navigation"
             >
@@ -401,7 +401,7 @@ export function Header() {
           </div>
 
           {/* Right — desktop: original size buttons | mobile: stacked column */}
-          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col">
+          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col lg:-mt-12">
             {/* Immediate Help */}
             <Dialog>
               <DialogTrigger asChild>
