@@ -401,7 +401,7 @@ export function Header() {
           </div>
 
           {/* Right — desktop: original size buttons | mobile: stacked column */}
-          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col lg:-mt-16">
+          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col lg:-mt-16 -mt-8">
             {/* Immediate Help */}
             <Dialog>
               <DialogTrigger asChild>
