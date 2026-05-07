@@ -227,53 +227,55 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-white" style={{ overflowY: "auto" }}>
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 -ml-10">
         <Link to="/" onClick={onClose} aria-label="GPS Roadlines home">
-          <Logo />
+          <img
+            src={gpsRoadlinesLogo}
+            alt="GPS Roadlines logo"
+            className="h-20 w-44 object-contain"
+          />
         </Link>
         <button
           onClick={onClose}
           aria-label="Close menu"
-          className="rounded-md p-2 text-gray-600 hover:bg-gray-100"
+          className="rounded-md p-2 text-gray-900 hover:bg-gray-100"
         >
-          <X className="size-5" />
+          <X className="size-6" />
         </button>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-4 py-2">
+      <nav className="flex-1 px-6 py-4">
         {megaMenuCategories.map((cat) => (
           <div key={cat.id} className="border-b border-gray-100">
             <button
-              className="flex w-full items-center justify-between py-3.5 text-left text-sm font-semibold text-gray-900"
+              className="flex w-full items-center justify-between py-4 text-left text-sm font-bold uppercase tracking-wide text-gray-900"
               onClick={() => setOpenSection(openSection === cat.id ? null : cat.id)}
             >
               <span>{cat.label}</span>
               <ChevronRight
-                className={`size-4 shrink-0 text-primary transition-transform duration-200 ${
+                className={`size-4 shrink-0 text-gray-600 transition-transform duration-200 ${
                   openSection === cat.id ? "rotate-90" : ""
                 }`}
               />
             </button>
 
             {openSection === cat.id && (
-              <div className="mb-3 space-y-1 rounded-lg border border-primary/10 bg-gray-50 p-3">
+              <div className="mb-4 space-y-1 pl-4">
                 <Link
                   to={cat.to}
                   onClick={onClose}
-                  className="block rounded-md px-3 py-2 text-sm font-bold text-primary hover:bg-primary/10"
+                  className="block py-2 text-sm font-semibold text-primary hover:underline"
                 >
-                  {cat.label} — Overview
+                  {cat.label}
                 </Link>
-                <div className="my-1 border-t border-gray-200" />
                 {cat.links.map((link) => (
                   <Link
                     key={link.to}
                     to={link.to}
                     onClick={onClose}
-                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary"
+                    className="block py-2 text-sm text-gray-600 hover:text-primary"
                   >
-                    <span className="size-1.5 shrink-0 rounded-full bg-primary/40" />
                     {link.label}
                   </Link>
                 ))}
@@ -284,14 +286,19 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
       </nav>
 
       {/* Bottom CTA */}
-      <div className="border-t border-gray-200 px-4 py-4">
+      <div className="border-t border-gray-200 px-6 py-4 space-y-3">
         <a
           href={company.phoneHref}
-          className="flex w-full items-center justify-center gap-2 rounded-md bg-primary py-3 text-sm font-bold text-white"
-          onClick={onClose}
+          className="flex w-full items-center justify-center gap-2 rounded-md border-2 border-primary bg-white px-6 py-3 text-sm font-bold text-primary hover:bg-primary/5 transition-colors"
         >
-          <PhoneCall className="size-4" /> {company.phone}
+          <PhoneCall className="size-4" /> Immediate Help
         </a>
+        <button
+          onClick={onClose}
+          className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors"
+        >
+          <Download className="size-4" /> Download App
+        </button>
       </div>
     </div>
   );
@@ -363,14 +370,14 @@ export function Header() {
 
       <header
         ref={headerRef}
-        className="sticky top-0 z-40 border-b border-border/80 bg-background/88 backdrop-blur-xl supports-[backdrop-filter]:bg-background/78"
+        className="sticky top-0 z-40 border-b border-gray-200 bg-white"
       >
         <div
           className="mx-auto flex max-w-screen-2xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 xl:px-12 xl:gap-6 2xl:px-16"
           style={{ minHeight: "5rem" }}
         >
           {/* Left — Logo and MENU in one line for desktop, stacked for mobile */}
-          <div className="flex min-w-0 items-center gap-0 lg:flex-row flex-col lg:items-center items-start lg:-ml-20">
+          <div className="flex min-w-0 items-center gap-0 lg:flex-row flex-col lg:items-center items-start lg:-ml-20 -ml-10">
             <Link to="/" aria-label="GPS Roadlines home">
               <Logo />
             </Link>
@@ -389,24 +396,23 @@ export function Header() {
                 className={`size-3.5 transition-transform duration-200 ${megaOpen ? "rotate-180" : ""}`}
               />
             </button>
-            {/* Mobile MENU button - below logo */}
-            <button
-              className="flex lg:hidden items-center gap-2 rounded-none border-0 bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground"
-              onClick={() => setMobileOpen(true)}
-              aria-label="Open navigation"
-            >
-              <Menu className="size-3.5" />
-              MENU
-            </button>
           </div>
 
-          {/* Right — desktop: original size buttons | mobile: stacked column */}
-          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col">
+          {/* Mobile hamburger menu - right side only */}
+          <button
+            className="flex lg:hidden items-center justify-center p-2"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open navigation"
+          >
+            <Menu className="size-6 text-gray-900" />
+          </button>
+
+          {/* Right — desktop: original size buttons */}
+          <div className="hidden lg:flex shrink-0 items-center gap-2">
             {/* Immediate Help */}
             <Dialog>
               <DialogTrigger asChild>
-                {/* Desktop: big button */}
-                <Button size="xl" variant="emergency" className="hidden lg:flex">
+                <Button size="xl" variant="emergency">
                   <PhoneCall /> Immediate Help
                 </Button>
               </DialogTrigger>
@@ -425,45 +431,9 @@ export function Header() {
             {/* Download App */}
             <Dialog>
               <DialogTrigger asChild>
-                {/* Desktop: big button */}
-                <Button size="xl" variant="outline" className="hidden lg:flex">
+                <Button size="xl" variant="outline">
                   <Download className="size-4" /> Download App
                 </Button>
-              </DialogTrigger>
-              <DialogContent className="rounded-lg border-border bg-card">
-                <DialogHeader>
-                  <DialogTitle>Our App is Coming Soon</DialogTitle>
-                </DialogHeader>
-                <p className="text-sm leading-7 text-muted-foreground">
-                  Our mobile app is launching soon to make bookings faster, easier, and more transparent. Stay tuned.
-                </p>
-              </DialogContent>
-            </Dialog>
-
-            {/* Mobile: compact buttons — one line, full label */}
-            <Dialog>
-              <DialogTrigger asChild>
-                <button className="flex lg:hidden items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-xs font-bold text-white whitespace-nowrap">
-                  <PhoneCall className="size-3.5 shrink-0" /> Immediate Help
-                </button>
-              </DialogTrigger>
-              <DialogContent className="rounded-lg border-border bg-card">
-                <DialogHeader>
-                  <DialogTitle>Need urgent roadside assistance?</DialogTitle>
-                </DialogHeader>
-                <Button size="xl" variant="hero" asChild>
-                  <a href={company.phoneHref}>
-                    <PhoneCall /> {company.phone}
-                  </a>
-                </Button>
-              </DialogContent>
-            </Dialog>
-
-            <Dialog>
-              <DialogTrigger asChild>
-                <button className="flex lg:hidden items-center gap-1.5 rounded-md border border-border bg-background px-3 py-2 text-xs font-bold text-foreground whitespace-nowrap">
-                  <Download className="size-3.5 shrink-0" /> Download App
-                </button>
               </DialogTrigger>
               <DialogContent className="rounded-lg border-border bg-card">
                 <DialogHeader>
