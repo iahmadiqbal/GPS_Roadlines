@@ -293,12 +293,23 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         >
           <PhoneCall className="size-4" /> Immediate Help
         </a>
-        <button
-          onClick={onClose}
-          className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors"
-        >
-          <Download className="size-4" /> Download App
-        </button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <button
+              className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors"
+            >
+              <Download className="size-4" /> Download App
+            </button>
+          </DialogTrigger>
+          <DialogContent className="rounded-lg border-border bg-card">
+            <DialogHeader>
+              <DialogTitle>Our App is Coming Soon</DialogTitle>
+            </DialogHeader>
+            <p className="text-sm leading-7 text-muted-foreground">
+              Our mobile app is launching soon to make bookings faster, easier, and more transparent. Stay tuned.
+            </p>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
