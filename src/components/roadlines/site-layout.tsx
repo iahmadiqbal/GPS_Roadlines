@@ -304,9 +304,9 @@ export function Logo() {
     <img
       src={gpsRoadlinesLogo}
       alt="GPS Roadlines logo"
-      width={200}
-      height={140}
-      className="h-28 w-56 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
+      width={180}
+      height={126}
+      className="h-20 w-44 lg:h-24 lg:w-52 cursor-pointer object-contain transition-transform duration-300 hover:scale-105"
       aria-label="GPS Roadlines home"
     />
   );
@@ -366,17 +366,17 @@ export function Header() {
         className="sticky top-0 z-40 border-b border-border/80 bg-background/88 backdrop-blur-xl supports-[backdrop-filter]:bg-background/78"
       >
         <div
-          className="mx-auto flex max-w-screen-2xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 xl:px-12 xl:gap-6 2xl:px-16"
-          style={{ minHeight: "2rem" }}
+          className="mx-auto flex max-w-screen-2xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 xl:px-12 xl:gap-6 2xl:px-16"
+          style={{ minHeight: "5rem" }}
         >
-          {/* Left — Logo stacked above MENU */}
-          <div className="flex min-w-0 flex-col items-start -ml-16 lg:-ml-16">
+          {/* Left — Logo and MENU in one line for desktop, stacked for mobile */}
+          <div className="flex min-w-0 items-center gap-0 lg:flex-row flex-col lg:items-center items-start lg:-ml-20">
             <Link to="/" aria-label="GPS Roadlines home">
               <Logo />
             </Link>
-            {/* Desktop MENU button - below logo */}
+            {/* Desktop MENU button - same line as logo */}
             <button
-              className={`hidden lg:flex items-center gap-2 rounded-none border-0 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors ml-16 ${
+              className={`hidden lg:flex items-center gap-2 rounded-none border-0 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors -ml-4 ${
                 megaOpen ? "bg-primary/85" : "bg-primary hover:bg-primary/85"
               }`}
               aria-expanded={megaOpen}
@@ -391,7 +391,7 @@ export function Header() {
             </button>
             {/* Mobile MENU button - below logo */}
             <button
-              className="flex lg:hidden items-center gap-2 rounded-none border-0 bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground ml-16"
+              className="flex lg:hidden items-center gap-2 rounded-none border-0 bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-foreground"
               onClick={() => setMobileOpen(true)}
               aria-label="Open navigation"
             >
@@ -401,7 +401,7 @@ export function Header() {
           </div>
 
           {/* Right — desktop: original size buttons | mobile: stacked column */}
-          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col lg:-mt-16 -mt-8">
+          <div className="flex shrink-0 items-center gap-2 lg:flex-row flex-col">
             {/* Immediate Help */}
             <Dialog>
               <DialogTrigger asChild>
